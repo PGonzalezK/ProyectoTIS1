@@ -1,65 +1,90 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+<!-- As a link -->
+<nav class="navbar navbar-expand-lg bg-ligh" style="background-color: #e3f2fd">
     <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">INICIO</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <form class="d-flex" role="search">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-    </div>
-  </div>
-</nav>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <i class="fa-brands fa-instagram fa-2xl"></i>
+                    <i class="fa-brands fa-facebook fa-2xl"></i>
+                    <i class="fa-brands fa-x-twitter fa-2xl"></i>
+                </div>
+                <div class="col">
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+                    </form>
+                </div>
+                <div class="col">
 
-            <!-- Botón Iniciar Sesión -->
-            <button type="button" class="btn btn-outline-success ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">Iniciar Sesion</button>
-        </div>
-    </div>
-</nav>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">INICIAR SESION</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                COMPLETE
-            </div>
-            <div class="modal-footer">
-            <form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">Jamas debes compartir tus datos con otras personas.</div>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    
-  </div>
-  <button type="submit" class="btn btn-primary">Guardar</button>
-</form>
-               
+                    <form class="d-flex" role="search">
+                        <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal"
+                            data-bs-target="#IniciarSesion">
+                            Iniciar Sesion
+                        </button>
+                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                            data-bs-target="#Registrarse">
+                            Registrarse
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="IniciarSesion" tabindex="-1" aria-labelledby="ModalIniciarsesion"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5 " id="ModalIniciarsesion">Iniciar Sesion</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form">
+                            <form action="" method="post" name="login">
+                                <input type="text" name="username" placeholder="Usuario" required />
+                                <input type="password" name="password" placeholder="Contraseña" required />
+                                <input name="submit" type="submit" value="Entrar" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="Registrarse" tabindex="-1" aria-labelledby="ModalRegistrarse" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="ModalRegistrarse">Registrarse</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="registration" action="" method="post">
+                            <input type="text" name="username" placeholder="Usuario" required />
+                            <input type="email" name="email" placeholder="Correo" required />
+                            <input type="password" name="password" placeholder="Contraseña" required />
+                            <input type="submit" name="submit" value="Registrarse" />
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
+
+</nav>
+
+
+
 
 <!-- Bootstrap CSS y JS (asegúrate de incluir estas bibliotecas en tu archivo) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
