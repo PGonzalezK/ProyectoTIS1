@@ -5,7 +5,7 @@
             </div>
 
             <div class="col-12">
-                <ul class="nav justify-content-center">
+                <ul class="nav justify-content-center" style="background-color: #7e9dfb">
                     <li class="nav-item">
                         <a class="nav-link" href="#">Inicio</a>
                     </li>
@@ -17,7 +17,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                            aria-expanded="false" value="dd">---</a>
+                            aria-expanded="false" value="dd">Actualidad</a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Noticias</a></li>
                             <li><a class="dropdown-item" href="#">Eventos</a></li>
@@ -34,7 +34,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">-----</a>
+                        <a class="nav-link" href="#">Parcitipacion</a>
                     </li>
 
         </div>

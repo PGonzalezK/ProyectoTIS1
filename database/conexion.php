@@ -1,3 +1,8 @@
 <?php 
-    $connection = mysqli_connect("localhost","root","","proy_tis_nexomunicipal");
+    $con = mysqli_connect("localhost","root","","proyectotis1");
+
+    if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
 ?>
