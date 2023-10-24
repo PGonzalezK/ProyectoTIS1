@@ -17,72 +17,14 @@
                 <div class="col">
 
                     <form class="d-flex" role="search">
-                        <button type="button" class="btn btn-outline-success me-2" data-bs-toggle="modal"
-                            data-bs-target="#IniciarSesion">
-                            Iniciar Sesion
-                        </button>
-                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
-                            data-bs-target="#Registrarse">
-                            Registrarse
-                        </button>
+                        <a class="btn btn-outline-succes" href="login\iniciarsesion.php" role="button">Iniciar sesion</a>
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#Registrarse">
+                                Registrarse
+                            </button>
                     </form>
                 </div>
             </div>
         </div>
-
-    <!-- Modal -->
-    <div class="modal fade" id="IniciarSesion" tabindex="-1" aria-labelledby="ModalIniciarsesion" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5 " id="ModalIniciarsesion">Iniciar Sesion</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <?php
-                    require('database\conexion.php');
-                    session_start();
-                    if (isset($_POST['rut'])) {
-
-                        $username = stripslashes($_REQUEST['rut']); // removes backslashes
-                        $username = mysqli_real_escape_string($con, $rut); //escapes special characters in a string
-                        $password = stripslashes($_REQUEST['password']);
-                        $password = mysqli_real_escape_string($con, $password);
-
-                        //Checking is user existing in the database or not
-                        $query = "SELECT * FROM `registro` WHERE rut='$rut' and password='" . md5($password) . "'";
-                        $result = mysqli_query($con, $query) or die(mysql_error());
-                        $rows = mysqli_num_rows($result);
-                        if ($rows == 1) {
-                            $_SESSION['rut'] = $rut;
-                            header("Location: pages\homelogin.php"); // Redirect user to index.php
-                        } else {
-                            echo "<div class='form'><h3>Usuario/Contraseña Incorrecto</h3><br/>Haz click aquí para <a href='login.php'>Logearte</a></div>";
-                        }
-                    } else {
-                        ?>
-
-                        <div class="form">
-                            <form action="" method="post" name="login">
-                                <input type="rut" name="rut" placeholder="rut" required />
-                                <input type="password" name="password" placeholder="Contraseña" required />
-                                <input name="submit" type="submit" value="Entrar" />
-                            </form>
-                        <?php } ?>
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
 
 
         <!-- Modal -->
@@ -96,7 +38,7 @@
                     <div class="modal-body">
                         <?php
                         require('database\conexion.php');
-                        
+
                         // If form submitted, insert values into the database.
                         if (isset($_REQUEST['rut'])) {
                             $rut = stripslashes($_REQUEST['rut']); // removes backslashes
@@ -113,10 +55,10 @@
                             $query = "INSERT into `registro` (rut, nombre, apellido, email, password, trn_date) VALUES ('$rut', '$nombre', '$apellido', '$email', '" . md5($password) . "', '$trn_date')";
                             $result = mysqli_query($con, $query);
                             if ($result) {
-                                header("Location: home.php");
+                                header("Location: index.php");
                             }
                         } else {
-                            ?>
+                        ?>
                             <form name="Registrarse" action="" method="post">
                                 <input type="rut" name="rut" placeholder="rut" required />
                                 <input type="text" name="nombre" placeholder="nombre" required />

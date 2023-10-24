@@ -1,4 +1,10 @@
 <?php
+
+
+
+
+
+
     // Pequeña lógica para capturar la pagina que queremos abrir
     $pagina = isset($_GET['p']) ? strtolower($_GET['p']) : 'home';
 
@@ -12,6 +18,9 @@
 
     // Otra opción es validar usando un switch, de esta manera para el valor esperado le indicamos que página cargar
 
-
+    
     // El fragmento de html que contiene el pie de página de nuestra web
     require_once 'includes/footer.php';
+
+    include("login\auth.php");
+    
