@@ -61,44 +61,6 @@
 
 </div>
 
-<!--<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-    <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <i class="fa-brands fa-x-twitter"></i>
-        </a>
-    </li>
-    <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
-    </li>
-    <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-    </li>
-</ul> (esto es lo que tenias pablito)-->
-<br>
-<ul class="nav col-md-4 list-unstyled d-flex justify-content-end">
-    <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <i class="fa-brands fa-x-twitter"></i>
-        </a>
-    </li>
-    <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <i class="fa-brands fa-facebook"></i>
-        </a>
-    </li>
-    <li class="ms-3">
-        <a class="text-body-secondary" href="#">
-            <i class="fa-brands fa-instagram"></i>
-        </a>
-    </li>
-</ul>
-
-
-
 
 </footer>
 </div>
