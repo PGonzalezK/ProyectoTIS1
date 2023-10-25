@@ -1,13 +1,30 @@
-<?php
-require('C:\xampp\htdocs\xampp\ProyectoTIS1\database\conexion.php');
 
-?>
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+	<title>Nexo Municipal</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Bootstrap  -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+	<!-- jQuery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+
+</head>
 
 <body>
-<div class="container text-center">
+	<div class="min-vh-100">
+		<?php require_once '..\includes\navbar_logeado.php'; ?>
+
+        <div class="container text-center">
         <div class="row">
             <div class="col">
 
@@ -16,10 +33,10 @@ require('C:\xampp\htdocs\xampp\ProyectoTIS1\database\conexion.php');
             <div class="col-12">
                 <ul class="nav justify-content-center" style="background-color: #7e9dfb">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Inicio</a>
+                        <a class="nav-link" href="..\index.php">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
+                        <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Mapa</a>
@@ -140,6 +157,4 @@ require('C:\xampp\htdocs\xampp\ProyectoTIS1\database\conexion.php');
     </div>
     </div>
 
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</body>
+    <script src="desactivar_link.js"></script>

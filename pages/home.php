@@ -10,7 +10,7 @@
                         <a class="nav-link" href="#">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
+                        <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Mapa</a>
