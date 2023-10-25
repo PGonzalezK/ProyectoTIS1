@@ -1,160 +1,183 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-	<title>Nexo Municipal</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-	<!-- Bootstrap  -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Nexo Municipal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-	<!-- jQuery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
 
 </head>
 
 <body>
-	<div class="min-vh-100">
-		<?php require_once '..\includes\navbar_logeado.php'; ?>
+    <div class="min-vh-100">
+        <?php require_once '..\includes\navbar_logeado.php'; ?>
 
         <div class="container text-center">
-        <div class="row">
-            <div class="col">
+            <div class="row">
+                <div class="col">
 
+                </div>
+
+                <div class="col-12">
+                    <ul class="nav justify-content-center" style="background-color: #7e9dfb">
+                        <li class="nav-item">
+                            <a class="nav-link" href="..\index.php">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mapa</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false" value="dd">Actualidad</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Noticias</a></li>
+                                <li><a class="dropdown-item" href="#">Eventos</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">Nexo Municipal</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Mision y Vision</a></li>
+                                <li><a class="dropdown-item" href="#">Palabras del alcalde</a></li>
+                                <li><a class="dropdown-item" href="#">Direcciones Municipales</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Parcitipacion</a>
+                        </li>
+
+                </div>
             </div>
 
-            <div class="col-12">
-                <ul class="nav justify-content-center" style="background-color: #7e9dfb">
-                    <li class="nav-item">
-                        <a class="nav-link" href="..\index.php">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mapa</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false" value="dd">Actualidad</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Noticias</a></li>
-                            <li><a class="dropdown-item" href="#">Eventos</a></li>
 
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Nexo Municipal</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Mision y Vision</a></li>
-                            <li><a class="dropdown-item" href="#">Palabras del alcalde</a></li>
-                            <li><a class="dropdown-item" href="#">Direcciones Municipales</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Parcitipacion</a>
-                    </li>
+
+
+
+
+            <div id="carouselExampleDark" class="carousel carousel-dark slide">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+                        aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4"
+                        aria-label="Slide 5"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="https://i.pinimg.com/736x/9b/be/ae/9bbeae5d270674a4a57bbd942e3570f5.jpg"
+                            class="d-block w-100" style="height: 600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>LANAS Y OVILLOS</h5>
+                            <p>hace tejidos variados</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://puntacana.shopping/upload/iblock/3cb/3cbee9f2db16ca9d9da566c602971938.jpg"
+                            class="d-block w-100" style="height: 600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>JOYAS PACHAMAMICAS</h5>
+                            <p>joyas artesanales</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://d1ih8jugeo2m5m.cloudfront.net/2022/09/nombres-para-tiendas-de-ropa-1200x685.jpg"
+                            class="d-block w-100" style="height: 600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>EXPORROPA</h5>
+                            <p>venta de ropa exportada</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://i0.wp.com/www.valdiloche.cl/wp-content/uploads/2022/11/AWG2406-3.jpg?fit=1200%2C722&ssl=1"
+                            class="d-block w-100" style="height: 600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>DULCE AMOR</h5>
+                            <p>dulces artesanales</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://img.asmedia.epimg.net/resizer/4QW1SFBjqwtL2s0JQbFHTaKslK4=/1472x1104/cloudfront-eu-central-1.images.arcpublishing.com/diarioas/BCL4Q6J5HJOHZODM5QSPPXKZZE.jpg"
+                            class="d-block w-100" style="height: 600px">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>ENTRETE AMIGOS</h5>
+                            <p>juegos para jovenes </p>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+            <div class="d-grid gap-2 d-sm-flex justify-content">
 
             </div>
         </div>
-
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col">
-                <div class="card h-100">
-                <img src="https://munipuqueldon.cl/wp-content/uploads/2023/07/IMG_4378-scaled.jpg" class="card-img-top" style="height: 238px">
-                    <div class="card-body">
-                    <h5 class="card-title">Municipio de Puqueldón entrega 50 Becas a estudiantes destacados de la comuna.</h5>
-                    <p class="card-text">Durante la mañana del 20 de julio, en el salón principal del Edificio Polifuncional,
-                        se realizó...</p>
+        <br>
+        <br>
+         <div class="container d-flex flex-column justify-content-center align-items-center">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <div class="col">
+                        <span class="mb-3 text-body-secondary">Seguridad Ciudadana: +56 9 4569 2347</span>
                     </div>
-                    <div class="card-footer">
-                    <small class="text-body-secondary">17 Octubre 2023</small>
-                </div>
-                </div>
-            </div>
 
-            <div class="col">
-                <div class="card h-100">
-                   <img src="https://munipuqueldon.cl/wp-content/uploads/2023/06/DSC_0467-1024x683.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Egresan los primeros miembros del centro diurno del adulto mayor</h5>
-                    <p class="card-text">Este centro, que abrió sus puertas a la comunidad en diciembre del 2021 ...</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">18 Octubre 2023</small>
-                </div>
-                </div>
-
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://munipuqueldon.cl/wp-content/uploads/2023/06/DSC_0319-1024x683.jpg" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Día Mundial del Medioambiente: Un llamado a la protección de los ecosistemas locales</h5>
-                    <p class="card-text">En un esfuerzo conjunto por concientizar sobre la importancia de preservar el medio... </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">19 Octubre 2023</small>
-                </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://munipuqueldon.cl/wp-content/uploads/2023/07/DSC_0003-1024x683.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                    <h5 class="card-title"> Compañia chilota de teatro, tétires y marionetas se presento en la comuna </h5>
-                    <p class="card-text">Con la obra titulada “Libertad de las maravillas”, y luego de una semana...</p>
+                    <div class="col">
+                        <span class="mb-3 text-body-secondary">Mesa central: 800 816 00</span>
                     </div>
-                    <div class="card-footer">
-                    <small class="text-body-secondary">20 Octubre 2023</small>
-                </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://munipuqueldon.cl/wp-content/uploads/2023/05/335447144_581250817278770_6242936035129980254_n.jpg" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">Operativo de esterilización gratuitafinaliza exitosamente con 500 mascotas operadas</h5>
-                        <p class="card-text">realizaron 500 intervenciones quirúrgicas a mascotas (perros y gatos), todas ellas con resultados exitosos...</p>
+
+                    <div class="col">
+                        <span class="mb-3 text-body-secondary">Direccion: Ejercito 1030. Concepcion, Chile</span>
                     </div>
-                    <div class="card-footer">
-                    <small class="text-body-secondary">21 Octubre 2023</small>
-                </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card h-100">
-                    <img src="https://munipuqueldon.cl/wp-content/uploads/2023/05/xA_UNO_1419483.jpeg.pagespeed.ic_.ebgryL7UHV.jpg" class="card-img-top" style="height: 238px">
-                    <div class="card-body">
-                        <h5 class="card-title">Profesionales del SAG hacen llamado a denunciar posibles casos de Influenza Aviar</h5>
-                        <p class="card-text">profesionales del SAG llegaron a Puqueldón para informar a la comunidad sobre síntomas...</p>
+
+                    <div class="col">
+                        <span class="mb-3 text-body-secondary">Emergencia: *4142</span>
                     </div>
-                    <div class="card-footer">
-                    <small class="text-body-secondary">22 Octubre 2023</small>
+
+                    <div class="col">
+                        <span class="mb-3 text-body-secondary">Nexo municipal: +56 41 298 7672</span>
+                    </div>
+
+                    <div class="col">
+                        <span class="mb-3 text-body-secondary">Alumbrado público: +56 41 239 4723</span>
+                    </div>
                 </div>
-                </div>
+
             </div>
-        </div>
-
-
-
-
-
-
-
-
-
-        <div class="d-grid gap-2 d-sm-flex justify-content">
-
-        </div>
     </div>
-    </div>
+   
 
     <script src="desactivar_link.js"></script>
