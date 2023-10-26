@@ -5,6 +5,8 @@ include("login\auth.php");
 
 $pagina = isset($_GET['p']) ? strtolower($_GET['p']) : 'homelogin';
 
+$admin = strtok( $pagina , "/" );
+echo $admin;
 // El fragmento de html que contiene la cabecera de nuestra web
 require_once 'includes/header.php';
 

@@ -1,4 +1,30 @@
 <!-- As a link -->
+<?php
+   require('database\conexion.php');
+  
+if (isset($_REQUEST['rut'])) {
+    $rut = stripslashes($_REQUEST['rut']); // removes backslashes
+    $rut = mysqli_real_escape_string($con, $rut); //escapes special characters in a string
+    $nombre = stripslashes($_REQUEST['nombre']); // removes backslashes
+    $nombre = mysqli_real_escape_string($con, $nombre); //escapes special characters in a string
+    $apellido = stripslashes($_REQUEST['apellido']); // removes backslashes
+    $apellido = mysqli_real_escape_string($con, $apellido); //escapes special characters in a string
+    $email = stripslashes($_REQUEST['email']);
+    $email = mysqli_real_escape_string($con, $email);
+    $password = stripslashes($_REQUEST['password']);
+    $password = mysqli_real_escape_string($con, $password);
+    
+    echo md5($password);
+    $trn_date = date("Y-m-d H:i:s");
+    $query = "INSERT into `registro` (rut, nombre, apellido, email, password, trn_date) VALUES ('$rut', '$nombre', '$apellido', '$email', '" . md5($password) . "', '$trn_date')";
+    $result = mysqli_query($con, $query);
+    if ($result) {
+        // header("Location: index.php");
+    }
+} 
+
+?>
+
 <nav class="navbar navbar-expand-lg bg-ligh" style="background-color: #812fc1">
     <div class="container-fluid">
         <div class="container text-center">
@@ -37,26 +63,11 @@
                     </div>
                     <div class="modal-body">
                         <?php
-                        require('database\conexion.php');
+                      
 
                         // If form submitted, insert values into the database.
                         if (isset($_REQUEST['rut'])) {
-                            $rut = stripslashes($_REQUEST['rut']); // removes backslashes
-                            $rut = mysqli_real_escape_string($con, $rut); //escapes special characters in a string
-                            $nombre = stripslashes($_REQUEST['nombre']); // removes backslashes
-                            $nombre = mysqli_real_escape_string($con, $nombre); //escapes special characters in a string
-                            $apellido = stripslashes($_REQUEST['apellido']); // removes backslashes
-                            $apellido = mysqli_real_escape_string($con, $apellido); //escapes special characters in a string
-                            $email = stripslashes($_REQUEST['email']);
-                            $email = mysqli_real_escape_string($con, $email);
-                            $password = stripslashes($_REQUEST['password']);
-                            $password = mysqli_real_escape_string($con, $password);
-                            $trn_date = date("Y-m-d H:i:s");
-                            $query = "INSERT into `registro` (rut, nombre, apellido, email, password, trn_date) VALUES ('$rut', '$nombre', '$apellido', '$email', '" . md5($password) . "', '$trn_date')";
-                            $result = mysqli_query($con, $query);
-                            if ($result) {
-                                header("Location: index.php");
-                            }
+                            
                         } else {
                         ?>
                             <form name="Registrarse" action="" method="post">
