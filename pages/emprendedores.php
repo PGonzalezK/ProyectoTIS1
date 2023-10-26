@@ -64,7 +64,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Parcitipacion</a>
+                            <a  class="nav-link" href="#">Parcitipacion</a>
                         </li>
 
                 </div>

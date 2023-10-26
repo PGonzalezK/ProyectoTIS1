@@ -22,7 +22,7 @@
       	$rows = mysqli_num_rows($result);
         if($rows==1){
       		$_SESSION['rut'] = $rut;
-      		header("Location: ../index2.php"); // Redirect user to index.php
+      		header("Location: ..\index2.php"); // Redirect user to index.php
         }else{
       		echo "<div class='form'><h3>Usuario/Contraseña Incorrecto</h3><br/>Haz click aquí para <a href='login.php'>Logearte</a></div>";
       	}
