@@ -28,6 +28,95 @@
     <div class="min-vh-100">
         <?php require_once '..\includes\navbar_logeado.php'; ?>
 
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
 
+                </div>
 
-        <script src="desactivar_link.js"></script>
+                <div class="col-12">
+                    <ul class="nav justify-content-center" style="background-color: #7e9dfb">
+                        <li class="nav-item">
+                            <a class="nav-link" href="..\index.php">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mapa</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false" value="dd">Actualidad</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Noticias</a></li>
+                                <li><a class="dropdown-item" href="#">Eventos</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">Nexo Municipal</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Mision y Vision</a></li>
+                                <li><a class="dropdown-item" href="#">Palabras del alcalde</a></li>
+                                <li><a class="dropdown-item" href="#">Direcciones Municipales</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Parcitipacion</a>
+                        </li>
+
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <form class="was-validated">
+                <div class="mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">TIPO CONTRIBUCIÓN</label>
+                    <select class="form-select" required aria-label="select example">
+                        <option value="">Elija opcion.</option>
+                        <option value="1">DENUNCIA</option>
+                        <option value="2">FELICITACION</option>
+                        <option value="3">SEGERENCIA</option>
+                    </select>
+                    <div class="invalid-feedback">POR FAVOR ELIJA UNA OPCIÓN.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">DEPARTAMENTO</label>
+                    <select class="form-select" required aria-label="select example">
+                        <option value="">Elija departamento.</option>
+                        <option value="1">Departamento 1</option>
+                        <option value="2">Departamento 2</option>
+                        <option value="3">Departamento 3</option>
+                        <option value="3">Otro Departamento</option>
+                    </select>
+                    <div class="invalid-feedback">POR FAVOR ELIJA UNA OPCIÓN.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">DESCRIPCIÓN</label>
+                    <textarea class="form-control" id="validationTextarea" placeholder="escriba una breve descripcion"
+                        required></textarea>
+                    <div class="invalid-feedback">
+                        REALICE SU MENSAJE.
+                    </div>
+                </div>
+            </form>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                    style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Si eligió la opcion "Otro Departamento", por favor indique departamento que pertenece. </label>
+            </div>
+            <div class="col-12">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <label class="form-check-label" for="invalidCheck2">Mandar Anónimamente</label>
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">ENVIAR</button>
+            </div>
+            <script src="desactivar_link.js"></script>
