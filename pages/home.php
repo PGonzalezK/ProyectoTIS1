@@ -13,7 +13,7 @@
                         <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Mapa</a>
+                        <a class="nav-link" href="pages\mapa.php">Mapa</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"

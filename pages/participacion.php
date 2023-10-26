@@ -1,3 +1,14 @@
+<?php
+
+include("..\database\conexion.php");
+$consulta = "SELECT * FROM participacion";
+$respuesta = mysqli_query($con, $consulta);
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -40,7 +51,7 @@
                             <a class="nav-link" href="..\index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
+                            <a class="nav-link" href="emprendedores.php">Emprendedores</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Mapa</a>
@@ -64,7 +75,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Parcitipacion</a>
+                        <a id="participacion-link" class="nav-link" href="participacion.php">Participacion</a>
                         </li>
 
                 </div>
@@ -74,49 +85,49 @@
             <br>
             <br>
             <br>
-            <form class="was-validated">
+            <form class="was-validated" method="POST" action="..\includes\guardar_participacion.php">
                 <div class="mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">TIPO CONTRIBUCIÓN</label>
-                    <select class="form-select" required aria-label="select example">
-                        <option value="">Elija opcion.</option>
-                        <option value="1">DENUNCIA</option>
-                        <option value="2">FELICITACION</option>
-                        <option value="3">SEGERENCIA</option>
+                    <select class="form-select" name="tipo_contribucion" aria-label="select example" required>
+                        <option selected>Elija opcion.</option>
+                        <option value="denuncia">DENUNCIA</option>
+                        <option value="felicitacion">FELICITACION</option>
+                        <option value="sugerencia">SUGERENCIA</option>
                     </select>
                     <div class="invalid-feedback">POR FAVOR ELIJA UNA OPCIÓN.</div>
                 </div>
                 <div class="mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">DEPARTAMENTO</label>
-                    <select class="form-select" required aria-label="select example">
-                        <option value="">Elija departamento.</option>
-                        <option value="1">Departamento 1</option>
-                        <option value="2">Departamento 2</option>
-                        <option value="3">Departamento 3</option>
-                        <option value="3">Otro Departamento</option>
+                    <select class="form-select" name="departamento" aria-label="select example" required>
+                        <option selected>Elija departamento.</option>
+                        <option value="dpto1">Departamento 1</option>
+                        <option value="dpto2">Departamento 2</option>
+                        <option value="dpto3">Departamento 3</option>
+                        <option value="otro_dpto">Otro Departamento</option>
                     </select>
                     <div class="invalid-feedback">POR FAVOR ELIJA UNA OPCIÓN.</div>
                 </div>
                 <div class="mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">DESCRIPCIÓN</label>
-                    <textarea class="form-control" id="validationTextarea" placeholder="escriba una breve descripcion"
-                        required></textarea>
+                    <input type="text" class="form-control" name="descripcion" placeholder="escriba una breve descripcion"
+                        required></input>
                     <div class="invalid-feedback">
                         REALICE SU MENSAJE.
                     </div>
                 </div>
-            </form>
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                <div class="form-floating">
+                <input type="text" name="otro_dpto_text" class="form-control" id="floatingTextarea2"
                     style="height: 100px"></textarea>
                 <label for="floatingTextarea2">Si eligió la opcion "Otro Departamento", por favor indique departamento que pertenece. </label>
             </div>
             <div class="col-12">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2">
                     <label class="form-check-label" for="invalidCheck2">Mandar Anónimamente</label>
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit">ENVIAR</button>
+                <input class="btn btn-primary" value="Enviar" type="submit"></input>
             </div>
-            <script src="desactivar_link.js"></script>
+            </form>
+

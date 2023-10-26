@@ -1,24 +1,21 @@
-
-document.getElementById('emprendedores-link').addEventListener('click', function() {
-    // Desactiva el enlace
+document.getElementById('emprendedores-link').addEventListener('click', function(event) {
+    // Evitar el comportamiento predeterminado del enlace
+    event.preventDefault();
+    
+    // Desactivar el enlace
     this.classList.add('disabled');
     this.removeAttribute('href'); // Elimina el atributo "href"
-});
 
-document.getElementById('emprendedores-link').addEventListener('click', function() {
     console.log('El enlace fue clicado.');
-    // Resto del código para desactivar el enlace
 });
 
-
-document.getElementById('participacion-link').addEventListener('click', function() {
-    // Desactiva el enlace
+document.getElementById('participacion-link').addEventListener('click', function(event) {
+    // Evitar el comportamiento predeterminado del enlace
+    event.preventDefault();
+    
+    // Desactivar el enlace
     this.classList.add('disabled');
     this.removeAttribute('href'); // Elimina el atributo "href"
-});
 
-document.getElementById('participacion-link').addEventListener('click', function() {
     console.log('El enlace fue clicado.');
-    // Resto del código para desactivar el enlace
 });
-

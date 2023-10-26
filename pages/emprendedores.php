@@ -40,7 +40,7 @@
                             <a class="nav-link" href="..\index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
+                            <a id="emprendedores-link" class="nav-link" href="emprendedores.php">Emprendedores</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Mapa</a>
@@ -64,7 +64,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a  class="nav-link" href="#">Parcitipacion</a>
+                            <a  class="nav-link" href="participacion.php">Participacion</a>
                         </li>
 
                 </div>
