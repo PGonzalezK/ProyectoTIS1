@@ -1,7 +1,8 @@
 <?php
 // Descomentar linea 3 si es que se quiere usar la autenticación para esta página
 
-//require("middleware\auth.php");
+    require("middleware\auth.php");
+
 ?>
 
 

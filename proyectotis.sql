@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-10-2023 a las 20:33:22
+-- Tiempo de generación: 30-10-2023 a las 02:40:52
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -38,7 +38,8 @@ CREATE TABLE `rol` (
 
 INSERT INTO `rol` (`id_rol`, `descrpcion`) VALUES
 (1, 'Administrador'),
-(2, 'Usuario');
+(2, 'Usuario'),
+(3, 'Periodista');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`rut`, `nombre`, `apellido`, `email`, `password`, `id_rol`, `trn_date`) VALUES
-(205142991, 'pablo', 'monjes', 'pablu.antonio@gmail.com', '202cb962ac59075b', 2, '2023-10-27 20:23:13');
+(0, 'Pablo', '123', 'aa@aaa', '1234', 2, '2023-10-28 18:36:28'),
+(20514299, 'Pablo', '2', 'aa@aaab', '1234', 2, '2023-10-28 18:11:01'),
+(20623364, 'Javi', 'Muñoz', 'jm@aaa', '123', 2, '2023-10-30 02:01:52'),
+(205142991, 'Pablo', 'aaaaa', 'aa@aaa', '1', 1, '2023-10-28 18:33:53');
 
 --
 -- Índices para tablas volcadas
