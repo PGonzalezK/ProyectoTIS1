@@ -37,20 +37,22 @@
                 <div class="col-12">
                     <ul class="nav justify-content-center">
                         <li class="nav-item">
-                            <a class="nav-link" href="..\index.php">Inicio</a>
+                            <a class="nav-link" href="#">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a id="emprendedores-link" class="nav-link" href="pages\emprendedores.php">Emprendedores</a>
+                            <a id="emprendedores-link" class="nav-link"
+                                href="..\emprendedores\emprendedores.php">Emprendedores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Mapa</a>
+                            <a class="nav-link" href="..\mapa\mapa.php">Mapa</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false" value="dd">Actualidad</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Noticias</a></li>
-                                <li><a class="dropdown-item" href="#">Eventos</a></li>
+                                <li><a class="dropdown-item" href="..\actualidad\noticias\noticias.php">Noticias</a>
+                                </li>
+                                <li><a class="dropdown-item" href="..\actualidad\eventos\eventos.php">Eventos</a></li>
 
                             </ul>
                         </li>
@@ -58,13 +60,18 @@
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false">Nexo Municipal</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Mision y Vision</a></li>
-                                <li><a class="dropdown-item" href="#">Palabras del alcalde</a></li>
-                                <li><a class="dropdown-item" href="#">Direcciones Municipales</a></li>
+                                <li><a class="dropdown-item"
+                                        href="..\nexo-municipal\misionyvision\misionvision.php">Mision y Vision</a></li>
+                                <li><a class="dropdown-item" href="..\nexo-municipal\alcalde\alcalde.php">Palabras del
+                                        alcalde</a></li>
+                                <li><a class="dropdown-item"
+                                        href="..\nexo-municipal\direccionesmunicipales\direcciones.php">Direcciones
+                                        Municipales</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Parcitipacion</a>
+                            <a id="participacion-link" class="nav-link disabled"
+                                href="..\participacion\participacion.php">Participacion</a>
                         </li>
                 </div>
             </div>
@@ -72,41 +79,42 @@
             <br>
             <br>
             <br>
-            <form class="was-validated">
+            <form class="was-validated" method="POST" action="pages\participacion\action\guardar_participacion.php">
                 <div class="mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">TIPO CONTRIBUCIÓN</label>
                     <select class="form-select" required aria-label="select example">
-                        <option value="">Elija opcion.</option>
-                        <option value="1">DENUNCIA</option>
-                        <option value="2">FELICITACION</option>
-                        <option value="3">SEGERENCIA</option>
-                    </select>
-                    <div class="invalid-feedback">POR FAVOR ELIJA UNA OPCIÓN.</div>
+                        <option selected>Elija opcion.</option>
+                        <option value="denuncia">DENUNCIA</option>
+                        <option value="felicitacion">FELICITACION</option>
+                        <option value="sugerencia">SUGERENCIA</option>
+                        </select>
+                        <div class="invalid-feedback">POR FAVOR ELIJA UNA OPCIÓN.</div>
                 </div>
                 <div class="mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">DEPARTAMENTO</label>
                     <select class="form-select" required aria-label="select example">
-                        <option value="">Elija departamento.</option>
-                        <option value="1">Departamento 1</option>
-                        <option value="2">Departamento 2</option>
-                        <option value="3">Departamento 3</option>
-                        <option value="3">Otro Departamento</option>
+                        <option selected>Elija departamento.</option>
+                        <option value="paradero">PARADERO</option>
+                        <option value="parque">PARQUE</option>
+                        <option value="vial">VIAL</option>
+                        <option value="alumbrado">ALUMBRADO</option>
                     </select>
                     <div class="invalid-feedback">POR FAVOR ELIJA UNA OPCIÓN.</div>
                 </div>
                 <div class="mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">DESCRIPCIÓN</label>
-                    <textarea class="form-control" id="validationTextarea" placeholder="escriba una breve descripcion"
-                        required></textarea>
+                    <input type="text" class="form-control" name="descripcion" placeholder="escriba una breve descripcion"
+                        required></input>
                     <div class="invalid-feedback">
                         REALICE SU MENSAJE.
                     </div>
                 </div>
             </form>
             <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
-                    style="height: 100px"></textarea>
-                <label for="floatingTextarea2">Si eligió la opcion "Otro Departamento", por favor indique departamento que pertenece. </label>
+                <input type="text" class="form-control" placeholder="Leave a comment here" name="otro_dpto_text"
+                    style="height: 100px"></input>
+                <label for="floatingTextarea2">Si eligió la opcion "Otro Departamento", por favor indique departamento
+                    que pertenece. </label>
             </div>
             <div class="col-12">
                 <div class="form-check">
@@ -115,6 +123,6 @@
                 </div>
             </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit">ENVIAR</button>
+                <input class="btn btn-primary" value="enviar" type="submit"></input>
             </div>
             <script src="desactivar_link.js"></script>
