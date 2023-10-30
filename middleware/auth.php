@@ -7,12 +7,13 @@
 
     // Comprueba si el usuario está logueado
     if(!isset($_SESSION["rut"])){
+        
         header("Location: index.php?p=auth/login");
     }else{
         
         // Obtener el nombre de usuario de la sesión
         $rut = $_SESSION["rut"];
-        
+        print_r($_SESSION);
 
         $sql = "SELECT * FROM users WHERE rut = '$rut'";
 

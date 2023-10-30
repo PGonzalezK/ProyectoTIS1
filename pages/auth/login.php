@@ -22,6 +22,7 @@ if (isset($_POST['rut'])) {
 
     // Después de verificar las credenciales del usuario en auth/login.php
     if ($user == 1) {
+        
         // Autenticación exitosa
         $_SESSION['rut'] = $rut;
 
@@ -34,8 +35,15 @@ if (isset($_POST['rut'])) {
         }
 
         // Redirige al usuario a la página de inicio
-        header("Location: index.php?p=home");
+        header("Location: index.php?p=admin/home");
     } else {
+
+
+        //hacer if aparte para un user == 2 (usuario comun)
+        //hacer if para cada rol diferente
+        // echo para ir viendo donde direcciona 
+        //
+
         // Autenticación fallida
         echo "<div class='form'><h3>Usuario/Contraseña Incorrecto</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
     }
