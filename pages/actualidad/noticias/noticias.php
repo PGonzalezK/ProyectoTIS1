@@ -39,6 +39,15 @@
 
             </div>
         </div>
+        <br>
+        <div class="row">
+    <div class="col-sm-6 d-flex justify-content-center">
+        <div class="card">
+            <h2 class="card-header"><b>NOTICIAS</b></h2>
+        </div>
+    </div>
+</div>
+<br>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
                 <div class="card h-100">
