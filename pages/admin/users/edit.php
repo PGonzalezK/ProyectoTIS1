@@ -9,9 +9,11 @@ $result = mysqli_query($connection, $query);
 
 
 if ($user = mysqli_fetch_assoc($result)) {
-    $username = $user["username"];
+    $nombre = $user["nombre"];
+    $apellido = $user["apellido"];
     $email = $user["email"];
-    $id = $user["id"];
+    $id_rol = $user["id_rol"];
+    $rut = $user["rut"];
 } else {
     header("Location: index.php?p=brands/index");
 }
@@ -20,25 +22,35 @@ if ($user = mysqli_fetch_assoc($result)) {
 
 <div class="container-fluid border-bottom border-top bg-body-tertiary">
     <div class="p-5 rounded text-center">
-        <h2 class="fw-normal">Formulario de registro</h1>
+        <h2 class="fw-normal">Editor de usuario</h1>
     </div>
 </div>
 
 <main class="container mt-5">
     <div class="card">
-        <form action="pages/users/actions/update.php" method="POST">
+        <form action="index.php?p=admin/users/actions/update" method="POST">
             <div class="card-body">
                 <div class="row">
-                    <input type="text" class="d-none" name="id" value="<?php echo $id ?>">
+                    <input type="text" class="d-none" name="rut" value="<?php echo $rut ?>">
 
                     <div class="col-md-12 mb-3">
-                        <label for="username" class="form-label">Nombre de usuario</label>
-                        <input type="text" id="username" class="form-control" name="username" value="<?php echo $username ?>" placeholder="username" required>
+                        <label for="nombre" class="form-label">Nombre del usuario</label>
+                        <input type="text" id="nombre" class="form-control" name="nombre" value="<?php echo $nombre ?>"
+                            placeholder="nombre" required>
                     </div>
-
+                    <div class="col-md-12 mb-3">
+                        <label for="apellido" class="form-label">Apellido del usuario</label>
+                        <input type="text" id="apellido" class="form-control" name="apellido"
+                            value="<?php echo $apellido ?>" placeholder="apellido" required>
+                    </div>
                     <div class="col-md-12 mb-3">
                         <label for="origin" class="form-label">Correo electronico</label>
-                        <input type="email" id="email" class="form-control" name="email" value="<?php echo $email ?>" required>
+                        <input type="email" id="email" class="form-control" name="email" value="<?php echo $email ?>"
+                            required>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="id_rol" class="form-label">Rol del usuario</label>
+                        <input type="text" id="id_rol" class="form-control" name="id_rol" value="<?php echo $id_rol ?>" placeholder="id_rol" required>
                     </div>
 
                     <!-- <div class="col-md-12 mb-3">

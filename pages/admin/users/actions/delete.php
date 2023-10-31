@@ -1,11 +1,12 @@
 <?php
-    include("../../../database/connection.php");
+    include("database/connection.php");
+    include("middleware/auth.php");
 
-    $id = $_GET["id"];
+    $rut = $_GET["rut"];
 
-    $query = "DELETE FROM users WHERE id=".$id.";";
+    $query = "DELETE FROM users WHERE rut=".$rut.";";
 
     $result =  mysqli_query($connection, $query);
 
-    header("Location: ../../../index.php?p=users/index");
+    header("Location: index.php?p=admin/users/index");
 ?>
