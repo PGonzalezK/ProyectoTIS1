@@ -3,7 +3,7 @@
 
     //session_start();
 
-//require("middleware\auth.php");
+require("middleware\auth.php");
 
 ?>
 
@@ -25,7 +25,7 @@
             <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
 
             <?php
-           if($_SESSION["id_rol"] == 2){
+           if($_SESSION["id_rol"] == 1){
             echo $_SESSION["id_rol"];
 
             ?>

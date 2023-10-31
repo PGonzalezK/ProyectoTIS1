@@ -1,5 +1,44 @@
 <?php
+
 require('database/connection.php');
+
+if (isset($_POST['rut'])) {
+
+    $rut = stripslashes($_REQUEST['rut']);
+    $rut = mysqli_real_escape_string($connection, $rut);
+    $password = stripslashes($_REQUEST['password']);
+    $password = mysqli_real_escape_string($connection, $password);
+
+    $query = "SELECT * FROM `users` WHERE rut='$rut' and password='$password'";
+    $result = mysqli_query($connection, $query);
+
+    if (!$result) {
+        die("Query failed: " . mysqli_error($connection));
+    }
+
+    $user = mysqli_fetch_assoc($result);
+
+    if ($user) {
+        // Autenticación exitosa
+        $_SESSION['rut'] = $rut;
+        $_SESSION['id_rol'] = $user['id_rol'];
+
+        // Redirige al usuario según su rol
+        if ($user['id_rol'] == 1) {
+            header("Location: index.php?p=admin/home");
+        } elseif ($user['id_rol'] == 2) {
+            header("Location: index.php?p=home");
+        } else {
+            // Rol desconocido, manejarlo según sea necesario
+            echo "Rol desconocido";
+        }
+    } else {
+        // Autenticación fallida
+        echo "<div class='form'><h3>Usuario/Contraseña Incorrecto</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
+    
+
+
+/*require('database/connection.php');
 
 if (isset($_POST['rut'])) {
 
@@ -45,7 +84,7 @@ if (isset($_POST['rut'])) {
         //
 
         // Autenticación fallida
-        echo "<div class='form'><h3>Usuario/Contraseña Incorrecto</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
+        echo "<div class='form'><h3>Usuario/Contraseña Incorrecto</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";*/
     }
 } else {
     ?>
