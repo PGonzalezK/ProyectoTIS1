@@ -20,7 +20,7 @@
         $result = mysqli_query($connection, $query);
 
         if ($result) {
-            echo "<div class='form'><h3>Te has registrado correctamente!</h3><br/>Haz click aquí para <a href='index.php'>Logearte</a></div>";
+            echo "<div class='form'><h3>Te has registrado correctamente!</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
         }
     } else {
     ?>
