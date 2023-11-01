@@ -15,13 +15,13 @@
                         <a class="nav-link <?php echo ($pagina == 'home') ? 'active' : null ?>" aria-current="page" href="index.php?p=admin/home">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($pagina, 'brands') !== false) ? 'active' : null ?>" href="index.php?p=admin/brands/index ">Marcas</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'users') !== false) ? 'active' : null ?>" href="index.php?p=admin/users/index">Usuarios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'noticias') !== false) ? 'active' : null ?>" href="index.php?p=admin/noticias_adm/index">Noticias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo (strpos($pagina, 'roles') !== false) ? 'active' : null ?>" href="index.php?p=admin/roles/index">Roles</a>
                     </li>
                 </ul>
                 <div class="d-flex">
