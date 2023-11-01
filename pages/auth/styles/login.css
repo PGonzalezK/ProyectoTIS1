@@ -1,5 +1,6 @@
 
 .login-bg {
-    background-image: url('images/Concepcion.jpg'); 
+    background-image: url('../images/conce-850x500-850x400.jpg'); 
     background-size: cover; 
+    height: 850px;
 }
