@@ -45,7 +45,9 @@
 
         </div>
     </div>
-    <div class="mision-backg">
+
+</div>
+<div class="mision-backg text-center">
         <br><br>
         <h2 class="card-header text-left"><b class="titulo">Misión y Visión</b></h2>
         <br>
@@ -54,7 +56,7 @@
         <br>
         <div class="row">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <div class="card">
+                <div class="card card-3">
                     <h2 class="card-header text-left"><b>Misión</b></h2>
                     <div class="card-body">
                         <h6>Fortalecer los equipos, tanto en relaciones internas como en condiciones de trabajo,
@@ -65,7 +67,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card">
+                <div class="card card-3">
                     <h2 class="card-header text-left"><b>Visión</b></h2>
                     <div class="card-body">
                         <h6 class="card-title">Consiste en promover el desarrollo inclusivo, sustentable y centrado en
@@ -78,6 +80,4 @@
                 </div>
             </div>
         </div>
-        <br><br>
     </div>
-</div>

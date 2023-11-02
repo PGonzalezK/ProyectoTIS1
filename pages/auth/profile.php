@@ -28,25 +28,40 @@ if ($user = mysqli_fetch_assoc($result)) {
 
 
 <body>
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="text-center">
-                    <h4>Perfil de <?= $nombre ?> <?= $apellido ?></h4>
+    <div class="perfil-backg">
+        <div class="container ">
+            <div class="card">
+                <div class="card-header ">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center">
+                            <h4 class="text-center">Perfil de
+                                <?= $nombre ?>
+                                <?= $apellido ?>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Rut:</strong>
+                            <?= $rut ?>
+                        </li>
+                        <li class="list-group-item"><strong>Nombre:</strong>
+                            <?= $nombre ?>
+                        </li>
+                        <li class="list-group-item"><strong>Apellido:</strong>
+                            <?= $apellido ?>
+                        </li>
+                        <li class="list-group-item"><strong>Contraseña:</strong>
+                            <?= $password ?>
+                        </li>
+                        <li class="list-group-item"><strong>Email:</strong>
+                            <?= $email ?>
+                        </li>
+                    </ul>
+                    <a href="index.php?p=auth/actions/editeprofile&rut=<?= $rut ?>" class="btn btn-primary mt-3">Editar
+                        Perfil</a>
                 </div>
             </div>
         </div>
-        <div class="card-body">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Rut:</strong> <?= $rut ?></li>
-                <li class="list-group-item"><strong>Nombre:</strong> <?= $nombre ?></li>
-                <li class="list-group-item"><strong>Apellido:</strong> <?= $apellido ?></li>
-                <li class="list-group-item"><strong>Contraseña:</strong> <?= $password ?></li>
-                <li class="list-group-item"><strong>Email:</strong> <?= $email ?></li>
-            </ul>
-            <a href="index.php?p=auth/actions/editeprofile&rut=<?= $rut ?>" class="btn btn-primary mt-3">Editar Perfil</a>
-        </div>
     </div>
-</div>
-
