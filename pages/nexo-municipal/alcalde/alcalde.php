@@ -14,7 +14,7 @@
                         href="index.php?p=emprendedores/emprendedores">Emprendedores</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pages\mapa\mapa.php">Mapa</a>
+                <a class="nav-link" href="index.php?p=mapa/mapa">Mapa</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"

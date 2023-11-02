@@ -80,16 +80,26 @@
     padding-bottom: 5%;
     background-image: url('../images/mapa.jpg');
     background-size: cover;
-    height: auto px;
+    height: auto;
     width: auto;
     z-index: 1;
 }
 .participacionbackg{
     padding-top: 5%;
     padding-bottom: 5%;
-    background-image: url('../images/megaf.jpg');
+    background-image: url('../images/megafono.jpg');
     background-size: cover;
-    height: auto px;
+    height: auto;
+    width: auto;
+    z-index: 1;
+}
+
+.noticiasbackg{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-image: url('../images/noticia.jpg');
+    background-size: cover;
+    height: auto;
     width: auto;
     z-index: 1;
 }
