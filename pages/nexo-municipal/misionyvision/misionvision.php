@@ -1,4 +1,4 @@
-<div class="container text-center">
+<div class="container text-center ">
     <div class="row">
         <div class="col">
 
@@ -45,36 +45,39 @@
 
         </div>
     </div>
-    <br><br>
-    <h2 class="card-header text-left"><b>VISIÓN y MISIÓN</b></h2>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card">
-                <h2 class="card-header text-left"><b>VISIÓN</b></h2>
-                <div class="card-body">
-                    <h6 class="card-title">Consiste en promover el desarrollo inclusivo, sustentable y centrado en las
-                        personas que viven
-                        en la comunidad para que esten mas familiarizadas con el entorno y actividades, asi tambien
-                        permitir
-                        que interactuen aun mas con el lugar en el que viven. </h6>
+    <div class="mision-backg">
+        <br><br>
+        <h2 class="card-header text-left"><b class="titulo">Misión y Visión</b></h2>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="card">
+                    <h2 class="card-header text-left"><b>Misión</b></h2>
+                    <div class="card-body">
+                        <h6>Fortalecer los equipos, tanto en relaciones internas como en condiciones de trabajo,
+                            con el fin de propiciar el desarrollo sustentable para sus habitantes y quienes se
+                            vinculen con la comuna, formulando proyectos, eventos, programas, y acciones que
+                            fortalezcan el vinculo entre si.</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h2 class="card-header text-left"><b>Visión</b></h2>
+                    <div class="card-body">
+                        <h6 class="card-title">Consiste en promover el desarrollo inclusivo, sustentable y centrado en
+                            las
+                            personas que viven
+                            en la comunidad para que esten mas familiarizadas con el entorno y actividades, asi tambien
+                            permitir
+                            que interactuen aun mas con el lugar en el que viven. </h6>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="card">
-                <h2 class="card-header text-left"><b>MISIÓN</b></h2>
-                <div class="card-body">
-                    <h6>Fortalecer los equipos, tanto en relaciones internas como en condiciones de trabajo,
-                        con el fin de propiciar el desarrollo sustentable para sus habitantes y quienes se
-                        vinculen con la comuna, formulando proyectos, eventos, programas, y acciones que
-                        fortalezcan el vinculo entre si.</h6>
-                </div>
-            </div>
-        </div>
+        <br><br>
     </div>
-    <br><br>
 </div>
