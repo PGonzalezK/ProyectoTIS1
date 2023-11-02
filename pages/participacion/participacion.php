@@ -49,6 +49,7 @@
     <br>
     <br>
     <br>
+ <div class="participacionbackg">
     <form class="was-validated" method="POST" action="index.php?p=participacion\action\guardar_participacion">
         <div class="mb-3">
             <label class="input-group-text" for="inputGroupSelect01">TIPO CONTRIBUCIÓN</label>
@@ -98,6 +99,8 @@
             <input class="btn btn-primary" value="enviar" type="submit"></input>
         </div>
     </form>
-
     </div>
+    </div>
+
+    
     <script src="desactivar_link.js"></script>

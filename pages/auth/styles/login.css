@@ -84,3 +84,12 @@
     width: auto;
     z-index: 1;
 }
+.participacionbackg{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-image: url('../images/megaf.jpg');
+    background-size: cover;
+    height: auto px;
+    width: auto;
+    z-index: 1;
+}
