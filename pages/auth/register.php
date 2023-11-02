@@ -24,7 +24,8 @@
         }
     } else {
     ?>
-        <div class="container mt-5">
+    <section class="register-backg">
+        <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="card">
@@ -62,6 +63,7 @@
                 </div>
             </div>
         </div>
+        </section>
     <?php
     }
 ?>
