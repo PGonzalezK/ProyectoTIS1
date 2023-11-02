@@ -47,10 +47,11 @@
                     <a id="participacion-link" class="nav-link"
                         href="index.php?p=participacion\participacion">Participacion</a>
                 </li>
-
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+    <div class="iniciobackg">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">
             <div class="card h-100">
                 <img src="https://munipuqueldon.cl/wp-content/uploads/2023/07/IMG_4378-scaled.jpg" class="card-img-top"
@@ -140,6 +141,11 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+    </div>
+
+
+
+    
 </div>
 
-</div>
+

@@ -66,3 +66,21 @@
     padding-left: 3%;
     padding-right: 3%;
 }
+
+.iniciobackg{
+    padding-top: 10%;
+    background-image: url('../images/municipalidad.jpg');
+    background-size: cover;
+    height: auto;
+    width: auto;
+    z-index: 1;
+}
+.mapabackg{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background-image: url('../images/mapa.jpg');
+    background-size: cover;
+    height: auto px;
+    width: auto;
+    z-index: 1;
+}
