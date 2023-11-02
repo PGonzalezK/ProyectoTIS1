@@ -2,25 +2,55 @@
     require '../../includes/config/database.php';
     $db = conectarDB();
 
+    //consulta para obtener periodistas
+    $consulta = "SELECT * FROM periodistas";
+    $resultado = mysqli_query($db, $consulta);
+
+
+
+   //almacena errores 
+    $errores = [];
+
+    $titulo = '';
+    $direccion ='';
+    $descripcion ='';
+    $idPeriodista = '';
+
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        echo "<pre>";
+        /*echo "<pre>";
         var_dump($_POST);
-        echo "</pre>";
-    }
+        echo "</pre>";*/
+    
+        //validacion
 
-    $titulo = $_POST['titulo'];
-    $direccion =$_POST['direccion'];
-    $descripcion =$_POST['descripcion'];
-    $idPeriodista = $_POST['idPeriodista'];
+        $titulo = $_POST['titulo'];
+        $direccion =$_POST['direccion'];
+        $descripcion =$_POST['descripcion'];
+        $idPeriodista = $_POST['idPeriodista'];
+        $creado = date('Y/m/d');
+        if(!$titulo){
+            $errores[] ="Debes añadir un titulo al evento"; 
+        }
+        if(!$direccion){
+            $errores[] = "Debes escribir la dirección del evento";
+        }
+        if(strlen($descripcion)<50){
+            $errores[]="Debes escribir descripcion del evento y debe tener al menos 50 caracteres";
+        }
 
-    //Insertar Variables
-    $query = "INSERT INTO eventos (titulo , direccion, descripcion, idPeriodista) VALUES ('$titulo','$direccion','$descripcion', '$idPeriodista')";
-    //resultados
-    $resultado = mysqli_query($db,$query);
 
-    if($resultado){
-        echo "insertado correctamente";
+        if(empty($errores)){
+
+        //Insertar Variables
+        $query = "INSERT INTO eventos (titulo , direccion, descripcion, creado, idPeriodista) VALUES ('$titulo','$direccion','$descripcion','$creado', '$idPeriodista')";
+        //resultados
+        $resultado = mysqli_query($db,$query);
+
+        if($resultado){
+            header('Location: ../index.php');
+        }
+        }
     }
 
     require '../../includes/funciones.php';
@@ -30,6 +60,12 @@
     <main class = "contenedor">
         <h1>Creacion de evento:</h1>
 
+        <?php foreach($errores as $error):?>
+            <div class="p-3 mb-2 bg-danger text-white">
+                <?php echo $error;?>
+            </div>
+        <?php endforeach;?>
+
         <div class="card">
         <form action="../eventos/crear.php" method="POST">
             <div class="card-body">
@@ -37,12 +73,12 @@
                 
                     <div class="col-md-12 mb-3">
                         <label for="titulo" class="form-label">Titulo del Evento</label>
-                        <input type="text" class="form-control" id="name" name="titulo" placeholder="Escribir titulo" required>
+                        <input type="text" class="form-control" id="name" name="titulo" placeholder="Escribir titulo" value="<?php echo $titulo ?>" required>
                     </div>
 
                     <div class="col-md-12 mb-3">
                         <label for="direccion" class="form-label">Direccion del Evento</label>
-                        <input type="text" class="form-control" id="name" name="direccion" placeholder="Barros Arana 1068, 4070053 Concepción, Bío Bío" required>
+                        <input type="text" class="form-control" id="name" name="direccion" placeholder="Barros Arana 1068, 4070053 Concepción, Bío Bío" value="<?php echo $direccion ?>" required>
 
                     </div>
 
@@ -53,7 +89,7 @@
 
                     <div class="mb-3">
                         <label class="input-group-text" for="descripcion">DESCRIPCIÓN</label>
-                        <input type="text" class="form-control" name="descripcion" placeholder="escriba una breve descripcion"
+                        <input type="text" class="form-control" name="descripcion" placeholder="escriba una breve descripcion" value="<?php echo $descripcion ?>"
                             required></input>
                         <div class="invalid-feedback">
                            ESCRIBA BREVE DESCRIPCION DEL EVENTO
@@ -62,10 +98,10 @@
 
                     <div class="col-md-12 mb-3">
                         <label for="idPeriodista" class="form-label">Nombre Periodista</label>
-                        <select class="form-control" id="origin" name ="idPeriodista">
-                            <option value="1">Pablo</option>
-                            <option value="2">Pablo 2 </option>
-                            <option value="3">Javiera</option>
+                        <select class="form-control" id="origin" name ="idPeriodista" >
+                            <?php while($idPeriodista = mysqli_fetch_assoc($resultado)):;?>
+                            <option value="<?php echo $idPeriodista['idPeriodista'];?>"><?php echo $idPeriodista['nombre']." ". $idPeriodista['apellido'];?></option>
+                            <?php endwhile;?>
                         </select>
                     </div>
 
