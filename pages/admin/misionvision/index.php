@@ -10,14 +10,23 @@ if ($_SESSION['id_rol'] !== '1') {
 }
 
 
-// Consulta para obtener la misión y la visión desde la base de datos
-$query = "SELECT * FROM misionvision";
+$query = "SELECT * FROM misionvision WHERE tipo='mision' OR tipo='vision'";
+
 $result = mysqli_query($connection, $query);
 
-if ($row = mysqli_fetch_assoc($result)) {
-    $mision = $row['mision'];
-    $vision = $row['vision'];
+$mision = '';
+$vision = '';
+
+while ($row = mysqli_fetch_assoc($result)) {
+    if ($row['tipo'] === 'mision') {
+        $mision = $row['contenido'];
+    } elseif ($row['tipo'] === 'vision') {
+        $vision = $row['contenido'];
+    }
 }
+
+
+
 ?>
 
 <div class="container">
@@ -30,5 +39,5 @@ if ($row = mysqli_fetch_assoc($result)) {
         <h2>Visión</h2>
         <p><?php echo $vision; ?></p>
     </div>
-    <a href="index.php?p=admin/misionvision/edit" class="btn btn-primary">Editar</a>
+    <a href="index.php?p=admin/misionvision/edit&mision=<?php echo urlencode($mision); ?>&vision=<?php echo urlencode($vision); ?>" class="btn btn-primary">Editar</a>
 </div>

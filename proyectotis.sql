@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-11-2023 a las 22:36:31
+-- Tiempo de generación: 02-11-2023 a las 22:26:27
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -24,18 +24,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `contenido`
+-- Estructura de tabla para la tabla `misionvision`
 --
 
-CREATE TABLE `contenido` (
+CREATE TABLE `misionvision` (
   `id` int(11) NOT NULL,
-  `titulo` varchar(255) NOT NULL,
-  `seccion` varchar(50) NOT NULL,
-  `contenido_texto` text DEFAULT NULL,
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `fecha_actualizacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `seccion_id` int(11) DEFAULT NULL
+  `tipo` enum('mision','vision','','') NOT NULL,
+  `contenido` text NOT NULL,
+  `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `misionvision`
+--
+
+INSERT INTO `misionvision` (`id`, `tipo`, `contenido`, `fecha`) VALUES
+(1, 'mision', 'Fortalecer los equipos, tanto en relaciones internas como en condiciones de trabajo, con el fin de propiciar el desarrollo sustentable para sus habitantes y quienes se vinculen con la comuna, formulando proyectos, eventos, programas, y acciones que fortalezcan el vinculo entre si.', '2023-11-02 02:23:58'),
+(2, 'vision', 'Consiste en promover el desarrollo inclusivo, sustentable y centrado en las personas que viven en la comunidad para que esten mas familiarizadas con el entorno y actividades, asi tambien permitir que interactuen aun mas con el lugar en el que viven.', '2023-11-02 02:23:58');
 
 -- --------------------------------------------------------
 
@@ -88,20 +93,6 @@ INSERT INTO `rol` (`id_rol`, `descrpcion`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `seccion`
---
-
-CREATE TABLE `seccion` (
-  `id` int(11) NOT NULL,
-  `nombre_seccion` varchar(255) NOT NULL,
-  `descripcion` varchar(255) DEFAULT NULL,
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `fecha_actualizacion` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `users`
 --
 
@@ -131,11 +122,10 @@ INSERT INTO `users` (`rut`, `nombre`, `apellido`, `email`, `password`, `id_rol`,
 --
 
 --
--- Indices de la tabla `contenido`
+-- Indices de la tabla `misionvision`
 --
-ALTER TABLE `contenido`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_seccion` (`seccion_id`);
+ALTER TABLE `misionvision`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `participacion`
@@ -151,12 +141,6 @@ ALTER TABLE `rol`
   ADD PRIMARY KEY (`id_rol`);
 
 --
--- Indices de la tabla `seccion`
---
-ALTER TABLE `seccion`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -168,10 +152,10 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT de la tabla `contenido`
+-- AUTO_INCREMENT de la tabla `misionvision`
 --
-ALTER TABLE `contenido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `misionvision`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `participacion`
@@ -180,20 +164,8 @@ ALTER TABLE `participacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT de la tabla `seccion`
---
-ALTER TABLE `seccion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `contenido`
---
-ALTER TABLE `contenido`
-  ADD CONSTRAINT `fk_seccion` FOREIGN KEY (`seccion_id`) REFERENCES `seccion` (`id`);
 
 --
 -- Filtros para la tabla `participacion`
