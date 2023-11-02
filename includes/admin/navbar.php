@@ -23,6 +23,9 @@
                     <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'roles') !== false) ? 'active' : null ?>" href="index.php?p=admin/roles/index">Roles</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo (strpos($pagina, 'misionvision') !== false) ? 'active' : null ?>" href="index.php?p=admin/misionvision/index">Mision y Vision</a>
+                    </li>
                 </ul>
                 <div class="d-flex">
                     <a href="index.php?p=admin/profile_admin" class="btn btn-sm btn-outline-primary me-2">Perfil</a>
