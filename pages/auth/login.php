@@ -89,27 +89,27 @@ if (isset($_POST['rut'])) {
 } else {
 
     ?>
-    <section class="ftco-section login-bg">
+    <section class="ftco-section login-backg">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-md-6 text-center mb-5">
-                        <h2 class="heading-section">Inicio sesion</h2>
-                    </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-lg-4">
                         <div class="login-wrap p-0">
-                            <h3 class="mb-4 text-center">¿tienes una cuenta?</h3>
+                            <h2 class="mb-4 text-center">Iniciar Sesion</h2>
                             <form action="" method="POST" class="signin-form">
                                 <div class="form-group">
                                     <input type="text" name="rut" class="form-control" placeholder="rut" required>
                                 </div>
+                                <br>
                                 <div class="form-group">
-                                    <input  name="password" type="password" class="form-control" placeholder="contraseña"
+                                    <input name="password" type="password" class="form-control" placeholder="contraseña"
                                         required>
                                 </div>
+                                <br>
                                 <div class="form-group">
-                                    <button type="submit" name="submit" class="form-control btn btn-primary submit px-3">iniciar
+                                    <button type="submit" name="submit"
+                                        class="form-control btn btn-primary submit px-3">iniciar
                                         sesion</button>
                                 </div>
                                 <div class="form-group d-md-flex">
@@ -119,7 +119,7 @@ if (isset($_POST['rut'])) {
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    <div class="w-50 text-md-right" >
+                                    <div class="w-50 text-md-right">
                                         <a href="#" style="color: #fff">olvidaste la contraseña?</a>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@ if (isset($_POST['rut'])) {
                     </div>
                 </div>
             </div>
-        </section>
-        <?php
+    </section>
+    <?php
 }
 ?>

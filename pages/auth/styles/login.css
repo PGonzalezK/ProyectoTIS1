@@ -1,6 +1,50 @@
-
-.login-bg {
-    background-image: url('../images/conce-850x500-850x400.jpg'); 
-    background-size: cover; 
+.login-backg {
+    background-image: url('../images/ucsc.jpg');
+    background-size: cover;
     height: 850px;
+    width: auto;
+    z-index: 1;
+}
+
+.col-lg-4 {
+    margin-top: 20%;
+    padding: 30px 20px 20px 30px;
+    border-radius: 10px;
+    align-items: center;
+    background: -webkit-linear-gradient(top, #2fc3f070, #dd53d2);
+}
+
+.register-backg {
+    background-image: url('../images/conce2.jpg');
+    background-size: cover;
+    height: 850px;
+    width: auto;
+    z-index: 1;
+}
+
+.col-md-6 {
+    margin-top: 10%;
+    padding: 30px 20px 20px 30px;
+    border-radius: 10px;
+    align-items: center;
+    background: -webkit-linear-gradient(top, #2fc3f070, #dd53d2);
+}
+
+.card {
+    background-color: white;
+    opacity: 0.8;
+}
+
+.mision-backg {
+    background-image: url('../images/conce-850x500-850x400.jpg');
+    background-size: cover;
+    height: fit-content;
+    width: fit-content;
+    margin-left: 0px;
+    z-index: 1;
+}
+.titulo{
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 5px 5px 5px 5px;
 }
