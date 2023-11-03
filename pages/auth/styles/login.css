@@ -103,3 +103,9 @@
     width: auto;
     z-index: 1;
 }
+
+
+.login-bg {
+    background-image: url('images/Concepcion.jpg'); 
+    background-size: cover; 
+}
