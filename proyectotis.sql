@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-11-2023 a las 05:58:15
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.1.12
+-- Tiempo de generación: 03-11-2023 a las 18:11:05
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyectotis`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `backgrounds`
+--
+
+CREATE TABLE `backgrounds` (
+  `id` int(11) NOT NULL,
+  `login_background` varchar(255) NOT NULL,
+  `register_background` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -62,7 +74,7 @@ CREATE TABLE `palabrasalcalde` (
 --
 
 INSERT INTO `palabrasalcalde` (`id`, `titulo`, `contenido`, `nombre_alcalde`, `imagen`, `fecha`) VALUES
-(1, '¡Bienvenidos a Concepción!a', 'Desde el municipio estamos trabajando para convertirnos en la Capital del Sur de Chile, teniendo en el centro de nuestras acciones, programas y proyectos a las personas que aquí viven, estudian, trabajan y a quienes vienen a visitarnos o llegaron para comenzar aquí una nueva vida. Somos la tercera ciudad más importante de Chile. Promovemos un desarrollo a escala humana, de los barrios y del centro, que respete y rescate nuestro patrimonio histórico, cultural, natural y turístico como Ciudad de la Independencia, del Rock, Universitaria, del río Biobío, de las Cinco Lagunas y Cerro Caracol, con toda una infraestructura pública y privada de conectividad, hotelería, comercio, salud, educación y negocios de alto nivel. Desde nuestra gestión queremos seguir creciendo consolidando la inclusión y la participación ciudadana, manteniendo la transparencia en nuestro quehacer y articulando sueños y compromisos para grandes y necesarios proyectos.\r\nLes invitamos a cuidar y disfrutar de nuestra ciudad.\r\nUn afectuoso abrazo.', 'Álvaro Ortiz Vera, Alcalde', 'https://upload.wikimedia.org/wikipedia/commons/0/02/Álvaro_Ortiz_Vera.jpg', '2023-11-03 05:40:40');
+(1, '¡Bienvenidos a Concepción!', 'Desde el municipio estamos trabajando para convertirnos en la Capital del Sur de Chile, teniendo en el centro de nuestras acciones, programas y proyectos a las personas que aquí viven, estudian, trabajan y a quienes vienen a visitarnos o llegaron para comenzar aquí una nueva vida. Somos la tercera ciudad más importante de Chile. Promovemos un desarrollo a escala humana, de los barrios y del centro, que respete y rescate nuestro patrimonio histórico, cultural, natural y turístico como Ciudad de la Independencia, del Rock, Universitaria, del río Biobío, de las Cinco Lagunas y Cerro Caracol, con toda una infraestructura pública y privada de conectividad, hotelería, comercio, salud, educación y negocios de alto nivel. Desde nuestra gestión queremos seguir creciendo consolidando la inclusión y la participación ciudadana, manteniendo la transparencia en nuestro quehacer y articulando sueños y compromisos para grandes y necesarios proyectos.\r\nLes invitamos a cuidar y disfrutar de nuestra ciudad.\r\nUn afectuoso abrazo.', 'Álvaro Ortiz Vera', 'https://upload.wikimedia.org/wikipedia/commons/0/02/Álvaro_Ortiz_Vera.jpg', '2023-11-03 05:40:40');
 
 -- --------------------------------------------------------
 
@@ -80,6 +92,15 @@ CREATE TABLE `participacion` (
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `participacion`
+--
+
+INSERT INTO `participacion` (`id`, `tipo_contribucion`, `departamento`, `descripcion`, `otro_dpto_text`, `rut`, `fecha`) VALUES
+(1, 'denuncia', 'paradero', 'Paradero en mal estado', '', 20514299, '0000-00-00 00:00:00'),
+(2, 'denuncia', 'parque', 'parque en mas estado', '', 20514299, '2023-10-31 01:45:54'),
+(4, 'denuncia', 'parque', 'parque en mal estado', '', 1234, '2023-10-31 21:23:24');
+
 -- --------------------------------------------------------
 
 --
@@ -96,9 +117,12 @@ CREATE TABLE `rol` (
 --
 
 INSERT INTO `rol` (`id_rol`, `descrpcion`) VALUES
+(0, 'Alcalde'),
 (1, 'Administrador'),
 (2, 'Usuario'),
-(3, 'Periodista');
+(3, 'Periodista'),
+(4, 'Editor'),
+(5, 'Secretario');
 
 -- --------------------------------------------------------
 
@@ -121,14 +145,33 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`rut`, `nombre`, `apellido`, `email`, `password`, `id_rol`, `trn_date`) VALUES
-(0, 'Pablo', '123', 'aa@aaa', '1234', 2, '2023-10-28 18:36:28'),
-(20514299, 'Pablo', '2', 'aa@aaab', '1234', 2, '2023-10-28 18:11:01'),
+(0, 'Pablo', '123', 'aa@aaab', '1234', 1, '2023-10-28 18:36:28'),
+(1234, 'aab', 'bb', '123@bbb', '1234', 1, '2023-10-31 21:22:13'),
+(20514299, 'Pablo', 'Monjes', 'aa@aaab', '1234', 2, '2023-10-28 18:11:01'),
 (20623364, 'Javi', 'Muñoz', 'jm@aaa', '123', 1, '2023-10-30 02:01:52'),
 (205142991, 'Pablo', 'aaaaa', 'aa@aaa', '1', 1, '2023-10-28 18:33:53');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `backgrounds`
+--
+ALTER TABLE `backgrounds`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `misionvision`
+--
+ALTER TABLE `misionvision`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `palabrasalcalde`
+--
+ALTER TABLE `palabrasalcalde`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `participacion`
@@ -155,10 +198,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `misionvision`
+--
+ALTER TABLE `misionvision`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `palabrasalcalde`
+--
+ALTER TABLE `palabrasalcalde`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas
