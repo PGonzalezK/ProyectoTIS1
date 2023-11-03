@@ -115,3 +115,7 @@
     background-image: url('images/Concepcion.jpg'); 
     background-size: cover; 
 }
+
+.float-start{
+    width: 10rem;
+}

@@ -11,6 +11,11 @@
 
             <div class="container d-flex flex-column justify-content-center align-items-center">
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+
+                <div class="col">
+                <img src="pages\auth\images\logo.png" class="float-start" alt="...">
+                </div>
+                
                     <div class="col">
                         <span class="mb-3 text-body-secondary">Seguridad Ciudadana: +56 9 4569 2347</span>
                     </div>
@@ -34,6 +39,7 @@
                     <div class="col">
                         <span class="mb-3 text-body-secondary">Alumbrado público: +56 41 239 4723</span>
                     </div>
+                    
                 </div>
 
             </div>
