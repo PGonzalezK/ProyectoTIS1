@@ -21,14 +21,19 @@
         /*echo "<pre>";
         var_dump($_POST);
         echo "</pre>";*/
-    
-        //validacion
+        
 
-        $titulo = $_POST['titulo'];
-        $direccion =$_POST['direccion'];
-        $descripcion =$_POST['descripcion'];
-        $idPeriodista = $_POST['idPeriodista'];
+        $titulo = mysqli_real_escape_string($db,$_POST['titulo']);
+        $direccion =mysqli_real_escape_string($db,$_POST['direccion']);
+        $descripcion =mysqli_real_escape_string($db,$_POST['descripcion']);
+        $idPeriodista = mysqli_real_escape_string($db,$_POST['idPeriodista']);
         $creado = date('Y/m/d');
+
+        //asignar files a una variable
+        $imagen = $_FILES['imagen'];
+        
+        //var_dump($imagen);
+
         if(!$titulo){
             $errores[] ="Debes añadir un titulo al evento"; 
         }
@@ -39,11 +44,27 @@
             $errores[]="Debes escribir descripcion del evento y debe tener al menos 50 caracteres";
         }
 
+        if(!$imagen['name']){
+            $errores[]="Debe subir una imagen";
+        }
+
+        //validar por peso de imagen
+        $medida = 1000*1000;
+        if($imagen['size']> $medida){
+            $errores = "La imagen es muy pesada";
+        }
 
         if(empty($errores)){
+            $carpetaImagenes = '../../imagenes/';
+            
+            //generar nombre único imagenes
+            $nombreImagen = md5(uniqid(rand(),true)) . ".jpg";
 
+            //subir imagenes
+            move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+            
         //Insertar Variables
-        $query = "INSERT INTO eventos (titulo , direccion, descripcion, creado, idPeriodista) VALUES ('$titulo','$direccion','$descripcion','$creado', '$idPeriodista')";
+        $query = "INSERT INTO eventos (titulo , direccion, imagen, descripcion, creado, idPeriodista) VALUES ('$titulo','$direccion','$nombreImagen','$descripcion','$creado', '$idPeriodista')";
         //resultados
         $resultado = mysqli_query($db,$query);
 
@@ -67,7 +88,7 @@
         <?php endforeach;?>
 
         <div class="card">
-        <form action="../eventos/crear.php" method="POST">
+        <form action="../eventos/crear.php" method="POST" enctype="multipart/form-data">
             <div class="card-body">
                 <div class="row">
                 
@@ -83,8 +104,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="image" class="form-label">Imagen</label>
-                        <input class="form-control" type="file" id="image" name = "image" accept="image/png,image/jpeg">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        <input class="form-control" type="file" id="image" accept="image/png, image/jpeg"  name = "imagen">
                     </div>
 
                     <div class="mb-3">
