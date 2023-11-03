@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card-4">
+                    <div class="card-5">
                         <div class="card-header">
                             <h1 class="text-center">Registrate Aquí</h1>
                         </div>
