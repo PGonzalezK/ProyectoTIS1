@@ -69,7 +69,7 @@
         $resultado = mysqli_query($db,$query);
 
         if($resultado){
-            header('Location: ../index.php');
+            header('Location: ../index.php?resultado=1');
         }
         }
     }
