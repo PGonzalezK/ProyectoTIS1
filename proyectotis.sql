@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2023 a las 22:26:27
+-- Tiempo de generación: 03-11-2023 a las 05:18:35
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -41,6 +41,21 @@ CREATE TABLE `misionvision` (
 INSERT INTO `misionvision` (`id`, `tipo`, `contenido`, `fecha`) VALUES
 (1, 'mision', 'Fortalecer los equipos, tanto en relaciones internas como en condiciones de trabajo, con el fin de propiciar el desarrollo sustentable para sus habitantes y quienes se vinculen con la comuna, formulando proyectos, eventos, programas, y acciones que fortalezcan el vinculo entre si.', '2023-11-02 02:23:58'),
 (2, 'vision', 'Consiste en promover el desarrollo inclusivo, sustentable y centrado en las personas que viven en la comunidad para que esten mas familiarizadas con el entorno y actividades, asi tambien permitir que interactuen aun mas con el lugar en el que viven.', '2023-11-02 02:23:58');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `palabrasalcalde`
+--
+
+CREATE TABLE `palabrasalcalde` (
+  `id` int(11) NOT NULL,
+  `titulo` text NOT NULL,
+  `contenido` text NOT NULL,
+  `nombre_alcalde` text NOT NULL,
+  `imagen` varchar(255) NOT NULL,
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -128,6 +143,12 @@ ALTER TABLE `misionvision`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `palabrasalcalde`
+--
+ALTER TABLE `palabrasalcalde`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `participacion`
 --
 ALTER TABLE `participacion`
@@ -156,6 +177,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `misionvision`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `palabrasalcalde`
+--
+ALTER TABLE `palabrasalcalde`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `participacion`
