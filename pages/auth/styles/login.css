@@ -20,6 +20,7 @@
     height: 850px;
     width: auto;
     z-index: 1;
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .col-md-6 {
@@ -28,6 +29,11 @@
     border-radius: 10px;
     align-items: center;
     background: -webkit-linear-gradient(top, #2fc3f070, #dd53d2);
+}
+
+
+.card-4{
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .card-2 {
