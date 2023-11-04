@@ -116,6 +116,7 @@
     background-size: cover; 
 }
 
-.float-start{
+#color-box{
+    background-color: #dd53d2;
     width: 10rem;
 }
