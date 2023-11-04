@@ -11,10 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_recibido = $_POST["email"];
 
     // Verificar que el usuario esté autenticado y que los datos sean válidos
-    if (isset($_SESSION['rut']) && !empty($nombre_recibido) && !empty($apellido_recibido) && !empty($password_recibido) && !empty($email_recibido)) {
-        $rut = $_SESSION['rut'];
+    if (isset($_SESSION['email']) && !empty($nombre_recibido) && !empty($apellido_recibido) && !empty($password_recibido) && !empty($email_recibido)) {
+        $email = $_SESSION['email'];
         // Actualizar el perfil del usuario autenticado
-        $update_query = "UPDATE users SET nombre = '$nombre_recibido', apellido = '$apellido_recibido', password = '$password_recibido', email = '$email_recibido' WHERE rut = '$rut';";
+        $update_query = "UPDATE users SET nombre = '$nombre_recibido', apellido = '$apellido_recibido', password = '$password_recibido', email = '$email_recibido' WHERE email = '$email';";
         $result = mysqli_query($connection, $update_query);
 
         if ($result) {

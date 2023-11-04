@@ -2,14 +2,14 @@
 
 require('database/connection.php');
 
-if (isset($_POST['rut'])) {
+if (isset($_POST['email'])) {
 
-    $rut = stripslashes($_REQUEST['rut']);
-    $rut = mysqli_real_escape_string($connection, $rut);
+    $email = stripslashes($_REQUEST['email']);
+    $email = mysqli_real_escape_string($connection, $email);
     $password = stripslashes($_REQUEST['password']);
     $password = mysqli_real_escape_string($connection, $password);
 
-    $query = "SELECT * FROM `users` WHERE rut='$rut' and password='$password'";
+    $query = "SELECT * FROM `users` WHERE email='$email' and password='$password'";
     $result = mysqli_query($connection, $query);
 
     if (!$result) {
@@ -20,7 +20,7 @@ if (isset($_POST['rut'])) {
 
     if ($user) {
         // Autenticación exitosa
-        $_SESSION['rut'] = $rut;
+        $_SESSION['email'] = $email;
         $_SESSION['id_rol'] = $user['id_rol'];
 
         // Redirige al usuario según su rol
@@ -50,7 +50,7 @@ if (isset($_POST['rut'])) {
                             <h2 class="mb-4 text-center">Iniciar Sesion</h2>
                             <form action="" method="POST" class="signin-form">
                                 <div class="form-group">
-                                    <input type="text" name="rut" class="form-control" placeholder="rut" required>
+                                    <input type="text" name="email" class="form-control" placeholder="email" required>
                                 </div>
                                 <br>
                                 <div class="form-group">

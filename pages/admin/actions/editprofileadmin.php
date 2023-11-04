@@ -4,8 +4,8 @@
 include("middleware/auth.php");
 include("database/connection.php");
 
-if (isset($_SESSION['rut'])) {
-    $user_rut = $_SESSION['rut'];
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
 } else {
     // El usuario no está autenticado, redirigir o mostrar un mensaje de error.
     header("Location: index.php?p=auth/login");
@@ -13,9 +13,9 @@ if (isset($_SESSION['rut'])) {
 }
 
 // Verificar que el rut del usuario autenticado coincida con el rut en la URL
-if (isset($_GET["rut"]) && $_GET["rut"] == $user_rut) {
-    $rut = $_GET["rut"];
-    $query = "SELECT * FROM users WHERE rut = '$rut';";
+if (isset($_GET["email"]) && $_GET["email"] == $email) {
+    $email = $_GET["email"];
+    $query = "SELECT * FROM users WHERE email = '$email';";
     $result = mysqli_query($connection, $query);
 
     if ($user = mysqli_fetch_assoc($result)) {

@@ -18,7 +18,7 @@
 
             
             <?php
-            if (isset($_SESSION["rut"])) {
+            if (isset($_SESSION["email"])) {
                 ?>
 
 

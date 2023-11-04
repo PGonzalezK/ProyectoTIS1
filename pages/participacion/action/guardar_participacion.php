@@ -3,7 +3,7 @@ include("middleware/auth.php");
 include("database/connection.php");
 
 // Obtener datos del formulario
-$rut = $_SESSION["rut"]; 
+$email = $_SESSION["email"]; 
 $tipo_contribucion = $_POST["tipo_contribucion"];
 $departamento = $_POST["departamento"];
 $descripcion = $_POST["descripcion"];
@@ -11,8 +11,8 @@ $otro_dpto_text = $_POST["otro_dpto_text"];
 $fecha = date("Y-m-d H:i:s");
 
 // Consulta preparada para evitar inyección SQL
-$insert = $connection->prepare("INSERT INTO `participacion` (rut, tipo_contribucion, departamento, descripcion, otro_dpto_text, fecha) VALUES (?, ?, ?, ?, ?, ?)");
-$insert->bind_param("ssssss", $rut, $tipo_contribucion, $departamento, $descripcion, $otro_dpto_text, $fecha);
+$insert = $connection->prepare("INSERT INTO `participacion` (email, tipo_contribucion, departamento, descripcion, otro_dpto_text, fecha) VALUES (?, ?, ?, ?, ?, ?)");
+$insert->bind_param("ssssss", $email, $tipo_contribucion, $departamento, $descripcion, $otro_dpto_text, $fecha);
 
 // Ejecutar consulta
 if ($insert->execute()) {
