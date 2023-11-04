@@ -1,4 +1,4 @@
-<?php include '../../includes/funciones.php';
+<?php require '../../includes/funciones.php';
     incluirTemplate('header');
 ?>
 

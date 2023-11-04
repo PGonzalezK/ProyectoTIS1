@@ -20,6 +20,8 @@
         <h1>Administracion Eventos</h1>
         <?php if (intval($resultado)===1):?>
             <div class="p-3 mb-2 bg-success text-white">Evento creado exitosamente</div>
+            <?php elseif (intval($resultado)===2):?>
+            <div class="p-3 mb-2 bg-success text-white">Evento actualizado exitosamente</div>
         <?php endif;?>
         <a class=" p-2 m-1 btn btn-primary" href="../admin/eventos/crear.php" role="button">Crear nuevo Evento</a>
 
