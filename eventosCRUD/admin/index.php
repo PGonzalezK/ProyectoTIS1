@@ -1,12 +1,14 @@
 <?php 
 
     //conecta a la bd
-
+    require '../includes/config/database.php';
+    $db = conectarDB();
     //escribir el query
+    $query = "SELECT * FROM eventos";
+    //consultar la bd
+    $resultadoConsulta = mysqli_query($db,$query);
 
-    
-
-
+    //mensaje condicional(?)
     $resultado = $_GET['resultado'] ?? null;
     //incluye los templates
     require '../includes/funciones.php';
@@ -34,26 +36,34 @@
                 <th scope="col">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody> <!--. Mostrar los resultados .-->
+                <?php while($evento = mysqli_fetch_assoc($resultadoConsulta)): ?>
+
                 <tr>
-                <th scope="row">1</th>
-                <td>Evento 1</td>
-                <td>Lota</td>
-                <td> <img src="../imagenes/cbcd5234964db99f3d049a5b95e497ac.jpg" class="imagen-tabla" alt=""></td>
-                <td>descripcion bla bla bla </td>
-                <td>10-10-10</td>
-                <td>nombre Periodista</td>
+                <th scope="row"><?php echo $evento['idEvento'];?></th>
+                <td><?php echo $evento['titulo'];?></td>
+                <td><?php echo $evento['direccion'];?></td>
+                <td> <img src="../imagenes/<?php echo $evento['imagen'];?>" class="imagen-tabla" alt=""></td>
+                <td><?php echo $evento['descripcion'];?> </td>
+                <td><?php echo $evento['creado'];?></td>
+                <td><?php 
+                        $idPeriodista = $evento['idPeriodista'];
+                        $queryPeriodista = "SELECT nombre, apellido FROM periodistas WHERE idPeriodista = $idPeriodista";
+                        $resultadoPeriodista = mysqli_query($db, $queryPeriodista);
+                        $periodista = mysqli_fetch_assoc($resultadoPeriodista);
+                        echo $periodista['nombre'] . " " . $periodista['apellido'];
+                    ?></td>
                 <td>
-                <a class=" p-2 m-1 btn btn-primary" href="#" role="button">Editar</a>
-                <a class=" p-2 m-1 btn btn-danger" href="#" role="button">Eliminar</a>
+                    <a class=" p-2 m-1 btn btn-primary" href="../admin/eventos/actualizar.php?id=<?php echo $evento['idEvento']; ?>" role="button">Editar</a>
+                    <a class=" p-2 m-1 btn btn-danger" href="#" role="button">Eliminar</a>
                 </td>
                 </tr>
+                <?php endwhile;?>
             </tbody>
         </table>
-
-
     </main>
-
+        
     <?php
+        mysqli_close($db);
         incluirTemplate('footer');
     ?>
