@@ -57,7 +57,7 @@
                     ?></td>
                 <td>
                     <a class=" p-2 m-1 btn btn-primary" href="../admin/eventos/actualizar.php?id=<?php echo $evento['idEvento']; ?>" role="button">Editar</a>
-                    <a class=" p-2 m-1 btn btn-danger" href="#" role="button">Eliminar</a>
+                    <a class="p-2 m-1 btn btn-danger" href="../admin/eventos/eliminar.php?id=<?php echo $evento['idEvento']; ?>" role="button">Eliminar</a>
                 </td>
                 </tr>
                 <?php endwhile;?>
