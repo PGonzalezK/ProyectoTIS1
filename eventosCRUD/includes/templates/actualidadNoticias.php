@@ -13,12 +13,15 @@
         <div class="col">
             <div class="card h-100">
                 <img src="imagenes/<?php echo $evento['imagen'];?>" class="card-img-top" style="height: 238px">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $evento['titulo'];?></h5>
-                    <p class="card-text"><?php echo $evento['descripcion'];?></p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary"><?php echo $evento['creado'];?></small>
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo $evento['titulo'];?></h5>
+                        <p class="card-text"><?php echo $evento['descripcion'];?></p>
+                    </div>
+                        <div class="card-footer">
+                            <small class="text-body-secondary"><?php echo $evento['creado'];?></small>
+                        </div>
+                <div class="d-grid gap-2">
+                        <a class="btn btn-primary" href="includes/templates/verNoticia.php/?id=<?php echo $evento['idEvento'];?>" role="button">Ver noticia</a>
                 </div>
             </div>
         </div>  
