@@ -1,4 +1,10 @@
 <?php 
+    require '../includes/funciones.php';
+    $auth = estaAutentificado();
+
+    if(!$auth){
+        header('Location:../index.php');
+    }
 
     //conecta a la bd
     require '../includes/config/database.php';
@@ -11,7 +17,7 @@
     //mensaje condicional(?)
     $resultado = $_GET['resultado'] ?? null;
     //incluye los templates
-    require '../includes/funciones.php';
+
     incluirTemplate('header');
 ?>
 

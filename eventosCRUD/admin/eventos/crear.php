@@ -1,4 +1,6 @@
 <?php 
+    require '../../includes/funciones.php';
+    estaAutentificado();
     require '../../includes/config/database.php';
     $db = conectarDB();
 
@@ -75,7 +77,7 @@
         }
     }
 
-    require '../../includes/funciones.php';
+
     incluirTemplate('header');
 ?>
 

@@ -1,11 +1,16 @@
 <?php 
+    require '../../includes/funciones.php';
+    $auth = estaAutentificado();
+
+
     //Validar id
     $id = $_GET['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
     if(!$id){
-        header('Location: ../index.php');
+        header('Location: admin/index.php');
     }
+    
     require '../../includes/config/database.php';
     $db = conectarDB();
 
@@ -80,7 +85,7 @@
         }
     }
 
-    require '../../includes/funciones.php';
+ 
     incluirTemplate('header');
 ?>
 
