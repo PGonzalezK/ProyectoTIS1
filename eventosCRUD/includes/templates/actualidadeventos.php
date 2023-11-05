@@ -1,6 +1,5 @@
 <?php 
     //importar la bd
-    require 'includes/config/database.php';
     $db = conectarDB();
     //consultar db
     $query = "SELECT * FROM eventos LIMIT ${limite}";
@@ -8,21 +7,27 @@
     $resultado = mysqli_query($db, $query);    
 ?>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    <?php while($evento = mysqli_fetch_assoc($resultado)):?>
-        <div class="col">
-            <div class="card h-100">
-                <img src="imagenes/<?php echo $evento['imagen'];?>" class="card-img-top" style="height: 238px">
-                <div class="card-body">
-                    <h5 class="card-title"><?php echo $evento['titulo'];?></h5>
-                    <p class="card-text"><?php echo $evento['descripcion'];?></p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary"><?php echo $evento['creado'];?></small>
+<div id="carouselExampleInterval" class="carousel slide mx-auto" data-bs-ride="carousel" style="width:450px" ;>
+        <div class="carousel-inner">
+        <?php while($evento = mysqli_fetch_assoc($resultado)):?>
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="imagenes/<?php echo $evento['imagen'];?>"
+                    class="d-block w-100" alt="..." width="450" height="300">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5><?php echo $evento['titulo'];?></h5>
+                    <p><?php echo $evento['direccion']; ?></p>
                 </div>
             </div>
-        </div>  
-    <?php endwhile?>
-</div>
-
-<?php mysqli_close($db);?>
+            <?php endwhile?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
