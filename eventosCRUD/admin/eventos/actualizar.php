@@ -25,10 +25,12 @@
     $direccion = $eventos['direccion'];
     $descripcion = $eventos['descripcion'];
     $imagenEvento = $eventos['imagen'];
+    $idPeriodista = $eventos['idPeriodista'];
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
         $direccion = mysqli_real_escape_string($db, $_POST['direccion']);
         $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
+        $idPeriodista = mysqli_real_escape_string($db,$_POST['idPeriodista']);
         //asignar files a una variable
         $imagen = $_FILES['imagen'];
 
@@ -69,7 +71,7 @@
 
             //Actualizar variables
             $query = "UPDATE eventos SET titulo = '${titulo}', direccion = '${direccion}', imagen = '${nombreImagen}', 
-            descripcion = '${descripcion}' WHERE idEvento = ${id}";
+            descripcion = '${descripcion}', idPeriodista = ${idPeriodista}   WHERE idEvento = ${id}";
             $resultado = mysqli_query($db, $query);
     
             if($resultado){
@@ -114,6 +116,16 @@
                         <div class="invalid-feedback">
                             ESCRIBA BREVE DESCRIPCION DEL EVENTO
                         </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="idPeriodista" class="form-label">Nombre Periodista</label>
+                        <select class="form-control" id="origin" name="idPeriodista">
+                            <?php while($periodista = mysqli_fetch_assoc($resultadoPeriodistas)): ?>
+                                <option value="<?php echo $periodista['idPeriodista']; ?>" <?php if ($periodista['idPeriodista'] == $idPeriodista) echo 'selected'; ?>>
+                                    <?php echo $periodista['nombre'] . " " . $periodista['apellido']; ?>
+                                </option>
+                            <?php endwhile; ?>
+                        </select>
                     </div>
                 </div>
             </div>

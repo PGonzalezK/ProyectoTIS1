@@ -65,6 +65,7 @@
             
         //Insertar Variables
         $query = "INSERT INTO eventos (titulo , direccion, imagen, descripcion, creado, idPeriodista) VALUES ('$titulo','$direccion','$nombreImagen','$descripcion','$creado', '$idPeriodista')";
+        
         //resultados
         $resultado = mysqli_query($db,$query);
 

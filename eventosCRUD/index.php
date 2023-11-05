@@ -1,5 +1,6 @@
 <?php
     include 'includes/funciones.php';
+
     incluirTemplate('header');
 // Descomentar linea 3 si es que se quiere usar la autenticación para esta página
 //require("middleware/auth.php");
@@ -8,11 +9,10 @@
 
 
 <div class="container text-center">
+    <!--esta es la seccion del nav-->
     <div class="row">
         <div class="col">
-
         </div>
-
         <div class="col-12">
             <ul class="nav justify-content-center">
                 <li class="nav-item">
@@ -51,58 +51,20 @@
                     <a id="participacion-link" class="nav-link"
                         href="index.php?p=participacion\participacion">Participacion</a>
                 </li>
-
         </div>
     </div>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://munipuqueldon.cl/wp-content/uploads/2023/07/IMG_4378-scaled.jpg" class="card-img-top"
-                    style="height: 238px">
-                <div class="card-body">
-                    <h5 class="card-title">Municipio de Puqueldón entrega 50 Becas a estudiantes destacados de la
-                        comuna.</h5>
-                    <p class="card-text">Durante la mañana del 20 de julio, en el salón principal del Edificio
-                        Polifuncional,
-                        se realizó...</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">17 Octubre 2023</small>
-                </div>
-            </div>
-        </div>
+    <!--finaliza seccion nav-->
 
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://munipuqueldon.cl/wp-content/uploads/2023/06/DSC_0467-1024x683.jpg"
-                    class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Egresan los primeros miembros del centro diurno del adulto mayor</h5>
-                    <p class="card-text">Este centro, que abrió sus puertas a la comunidad en diciembre del 2021 ...
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">18 Octubre 2023</small>
-                </div>
-            </div>
 
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="https://munipuqueldon.cl/wp-content/uploads/2023/06/DSC_0319-1024x683.jpg"
-                    class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">Día Mundial del Medioambiente: Un llamado a la protección de los
-                        ecosistemas locales</h5>
-                    <p class="card-text">En un esfuerzo conjunto por concientizar sobre la importancia de preservar
-                        el medio... </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-body-secondary">19 Octubre 2023</small>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!--aqui empiezan las publicaciones de noticias-->
+    <section class="row contenedor noticias">
+        <?php 
+            $limite= 3; 
+            include 'includes/templates/actualidadeventos.php';
+        ?>
+    </section>
+    <!--termina seccion noticias-->
+
     <br><br>
     <div id="carouselExampleInterval" class="carousel slide mx-auto" data-bs-ride="carousel" style="width: 500px" ;">
         <div class="carousel-inner">
