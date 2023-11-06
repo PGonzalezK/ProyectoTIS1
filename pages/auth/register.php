@@ -1,7 +1,7 @@
 <?php
 
 
-require('database/connection.php');
+/*require('database/connection.php');
 
 if (isset($_POST['submit'])) {
     $rut = mysqli_real_escape_string($connection, $_POST['rut']);
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
         // Configurar el correo de confirmación
         $subject = "Confirmación de registro";
         $message = "Gracias por registrarte en nuestro sitio. Por favor, haz clic en el enlace de confirmación: [ENLACE]";
-        $headers = "From: tu_direccion_de_correo@tudominio.com\r\n";
+        $headers = "From: pruebaemailtis1@gmail.com";
 
         // Insertar un registro en la tabla de correos electrónicos
         $query = "INSERT INTO `emails` (to_email, subject, message, headers, status) VALUES ('$email_to_send', '$subject', '$message', '$headers', 'pendiente')";
@@ -31,6 +31,8 @@ if (isset($_POST['submit'])) {
             // Envío de correo de confirmación
             if (mail($email_to_send, $subject, $message, $headers)) {
                 echo "Te has registrado correctamente. Se ha enviado un correo de confirmación a tu dirección de correo.";
+                header("Location: index.php?p=auth/confirmacion/register_process"); // Redirige al usuario a la página de confirmación
+                exit();
             } else {
                 echo "Error al enviar el correo de confirmación.";
             }
@@ -40,28 +42,16 @@ if (isset($_POST['submit'])) {
     } else {
         echo "Error al registrar el usuario.";
     }
+
 }
+*/
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*    require('database/connection.php');
+    require('database/connection.php');
     // If form submitted, insert values into the database.
-    if (isset($_REQUEST['rut'])) {
+    if (isset($_REQUEST['email'])) {
         $rut = stripslashes($_REQUEST['rut']); // removes backslashes
         $rut = mysqli_real_escape_string($connection, $rut); //escapes special characters in a string
         $nombre = stripslashes($_REQUEST['nombre']);
@@ -83,7 +73,7 @@ if (isset($_POST['submit'])) {
             echo "<div class='form'><h3>Te has registrado correctamente!</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
         }
     } else {
-        */
+        
     ?>
     <section class="register-backg">
         <div class="container">
@@ -94,7 +84,7 @@ if (isset($_POST['submit'])) {
                             <h1 class="text-center">Registrate Aquí</h1>
                         </div>
                         <div class="card-body">
-                            <form name="registration" action="index.php?p=auth/confirmacion/register_process" method="post">
+                            <form  name="registration" action="" method="POST">
                                 <div class="form-group mb-3">
                                     <label for="rut" class="form-label">Rut</label>
                                     <input type="text" name="rut" class="form-control" id="rut" required>
@@ -116,15 +106,20 @@ if (isset($_POST['submit'])) {
                                     <input type="password" name="password" class="form-control" id="password" required>
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button type="submit" name="submit" class="btn btn-primary">Registrarse</button>
+                                    <button type="submit"  name="submit" class="btn btn-primary">Registrarse</button>
                                 </div>
                             </form>
+                        
                         </div>
+                    
                     </div>
+                
                 </div>
+            
             </div>
         </div>
         </section>
-    <?php
+        
+    <?php }
     
 ?>

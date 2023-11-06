@@ -7,7 +7,7 @@ if (isset($_POST['submit'])) {
     $to_email = $email_del_usuario; // Dirección de correo del usuario
     $subject = "Confirmación de registro";
     $message = "Gracias por registrarte en nuestro sitio. Por favor, haz clic en el enlace de confirmación.";
-    $headers = "From: tu_direccion_de_correo@tudominio.com\r\n";
+    $headers = "From: pruebaemailtis1@gmail.com";
     $sent_date = date("Y-m-d H:i:s");
 
     // Insertar un registro en la tabla de correos electrónicos
