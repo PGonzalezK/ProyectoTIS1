@@ -21,7 +21,7 @@
                     <th>ID</th>
                     <th>Email</th>
                     <th>Tipo de contribucion</th>
-                    <th>Departamente</th>
+                    <th>Departamento</th>
                     <th>Descripcion</th>
                     <th>Texto aparte</th>
                     <th>Fecha</th>
