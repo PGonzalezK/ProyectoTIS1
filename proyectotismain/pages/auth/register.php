@@ -28,11 +28,20 @@ if (isset($_REQUEST['email'])) {
         $errorMessages[] = "El apellido no es válido. Debe contener solo letras.";
     }
 
+    if (filter_var($email,
+    FILTER_VALIDATE_EMAIL) && (strpos($email, '.com') !== false ||
+    strpos($email, '.cl') !== false)){
+    }else{
+         $errorMessages[] = "El email no es válido.";
+    }
+
     // Validación de la Contraseña
     if (strlen($password) < 8) {
         $errorMessages[] = "La contraseña debe contener al menos 8 caracteres.";
     }
-    
+    // Validación del Nombre
+
+
 
     if (empty($errorMessages)) {
         // Todas las restricciones se cumplieron, procede con la inserción en la base de datos.
