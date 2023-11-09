@@ -1,10 +1,20 @@
 .login-backg {
     background-image: url('../images/ucsc.jpg');
     background-size: cover;
+    background-position: center; /* Centra la imagen en el contenedor */
     height: 850px;
     width: auto;
     z-index: 1;
+    position: relative; /* Establece la posición relativa para que los elementos hijos se posicionen con respecto a este contenedor */
 }
+
+.login-backg .container {
+    position: absolute; /* Establece la posición absoluta para el contenedor para que se pueda centrar verticalmente */
+    top: 50%; /* Centra verticalmente el contenedor en la imagen de fondo */
+    left: 50%; /* Centra horizontalmente el contenedor en la imagen de fondo */
+    transform: translate(-50%, -50%); /* Centra el contenedor horizontal y verticalmente */
+}
+
 
 .col-lg-4 {
     margin-top: 20%;
@@ -17,11 +27,20 @@
 .register-backg {
     background-image: url('../images/conce2.jpg');
     background-size: cover;
+    background-position: center; /* Centra la imagen en el contenedor */
     height: 850px;
     width: auto;
     z-index: 1;
-    background-color: rgba(255, 255, 255, 0.8);
+    position: relative; /* Establece la posición relativa para que los elementos hijos se posicionen con respecto a este contenedor */
 }
+
+.register-backg .container {
+    position: absolute; /* Establece la posición absoluta para el contenedor para que se pueda centrar verticalmente */
+    top: 50%; /* Centra verticalmente el contenedor en la imagen de fondo */
+    left: 50%; /* Centra horizontalmente el contenedor en la imagen de fondo */
+    transform: translate(-50%, -50%); /* Centra el contenedor horizontal y verticalmente */
+}
+
 
 .col-md-6 {
     margin-top: 10%;

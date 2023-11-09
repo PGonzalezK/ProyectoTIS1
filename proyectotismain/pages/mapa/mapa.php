@@ -14,7 +14,7 @@
 <br><br>
 <div class="mapabackg">
     <div class="container text-center">
-    <iframe src="https://www.google.com/maps/d/embed?mid=12YKyGCV2H-Rw3KWHnvDDN5_QUaw4dTs&ehbc=2E312F" width="640" height="480"></iframe>
+    <iframe src="https://www.google.com/maps/d/u/1/embed?mid=1HNdeZ8Zz2TNvFvCIHi2CterD1DMcYOU&ehbc=2E312F" width="640" height="480"></iframe>
 </div>
 </div>
 

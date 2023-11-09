@@ -73,7 +73,7 @@ if (isset($_REQUEST['email'])) {
     }
 } else {
 ?>
-<section class="register-backg">
+<section class="register-backg register-backg bg-center">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">

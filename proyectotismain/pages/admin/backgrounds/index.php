@@ -8,25 +8,28 @@ if ($_SESSION['id_rol'] !== '1') {
     exit();
 }
 
-// Procesar el formulario de carga de imágenes
-if (isset($_POST['submit'])) {
-    if (isset($_FILES['login_bg']) && isset($_FILES['register_bg'])) {
-        // Ruta donde se guardarán las imágenes de fondo (ajústala según tu estructura de carpetas)
-        $uploadDir = "uploads/";
+$query = "SELECT login_background FROM backgrounds WHERE id = 1"; // Suponiendo que el fondo deseado tiene el ID 1
+$result = mysqli_query($connection, $query);
 
-        // Obtener nombres de archivo
-        $loginBgName = $_FILES['login_bg']['name'];
-        $registerBgName = $_FILES['register_bg']['name'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Verificar si se envió una imagen de fondo para el inicio de sesión
+    if (isset($_FILES['login_bg']) && $_FILES['login_bg']['error'] === UPLOAD_ERR_OK) {
+        // Procesa la imagen y guárdala en el servidor (código necesario)
 
-        // Mover las imágenes de fondo cargadas a la carpeta de carga
-        move_uploaded_file($_FILES['login_bg']['tmp_name'], $uploadDir . $loginBgName);
-        move_uploaded_file($_FILES['register_bg']['tmp_name'], $uploadDir . $registerBgName);
-
-        // Actualizar las URLs de las imágenes en la base de datos
-        $updateQuery = "UPDATE backgrounds SET login_background = '$uploadDir$loginBgName', register_background = '$uploadDir$registerBgName' WHERE id = 1";
-        mysqli_query($connection, $updateQuery);
+        // Actualiza la base de datos con la nueva ruta de la imagen
+        $new_login_bg = 'ruta_de_la_nueva_imagen.jpg'; // Debes definir la ruta correcta
+        $update_query = "UPDATE backgrounds SET login_background = '$new_login_bg' WHERE id = 1"; // Suponiendo que el fondo deseado tiene el ID 1
+        $result = mysqli_query($connection, $update_query);
+        if (!$result) {
+            // Manejar el error en caso de que la actualización de la base de datos falle
+        }
     }
+
+    // Redirige al administrador a la página de configuración de imágenes de fondo
+    header("Location: index.php?p=admin/backgrounds/index");
+    exit();
 }
+
 ?>
 
 <!-- Formulario para cargar imágenes de fondo -->

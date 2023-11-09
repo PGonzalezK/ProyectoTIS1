@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<section class="ftco-section login-backg">
+<section class="ftco-section login-backg bg-center">
     <div class="container">
         <div class="row justify-content-center">
         </div>
