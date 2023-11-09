@@ -1,8 +1,8 @@
 <?php
-    require("database\connection.php");
-    // Comprueba si el usuario está logueado
-    // Comprueba si el usuario está logueado
-    $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
+require("database\connection.php");
+// Comprueba si el usuario está logueado
+// Comprueba si el usuario está logueado
+$usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
 
 ?>
 
@@ -12,14 +12,12 @@
         </div>
         <?php require('includes/users/navbar_users.php'); ?>
     </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="participacionbackg">
+</div>
+<div class="participacionbackg">
+    <div class="container justify-content-between align-items-center">
         <form class="was-validated" method="POST" action="index.php?p=participacion\action\guardar_participacion">
             <div class="mb-3">
-                <label for="tipo_contribucion" class="form-label">TIPO CONTRIBUCIÓN</label>
+                <label for="tipo_contribucion" class="form-label" style="color: white;">TIPO CONTRIBUCIÓN</label>
                 <select class="form-select" id="tipo_contribucion" name="tipo_contribucion" required>
                     <option value="" disabled selected>Elija opción.</option>
                     <option value="denuncia">DENUNCIA</option>
@@ -29,7 +27,7 @@
                 <div class="invalid-feedback">Por favor elija una opción.</div>
             </div>
             <div class="mb-3">
-                <label for="departamento" class="form-label">DEPARTAMENTO</label>
+                <label for="departamento" class="form-label" style="color: white;">DEPARTAMENTO</label>
                 <select class="form-select" id="departamento" name="departamento" required>
                     <option value="" disabled selected>Elija departamento.</option>
                     <option value="paradero">PARADERO</option>
@@ -41,7 +39,7 @@
                 <div class="invalid-feedback">Por favor elija una opción.</div>
             </div>
             <div class="mb-3">
-                <label for="descripcion" class="form-label">DESCRIPCIÓN</label>
+                <label for="descripcion" class="form-label" style="color: white;">DESCRIPCIÓN</label>
                 <textarea class="form-control" id="descripcion" name="descripcion"
                     placeholder="Escriba una breve descripción" required></textarea>
                 <div class="invalid-feedback">Realice su mensaje.</div>
@@ -53,16 +51,16 @@
             </div>
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="anonimo" name="anonimo">
-                <label class="form-check-label" for="anonimo">Mandar Anónimamente</label>
+                <label class="form-check-label" for="anonimo" style="color: white;">Mandar Anónimamente</label>
             </div>
             <?php if (!$usuarioAutenticado): ?>
-            <div class="col-12">
-                <button type="button" onclick="mostrarModal()" class="btn btn-primary">Enviar</button>
-            </div>
+                <div class="col-12">
+                    <button type="button" onclick="mostrarModal()" class="btn btn-primary">Enviar</button>
+                </div>
             <?php else: ?>
                 <div class="col-12">
-                <input class="btn btn-primary" value="enviar" type="submit"></input>
-             </div>
+                    <input class="btn btn-primary" value="enviar" type="submit"></input>
+                </div>
             <?php endif; ?>
         </form>
     </div>

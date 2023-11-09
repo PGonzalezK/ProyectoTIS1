@@ -4,13 +4,14 @@
 
         </div>
 
-        <?php require ('includes/users/navbar_users.php'); ?>
+        <?php require('includes/users/navbar_users.php'); ?>
     </div>
     <br>
-
-    <div class="noticiasbackg">
+</div>
+<div class="noticiasbackg">
+    <div class="container text-center">
         <div class="row">
-            <div class="col-sm-6 d-flex justify-content-center">
+            <div class="colu-sm-6 d-flex justify-content-center">
                 <div class="card">
                     <h2 class="card-header"><b>NOTICIAS</b></h2>
                 </div>

@@ -8,7 +8,7 @@
     <br>
     <div class="container text-center">
         <div class="row">
-            <div class="col-sm-6 d-flex justify-content-center">
+            <div class="colu-sm-6 d-flex justify-content-center">
                 <div class="card">
                     <h2 class="card-header"><b>EVENTOS</b></h2>
                 </div>
@@ -19,7 +19,7 @@
 
         <div class="row">
             <div class="col">
-            <div id="carouselExampleInterval" class="carousel slide mx-auto" data-bs-ride="carousel" style="width: 500px" ;">
+            <div id="carouselExampleInterval" class="carousel slide mx-auto" data-bs-ride="carousel" style="width: 500px" ;>
         <div class="carousel-inner">
             <div class="carousel-item active" data-bs-interval="10000">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHyRrkW-Y8KfqfbBKyqUcnkiRZRbduCun3yYkEMAU7H4xApUg7FbKPF366MQ&s=10"

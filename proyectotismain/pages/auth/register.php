@@ -32,6 +32,7 @@ if (isset($_REQUEST['email'])) {
     if (strlen($password) < 8) {
         $errorMessages[] = "La contraseña debe contener al menos 8 caracteres.";
     }
+    
 
     if (empty($errorMessages)) {
         // Todas las restricciones se cumplieron, procede con la inserción en la base de datos.
@@ -59,38 +60,64 @@ if (isset($_REQUEST['email'])) {
     }
 }
 ?>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Selecciona elementos relevantes
+    const passwordField = document.getElementById('password');
+    const submitButton = document.getElementById('submit-button');
+
+    // Agrega un controlador de eventos al botón "Registrarse"
+    submitButton.addEventListener('click', function(event) {
+      const password = passwordField.value;
+
+      // Verifica si la contraseña tiene al menos 8 caracteres
+      if (password.length < 8) {
+        // Evita el envío del formulario
+        event.preventDefault();
+        
+        // Muestra un mensaje emergente (pop-up) de error
+        alert("La contraseña debe contener al menos 8 caracteres.");
+      }
+    });
+  });
+</script>
 <section class="register-backg register-backg bg-center">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card-5">
                     <div class="card-header">
-                        <h1 class="text-center">Registrate Aquí</h1>
+                        <h1 class="text-center" style="color: white;">Registrate Aquí</h1>
                     </div>
                     <div class="card-body">
-                        <form  name="registration" action="" method="POST">
+                        <form name="registration" action="" method="POST">
                             <div class="form-group mb-3">
-                                <label for="rut" class="form-label">Rut</label>
-                                <input type="text" name="rut" class="form-control" id="rut" required maxlength="8">
+                                <label for="rut" class="form-label" style="color: white;">Rut</label>
+                                <input type="text" placeholder="Rut sin codigo verificador, ej:20333222" name="rut"
+                                    class="form-control" id="rut" required maxlength="8">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="nombre" class="form-label">Nombre</label>
-                                <input type="text" name="nombre" class="form-control" id="nombre" required maxlength="50">
+                                <label for="nombre" class="form-label" style="color: white;">Nombre</label>
+                                <input type="text" placeholder="Nombres sin numeros ni caracteres especiales"
+                                    name="nombre" class="form-control" id="nombre" required maxlength="50">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="apellido" class="form-label">Apellido</label>
-                                <input type="text" name="apellido" class="form-control" id="apellido" required maxlength="50">
+                                <label for="apellido" class="form-label" style="color: white;">Apellido</label>
+                                <input type="text" placeholder="Apellidos sin numeros ni caracteres especiales"
+                                    name="apellido" class="form-control" id="apellido" required maxlength="50">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="email" class="form-label">Correo</label>
-                                <input type="email" name="email" class="form-control" id="email" required maxlength="60">
+                                <label for="email" class="form-label" style="color: white;">Correo</label>
+                                <input type="email" placeholder="Correo con el formato 'ejemplo@gmail.com' "
+                                    name="email" class="form-control" id="email" required maxlength="60">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" name="password" class="form-control" id="password" required maxlength="20">
+                                <label for="password" class="form-label" style="color: white;">Contraseña</label>
+                                <input type="password" placeholder="Contraseña de minimo 8 caracteres" name="password"
+                                    class="form-control" id="password" required maxlength="20">
                             </div>
                             <div class="d-grid gap-2">
-                                <button type="submit"  name="submit" class="btn btn-primary">Registrarse</button>
+                                <button type="submit" name="submit" class="btn btn-primary">Registrarse</button>
                             </div>
                         </form>
                     </div>
@@ -99,4 +126,3 @@ if (isset($_REQUEST['email'])) {
         </div>
     </div>
 </section>
-
