@@ -4,7 +4,7 @@ require('database/connection.php');
 
 if (isset($_POST['submit'])) {
     $email_del_usuario = $_POST['email'];
-    $to_email = $email_del_usuario; // Dirección de correo del usuario
+    $to_email = $email_del_usuario; 
     $subject = "Confirmación de registro";
     $message = "Gracias por registrarte en nuestro sitio. Por favor, haz clic en el enlace de confirmación.";
     $headers = "From: pruebaemailtis1@gmail.com";
@@ -33,11 +33,11 @@ if (isset($_POST['submit'])) {
     }
 
     // Después de una inserción exitosa, genera el correo de confirmación y envíalo
-    $to_email = $_POST['email']; // Obtén la dirección de correo electrónico del formulario
+    $to_email = $_POST['email']; 
     // Genera el correo de confirmación y envíalo como se indicó en la respuesta anterior
 
     // Redirige al usuario a una página de confirmación o inicio de sesión
-    header("Location: index.php?p=auth/login"); // o "login.php" según corresponda
+    header("Location: index.php?p=auth/login"); 
     exit();
 }
 ?>

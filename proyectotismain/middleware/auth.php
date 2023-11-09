@@ -13,7 +13,6 @@
         
         // Obtener el nombre de usuario de la sesión
         $email = $_SESSION["email"];
-        print_r($_SESSION);
 
         $sql = "SELECT * FROM users WHERE email = '$email'";
 
@@ -22,7 +21,7 @@
         // Verifica si el usuario existe
         if (mysqli_num_rows($result) == 0) {
             session_destroy();
-            // User does not exist, redirect to login page
+            // El usuario no existe, redirige a la página de inicio de sesión
             header("Location: index.php?p=auth/login");
         }
     }

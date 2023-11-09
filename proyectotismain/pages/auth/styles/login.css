@@ -1,18 +1,18 @@
 .login-backg {
     background-image: url('../images/ucsc.jpg');
     background-size: cover;
-    background-position: center; /* Centra la imagen en el contenedor */
+    background-position: center; 
     height: 850px;
     width: auto;
     z-index: 1;
-    position: relative; /* Establece la posición relativa para que los elementos hijos se posicionen con respecto a este contenedor */
+    position: relative; 
 }
 
 .login-backg .container {
-    position: absolute; /* Establece la posición absoluta para el contenedor para que se pueda centrar verticalmente */
-    top: 50%; /* Centra verticalmente el contenedor en la imagen de fondo */
-    left: 50%; /* Centra horizontalmente el contenedor en la imagen de fondo */
-    transform: translate(-50%, -50%); /* Centra el contenedor horizontal y verticalmente */
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
 }
 
 
@@ -27,18 +27,18 @@
 .register-backg {
     background-image: url('../images/conce2.jpg');
     background-size: cover;
-    background-position: center; /* Centra la imagen en el contenedor */
+    background-position: center; 
     height: 850px;
     width: auto;
     z-index: 1;
-    position: relative; /* Establece la posición relativa para que los elementos hijos se posicionen con respecto a este contenedor */
+    position: relative; 
 }
 
 .register-backg .container {
-    position: absolute; /* Establece la posición absoluta para el contenedor para que se pueda centrar verticalmente */
-    top: 50%; /* Centra verticalmente el contenedor en la imagen de fondo */
-    left: 50%; /* Centra horizontalmente el contenedor en la imagen de fondo */
-    transform: translate(-50%, -50%); /* Centra el contenedor horizontal y verticalmente */
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
 }
 
 

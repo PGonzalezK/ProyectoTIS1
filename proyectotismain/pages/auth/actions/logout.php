@@ -3,4 +3,4 @@
     if (session_destroy()) {
         header("Location: ../../../index.php?p=home");
     }
-?>ss
+?>

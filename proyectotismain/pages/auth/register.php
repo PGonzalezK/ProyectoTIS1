@@ -46,12 +46,12 @@ if (isset($_POST['submit'])) {
 }
 */
 require('database/connection.php');
-// If form submitted, insert values into the database.
+// Si se envía el formulario, inserte valores en la base de datos.
 
 
 if (isset($_REQUEST['email'])) {
-    $rut = stripslashes($_REQUEST['rut']); // removes backslashes
-    $rut = mysqli_real_escape_string($connection, $rut); //escapes special characters in a string
+    $rut = stripslashes($_REQUEST['rut']); 
+    $rut = mysqli_real_escape_string($connection, $rut); 
     $nombre = stripslashes($_REQUEST['nombre']);
     $nombre = mysqli_real_escape_string($connection, $nombre);
     $apellido = stripslashes($_REQUEST['apellido']);
@@ -60,7 +60,7 @@ if (isset($_REQUEST['email'])) {
     $email = mysqli_real_escape_string($connection, $email);
     $password = stripslashes($_REQUEST['password']);
     $password = mysqli_real_escape_string($connection, $password);
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT); // Hash de la contraseña
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT); 
     $trn_date = date("Y-m-d H:i:s");
     
     $id_rol = 2;

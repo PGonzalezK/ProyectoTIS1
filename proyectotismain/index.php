@@ -22,7 +22,7 @@
     require_once 'pages/' . $pagina . '.php';
 
 
-    // Otra opción es validar usando un switch, de esta manera para el valor esperado le indicamos que página cargar
+
 
 
     // El fragmento de html que contiene el pie de página de nuestra web

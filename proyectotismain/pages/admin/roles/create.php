@@ -19,11 +19,11 @@ if ($row = mysqli_fetch_assoc($result_max_id)) {
 }
 
 if (isset($_POST['submit'])) {
-    $descripcion = $_POST['descripcion']; // Corregido para que coincida con el nombre de la columna
+    $descripcion = $_POST['descripcion']; 
 
     // Consulta para insertar un nuevo rol en la base de datos
     $query_insert = "INSERT INTO roles (idRol, nombreRol) VALUES ($nuevo_id_rol, '$descripcion')";
-    // Corregido para que coincida con el nombre de la columna
+   
 
     if (mysqli_query($connection, $query_insert)) {
         // Redirige o muestra un mensaje de éxito
