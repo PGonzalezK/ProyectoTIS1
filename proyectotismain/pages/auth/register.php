@@ -1,77 +1,63 @@
 <?php
 
 
-/*require('database/connection.php');
-
-if (isset($_POST['submit'])) {
-    $rut = mysqli_real_escape_string($connection, $_POST['rut']);
-    $nombre = mysqli_real_escape_string($connection, $_POST['nombre']);
-    $apellido = mysqli_real_escape_string($connection, $_POST['apellido']);
-    $email = mysqli_real_escape_string($connection, $_POST['email']);
-    $password = mysqli_real_escape_string($connection, $_POST['password']);
-    $trn_date = date("Y-m-d H:i:s");
-    $id_rol = 2;
-
-    $query = "INSERT INTO `users` (rut, nombre, apellido, email, password, id_rol, trn_date) VALUES ('$rut', '$nombre', '$apellido', '$email', '$password', '$id_rol', '$trn_date')";
-    
-    if (mysqli_query($connection, $query)) {
-        // Registro exitoso
-        $email_to_send = $email; // Dirección de correo electrónico del usuario
-        // Generar un enlace de confirmación y mensaje
-
-        // Configurar el correo de confirmación
-        $subject = "Confirmación de registro";
-        $message = "Gracias por registrarte en nuestro sitio. Por favor, haz clic en el enlace de confirmación: [ENLACE]";
-        $headers = "From: pruebaemailtis1@gmail.com";
-
-        // Insertar un registro en la tabla de correos electrónicos
-        $query = "INSERT INTO `emails` (to_email, subject, message, headers, status) VALUES ('$email_to_send', '$subject', '$message', '$headers', 'pendiente')";
-
-        if (mysqli_query($connection, $query)) {
-            // Envío de correo de confirmación
-            if (mail($email_to_send, $subject, $message, $headers)) {
-                echo "Te has registrado correctamente. Se ha enviado un correo de confirmación a tu dirección de correo.";
-                header("Location: index.php?p=auth/confirmacion/register_process"); // Redirige al usuario a la página de confirmación
-                exit();
-            } else {
-                echo "Error al enviar el correo de confirmación.";
-            }
-        } else {
-            echo "Error al insertar el correo en la base de datos.";
-        }
-    } else {
-        echo "Error al registrar el usuario.";
-    }
-
-}
-*/
 require('database/connection.php');
 // Si se envía el formulario, inserte valores en la base de datos.
 
 
 if (isset($_REQUEST['email'])) {
-    $rut = stripslashes($_REQUEST['rut']); 
-    $rut = mysqli_real_escape_string($connection, $rut); 
-    $nombre = stripslashes($_REQUEST['nombre']);
-    $nombre = mysqli_real_escape_string($connection, $nombre);
-    $apellido = stripslashes($_REQUEST['apellido']);
-    $apellido = mysqli_real_escape_string($connection, $apellido);
-    $email = stripslashes($_REQUEST['email']);
-    $email = mysqli_real_escape_string($connection, $email);
-    $password = stripslashes($_REQUEST['password']);
-    $password = mysqli_real_escape_string($connection, $password);
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT); 
-    $trn_date = date("Y-m-d H:i:s");
-    
-    $id_rol = 2;
+    $rut = $_REQUEST['rut'];
+    $nombre = $_REQUEST['nombre'];
+    $apellido = $_REQUEST['apellido'];
+    $email = $_REQUEST['email'];
+    $password = $_REQUEST['password'];
 
-    $query = "INSERT into `users` (rut, nombre, apellido, email, password, id_rol, trn_date) VALUES ('$rut', '$nombre', '$apellido', '$email', '$passwordHash', '$id_rol', '$trn_date')";
-    $result = mysqli_query($connection, $query);
+    $errorMessages = array();
 
-    if ($result) {
-        echo "<div class='form'><h3>Te has registrado correctamente!</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
+    // Validación del Rut
+    if (!preg_match('/^[0-9]{7,8}$/', $rut) || $rut >= 27000000) {
+        $errorMessages[] = "Ingrese un rut valido.";
     }
-} else {
+
+    // Validación del Nombre
+    if (!preg_match('/^[A-Za-z]+$/', $nombre)) {
+        $errorMessages[] = "El nombre no es válido. Debe contener solo letras.";
+    }
+    // Validación del Apellido  
+    if (!preg_match('/^[A-Za-z]+$/', $apellido)) {
+        $errorMessages[] = "El apellido no es válido. Debe contener solo letras.";
+    }
+
+    // Validación de la Contraseña
+    if (strlen($password) < 8) {
+        $errorMessages[] = "La contraseña debe contener al menos 8 caracteres.";
+    }
+
+    if (empty($errorMessages)) {
+        // Todas las restricciones se cumplieron, procede con la inserción en la base de datos.
+        $rut = mysqli_real_escape_string($connection, $rut);
+        $nombre = mysqli_real_escape_string($connection, $nombre);
+        $apellido = mysqli_real_escape_string($connection, $apellido);
+        $email = mysqli_real_escape_string($connection, $email);
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $trn_date = date("Y-m-d H:i:s");
+        $id_rol = 2;
+
+        $query = "INSERT into `users` (rut, nombre, apellido, email, password, id_rol, trn_date) VALUES ('$rut', '$nombre', '$apellido', '$email', '$passwordHash', '$id_rol', '$trn_date')";
+        $result = mysqli_query($connection, $query);
+
+        if ($result) {
+            echo "<div class='form'><h3>Te has registrado correctamente!</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
+        } else {
+            echo "Error al insertar en la base de datos.";
+        }
+    } else {
+        // Mostrar mensajes de error
+        foreach ($errorMessages as $error) {
+            echo $error . "<br>";
+        }
+    }
+}
 ?>
 <section class="register-backg register-backg bg-center">
     <div class="container">
@@ -113,4 +99,4 @@ if (isset($_REQUEST['email'])) {
         </div>
     </div>
 </section>
-<?php } ?>
+
