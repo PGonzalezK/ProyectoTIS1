@@ -1,3 +1,9 @@
+<?php
+    require("database\connection.php");
+    // Comprueba si el usuario está logueado
+    $usuarioAutenticado = isset($_SESSION["email"]);
+?>
+
 <div class="container text-center">
     <div class="row">
         <div class="col">
@@ -47,13 +53,22 @@
                 <input class="form-check-input" type="checkbox" id="anonimo" name="anonimo">
                 <label class="form-check-label" for="anonimo">Mandar Anónimamente</label>
             </div>
+            <?php if (!$usuarioAutenticado): ?>
             <div class="col-12">
                 <button type="button" onclick="mostrarModal()" class="btn btn-primary">Enviar</button>
             </div>
+            <?php else: ?>
+                <div class="col-12">
+                <input class="btn btn-primary" value="enviar" type="submit"></input>
+             </div>
+            <?php endif; ?>
         </form>
     </div>
 </div>
-<!-- Agrega este modal al final del cuerpo de tu página -->
+
+
+
+<!-- modal-->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -72,7 +87,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     // Función para mostrar el modal
