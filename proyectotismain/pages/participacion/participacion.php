@@ -1,7 +1,9 @@
 <?php
     require("database\connection.php");
     // Comprueba si el usuario está logueado
-    $usuarioAutenticado = isset($_SESSION["email"]);
+    // Comprueba si el usuario está logueado
+    $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
+
 ?>
 
 <div class="container text-center">
