@@ -21,7 +21,7 @@
                         <a class="nav-link <?php echo (strpos($pagina, 'noticias') !== false) ? 'active' : null ?>" href="index.php?p=admin/noticias_adm/index">Noticias</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($pagina, 'noticias') !== false) ? 'active' : null ?>" href="index.php?p=admin/eventos_adm/index">Eventos</a>
+                        <a class="nav-link <?php echo (strpos($pagina, 'eventos') !== false) ? 'active' : null ?>" href="index.php?p=admin/eventos_adm/index">Eventos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'roles') !== false) ? 'active' : null ?>" href="index.php?p=admin/roles/index">Roles</a>
@@ -31,6 +31,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'palabras_alcalde') !== false) ? 'active' : null ?>" href="index.php?p=admin/palabras_alcalde/index">Palabras del Alcalde</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo (strpos($pagina, 'direccionesMunicipales') !== false) ? 'active' : null ?>" href="index.php?p=admin/direccionesMunicipales/index">Direcciones Municipales</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'backgrounds') !== false) ? 'active' : null ?>" href="index.php?p=admin/backgrounds/index">Fondos</a>

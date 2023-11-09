@@ -114,8 +114,8 @@ if ($_SESSION['id_rol'] !== '1') {
                     </div>
 
                     <div class="mb-3">
-                        <label class="input-group-text" for="descripcion">DESCRIPCIÓN</label>
-                        <input type="text" class="form-control" name="descripcion" placeholder="escriba una breve descripcion" value="<?php echo $descripcion ?>"
+                        <label class="input-group-text" for="descripcion">Descripción</label>
+                        <input type="text" class="form-control col-md-12" name="descripcion" placeholder="escriba una breve descripcion" value="<?php echo $descripcion ?>"
                             required></input>
                         <div class="invalid-feedback">
                            Escriba la noticia
