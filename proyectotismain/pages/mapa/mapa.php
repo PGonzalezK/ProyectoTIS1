@@ -4,7 +4,7 @@
 
         </div>
 
-       
+        <?php require ('includes/users/navbar_users.php'); ?>
     </div>
 
 
@@ -14,10 +14,7 @@
 <br><br>
 <div class="mapabackg">
     <div class="container text-center">
-    <iframe
-        src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d51115.16546551628!2d-73.0349213!3d-36.8017944!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2scl!4v1698291106273!5m2!1ses-419!2scl"
-        width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/d/embed?mid=12YKyGCV2H-Rw3KWHnvDDN5_QUaw4dTs&ehbc=2E312F" width="640" height="480"></iframe>
 </div>
 </div>
 

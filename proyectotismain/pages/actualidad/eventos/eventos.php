@@ -2,7 +2,7 @@
     <div class="col">
 
     </div>
-
+    <?php require ('includes/users/navbar_users.php'); ?>
    
     <br>
     <br>

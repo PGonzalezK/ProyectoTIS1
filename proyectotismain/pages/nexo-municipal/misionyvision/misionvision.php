@@ -22,7 +22,7 @@ while ($row = mysqli_fetch_assoc($result)) {
         <div class="col">
 
         </div>
-
+        <?php require ('includes/users/navbar_users.php'); ?>
         
     </div>
     

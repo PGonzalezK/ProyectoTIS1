@@ -19,7 +19,7 @@ $fecha = $row['fecha'];
 
         </div>
 
-       
+        <?php require ('includes/users/navbar_users.php'); ?>
     </div>
 
     <br>

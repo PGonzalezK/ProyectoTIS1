@@ -23,5 +23,5 @@
 
 <body>
 	<div class="min-vh-100">
-	<?php require_once ('includes\users\navbar.php');
-		  require_once ('includes/users/navbar_users.php') ?>
+	<?php require ('includes/users/navbar.php');
+		   ?>
