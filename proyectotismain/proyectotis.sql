@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-11-2023 a las 04:08:23
+-- Tiempo de generación: 14-11-2023 a las 15:25:10
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Versión de PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -38,6 +38,27 @@ CREATE TABLE `backgrounds` (
   `misionyvision_background` varchar(255) NOT NULL,
   `participacion_background` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `departamento_participacion`
+--
+
+CREATE TABLE `departamento_participacion` (
+  `id` int(11) NOT NULL,
+  `nombre_departamento` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `departamento_participacion`
+--
+
+INSERT INTO `departamento_participacion` (`id`, `nombre_departamento`) VALUES
+(1, 'Acera en mal estado'),
+(2, 'Calle en mal estado'),
+(3, 'Auto abandonado'),
+(4, 'Desborde de canales');
 
 -- --------------------------------------------------------
 
@@ -164,10 +185,10 @@ CREATE TABLE `participacion` (
   `id` int(11) NOT NULL,
   `email` varchar(60) NOT NULL,
   `tipo_contribucion` enum('denuncia','felicitacion','sugerencia') NOT NULL,
-  `departamento` enum('paradero','parque','vial','alumbrado') NOT NULL,
   `descripcion` text NOT NULL,
   `otro_dpto_text` text NOT NULL,
-  `fecha` datetime NOT NULL
+  `fecha` datetime NOT NULL,
+  `id_departamento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -229,6 +250,12 @@ ALTER TABLE `backgrounds`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `departamento_participacion`
+--
+ALTER TABLE `departamento_participacion`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
@@ -264,7 +291,8 @@ ALTER TABLE `palabrasalcalde`
 -- Indices de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_departamento` (`id_departamento`);
 
 --
 -- Indices de la tabla `roles`
@@ -352,6 +380,12 @@ ALTER TABLE `eventos`
 --
 ALTER TABLE `noticias`
   ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `participacion`
+--
+ALTER TABLE `participacion`
+  ADD CONSTRAINT `participacion_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento_participacion` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `users`
