@@ -4,6 +4,15 @@ require("database\connection.php");
 // Comprueba si el usuario está logueado
 $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
 
+
+$query = "SELECT id, nombre_departamento FROM departamento_participacion";
+$result = mysqli_query($connection, $query);
+
+// Verificar si la consulta fue exitosa
+if ($result) {
+    $departamentos = mysqli_fetch_all($result, MYSQLI_ASSOC);
+}
+
 ?>
 
 <div class="container text-center">
@@ -27,17 +36,21 @@ $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
                 <div class="invalid-feedback">Por favor elija una opción.</div>
             </div>
             <div class="mb-3">
-                <label for="departamento" class="form-label" style="color: white;">DEPARTAMENTO</label>
-                <select class="form-select" id="departamento" name="departamento" required>
-                    <option value="" disabled selected>Elija departamento.</option>
-                    <option value="paradero">PARADERO</option>
-                    <option value="parque">PARQUE</option>
-                    <option value="vial">VIAL</option>
-                    <option value="alumbrado">ALUMBRADO</option>
-                    <option value="otro">Otro Departamento</option>
-                </select>
-                <div class="invalid-feedback">Por favor elija una opción.</div>
-            </div>
+    <label for="departamento" class="form-label" style="color: white;">DEPARTAMENTO</label>
+    <select class="form-select" id="departamento" name="departamento" required>
+        <option value="" disabled selected>Elija departamento.</option>
+        <?php
+        // Verificar si hay departamentos disponibles
+        if (isset($departamentos) && !empty($departamentos)) {
+            foreach ($departamentos as $departamento) {
+                echo '<option value="' . $departamento['id'] . '">' . $departamento['nombre_departamento'] . '</option>';
+            }
+        }
+        ?>
+        <option value="otro">Otro Departamento</option>
+    </select>
+    <div class="invalid-feedback">Por favor elija una opción.</div>
+</div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label" style="color: white;">DESCRIPCIÓN</label>
                 <textarea class="form-control" id="descripcion" name="descripcion"
