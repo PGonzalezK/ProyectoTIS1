@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2023 a las 15:25:10
+-- Tiempo de generación: 14-11-2023 a las 16:11:17
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -57,8 +57,7 @@ CREATE TABLE `departamento_participacion` (
 INSERT INTO `departamento_participacion` (`id`, `nombre_departamento`) VALUES
 (1, 'Acera en mal estado'),
 (2, 'Calle en mal estado'),
-(3, 'Auto abandonado'),
-(4, 'Desborde de canales');
+(3, 'Auto abandonado');
 
 -- --------------------------------------------------------
 

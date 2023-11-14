@@ -39,7 +39,10 @@
                         <a class="nav-link <?php echo (strpos($pagina, 'backgrounds') !== false) ? 'active' : null ?>" href="index.php?p=admin/backgrounds/index">Fondos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($pagina, 'backgrounds') !== false) ? 'active' : null ?>" href="index.php?p=admin/participacion/index">Participacion</a>
+                        <a class="nav-link <?php echo (strpos($pagina, 'participacion') !== false) ? 'active' : null ?>" href="index.php?p=admin/participacion/index">Participacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php echo (strpos($pagina, 'dpto_participacion') !== false) ? 'active' : null ?>" href="index.php?p=admin/dpto_participacion/index">Departamentos</a>
                     </li>
                 </ul>
                 <div class="d-flex">
