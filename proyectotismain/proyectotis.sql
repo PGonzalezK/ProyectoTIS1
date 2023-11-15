@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2023 a las 16:11:17
+-- Tiempo de generación: 15-11-2023 a las 03:55:12
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -184,10 +184,23 @@ CREATE TABLE `participacion` (
   `id` int(11) NOT NULL,
   `email` varchar(60) NOT NULL,
   `tipo_contribucion` enum('denuncia','felicitacion','sugerencia') NOT NULL,
+  `departamento` enum('paradero','parque','vial','alumbrado') NOT NULL,
   `descripcion` text NOT NULL,
   `otro_dpto_text` text NOT NULL,
-  `fecha` datetime NOT NULL,
-  `id_departamento` int(11) DEFAULT NULL
+  `fecha` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `restrablecer_password`
+--
+
+CREATE TABLE `restrablecer_password` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `expiracion` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -225,6 +238,8 @@ CREATE TABLE `users` (
   `email` varchar(60) NOT NULL,
   `password` char(60) NOT NULL,
   `id_rol` int(11) NOT NULL,
+  `reset_token` varchar(255) NOT NULL,
+  `token_expiracion` datetime DEFAULT NULL,
   `trn_date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -232,11 +247,14 @@ CREATE TABLE `users` (
 -- Volcado de datos para la tabla `users`
 --
 
-INSERT INTO `users` (`id`, `rut`, `nombre`, `apellido`, `email`, `password`, `id_rol`, `trn_date`) VALUES
-(6, 21212121, 'admin', 'adminapellido', 'admin@correo.com', '$2y$10$.SYuE129.BukxB/njNtIQOIJiFWSAH92zkLPZr6zWONQ43lGvWSvK', 1, '2023-11-07 17:22:50'),
-(9, 20202020, 'editor1', 'editorApellido', 'editor@editor.com', '$2y$10$/loG1rrC9XG1sc/YIRUtsOubUjhwNoiOheawYJU7N7ouQBvbblqvu', 3, '2023-11-07 21:09:28'),
-(10, 65151215, 'editor2', 'editorApellido', 'editor2@editor.com', '$2y$10$wnw9pltAHQWpHfVPdJwfZ.flEcqDyuPuURDyzHCiXD0G9XmA4EAyC', 3, '2023-11-07 21:09:53'),
-(11, 78592131, 'usuario', 'usuarioapellido', 'usuario@usuario.com', '$2y$10$NheB6jZ9S4nm0dnomaG0QupHW2WdZQ0hcxGdD8xM1FbHfpzRn4elW', 2, '2023-11-07 22:11:10');
+INSERT INTO `users` (`id`, `rut`, `nombre`, `apellido`, `email`, `password`, `id_rol`, `reset_token`, `token_expiracion`, `trn_date`) VALUES
+(6, 21212121, 'admin', 'adminapellido', 'admin@correo.com', '$2y$10$.SYuE129.BukxB/njNtIQOIJiFWSAH92zkLPZr6zWONQ43lGvWSvK', 1, '', NULL, '2023-11-07 17:22:50'),
+(9, 20202020, 'editor1', 'editorApellido', 'editor@editor.com', '$2y$10$/loG1rrC9XG1sc/YIRUtsOubUjhwNoiOheawYJU7N7ouQBvbblqvu', 3, '', NULL, '2023-11-07 21:09:28'),
+(10, 65151215, 'editor2', 'editorApellido', 'editor2@editor.com', '$2y$10$wnw9pltAHQWpHfVPdJwfZ.flEcqDyuPuURDyzHCiXD0G9XmA4EAyC', 3, '', NULL, '2023-11-07 21:09:53'),
+(11, 78592131, 'usuario', 'usuarioapellido', 'usuario@usuario.com', '$2y$10$NheB6jZ9S4nm0dnomaG0QupHW2WdZQ0hcxGdD8xM1FbHfpzRn4elW', 2, '', NULL, '2023-11-07 22:11:10'),
+(12, 1, '1', '1', '1@1', '$2y$10$5ejCTYu/l.QA3A9QUMRidu0VIDmARtvkEj80ylYAg0eJVaXC7mEr2', 2, '', NULL, '2023-11-09 04:09:32'),
+(13, 1, '11', '123', '1@2', '$2y$10$Cid1vdEwiMwMV1FIv9sB5umxk8wgcFHeXgQpm5NS5AL.bZ2VpsQcK', 2, '', NULL, '2023-11-09 04:14:02'),
+(14, 20514299, 'Pablo', 'Monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$o1ulz2zcVTZafVIweFs2temaqWfSlinzoay/tvFZ6P5I0ACT0kIoq', 2, '', NULL, '2023-11-15 03:41:56');
 
 --
 -- Índices para tablas volcadas
@@ -290,8 +308,14 @@ ALTER TABLE `palabrasalcalde`
 -- Indices de la tabla `participacion`
 --
 ALTER TABLE `participacion`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `restrablecer_password`
+--
+ALTER TABLE `restrablecer_password`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_departamento` (`id_departamento`);
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `roles`
@@ -353,6 +377,12 @@ ALTER TABLE `participacion`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `restrablecer_password`
+--
+ALTER TABLE `restrablecer_password`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -362,7 +392,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Restricciones para tablas volcadas
@@ -381,10 +411,10 @@ ALTER TABLE `noticias`
   ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `participacion`
+-- Filtros para la tabla `restrablecer_password`
 --
-ALTER TABLE `participacion`
-  ADD CONSTRAINT `participacion_ibfk_1` FOREIGN KEY (`id_departamento`) REFERENCES `departamento_participacion` (`id`) ON DELETE CASCADE;
+ALTER TABLE `restrablecer_password`
+  ADD CONSTRAINT `restrablecer_password_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `users`
