@@ -52,9 +52,6 @@ if ($user = mysqli_fetch_assoc($result)) {
                         <li class="list-group-item"><strong>Apellido:</strong>
                             <?= $apellido ?>
                         </li>
-                        <li class="list-group-item"><strong>Contraseña:</strong>
-                            <?= $password ?>
-                        </li>
                         <li class="list-group-item"><strong>Email:</strong>
                             <?= $email ?>
                         </li>

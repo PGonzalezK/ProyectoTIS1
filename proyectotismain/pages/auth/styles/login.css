@@ -154,7 +154,7 @@
     padding-top: 12px;
 }
 .admin-bg{
-    background-image: url('../images/azul.jpg');
+    background-color: #FAE5D3 ;
     background-size: cover;
     height: 800px;
     width: 100%;
@@ -165,4 +165,10 @@
     margin-right: auto;
     max-width: 900px;
     padding-top: 10%;
+}
+.color1{
+    background-color: #ddffff;
+}
+.imagen-nexo{
+    padding-left: 40%;
 }
