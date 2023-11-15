@@ -1,5 +1,5 @@
 .login-backg {
-    background-image: url('../images/ucsc.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../images/concenoche.jpg');
     background-size: cover;
     background-position: center;
     height: 850px;
@@ -12,7 +12,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);   
+    
 }
 
 
@@ -21,11 +22,11 @@
     padding: 30px 20px 20px 30px;
     border-radius: 10px;
     align-items: center;
-    background: -webkit-linear-gradient(top, #2fc3f070, #dd53d2);
+    background-color:#969da0;
 }
 
 .register-backg {
-    background-image: url('../images/conce2.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),url('../images/conce2.jpg');
     background-size: cover;
     background-position: center;
     height: 850px;
@@ -47,7 +48,7 @@
     padding: 30px 20px 20px 30px;
     border-radius: 10px;
     align-items: center;
-    background: -webkit-linear-gradient(top, #2fc3f070, #dd53d2);
+    background-color:#969da0; 
 }
 
 
@@ -66,7 +67,7 @@
 }
 
 .mision-backg {
-    background-image: url('../images/ccp2.jpg');
+    background:linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../images/ccp2.jpg');
     background-size: cover;
     height: 700px;
     width: auto;
@@ -84,7 +85,7 @@
 
 .perfil-backg {
     padding-top: 10%;
-    background-image: url('../images/conce2.jpg');
+    background:linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../images/conce2.jpg');
     background-size: cover;
     height: 850px;
     width: auto;
@@ -99,7 +100,7 @@
 
 .iniciobackg {
     padding-top: 3%;
-    background-image: url('../images/ccp2.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),url('../images/ccp2.jpg');
     background-size: cover;
     height: 1100px;
     width: 100%;
@@ -110,7 +111,7 @@
 .mapabackg {
     padding-top: 5%;
     padding-bottom: 5%;
-    background-image: url('../images/ccp.jpg');
+    background:linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../images/ccp.jpg');
     background-size: cover;
     height: 700px;
     width: auto;
@@ -120,7 +121,7 @@
 .participacionbackg {
     padding-top: 5%;
     padding-bottom: 5%;
-    background-image: url('../images/concenoche.jpg');
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)),url('../images/concenoche.jpg');
     background-size: cover;
     height: auto;
     width: auto;
@@ -130,7 +131,7 @@
 .noticiasbackg {
     padding-top: 5%;
     padding-bottom: 5%;
-    background-image: url('../images/noticia.jpg');
+    background:linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), url('../images/noticia.jpg');
     background-size: cover;
     height: auto;
     width: auto;
@@ -139,16 +140,17 @@
 
 
 .login-bg {
-    background-image: url('images/Concepcion.jpg');
+    background-color:#9fc2b8; 
     background-size: cover;
 }
 
 #color-box {
-    background-color: #dd53d2;
+    background-color: #9fc2b8; ;
     width: 10rem;
 }
 .row2{
     margin-top: 0px;
+    margin-right: 0px;
 }
 .colum{
     padding-top: 12px;
@@ -164,11 +166,17 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 900px;
-    padding-top: 10%;
+    padding-top: 5%;
 }
 .color1{
-    background-color: #ddffff;
+    background-color: #FAE5D3;
 }
 .imagen-nexo{
-    padding-left: 40%;
+    margin-left: 43%;
+}
+.imagen-nexo2{
+    margin-left: 6%;
+}
+.colornav{
+    background-color: white;
 }

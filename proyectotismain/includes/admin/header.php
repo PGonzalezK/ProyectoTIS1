@@ -32,7 +32,7 @@
 <body>
 	<div class="min-vh-100 color1" >
 		<?php require_once('includes/admin/navbar.php'); ?>
-		<button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas"
+		<button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas"
             aria-controls="menuOffcanvas">
             |||
         </button>

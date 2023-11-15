@@ -34,7 +34,7 @@ if (empty($mision) && empty($vision)) {
             <h2>Visión</h2>
             <p>' . $vision . '</p>
         </div>
-        <a href="index.php?p=admin/misionvision/edit&mision=' . urlencode($mision) . '&vision=' . urlencode($vision) . '" class="btn btn-primary">Editar</a>
+        <a href="index.php?p=admin/misionvision/edit&mision=' . urlencode($mision) . '&vision=' . urlencode($vision) . '" class="btn btn-outline-info">Editar</a>
     </div>';
 }
 ?>

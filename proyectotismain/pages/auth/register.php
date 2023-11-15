@@ -96,7 +96,7 @@ if (isset($_REQUEST['email'])) {
             <div class="col-md-6">
                 <div class="card-5">
                     <div class="card-header">
-                        <h1 class="text-center" style="color: white;">Registrate Aquí</h1>
+                        <h1 class="text-center" style="color: black;">Registrate Aquí</h1>
                     </div>
                     <div class="card-body">
                         <form name="registration" action="" method="POST">

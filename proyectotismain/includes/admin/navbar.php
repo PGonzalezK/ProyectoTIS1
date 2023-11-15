@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom ">
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom colornav ">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,7 +10,7 @@
             <?php
             if (isset($_SESSION["email"])) {
             ?>
-            <img src="pages\auth\images\logo.png" class="¿img-fluid rounded" alt="" width="200">
+            <img src="pages\auth\images\logo.png" class="¿img-fluid rounded imagen-nexo" width="200" >
             <?php
             }
             ?>

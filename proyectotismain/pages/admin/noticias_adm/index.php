@@ -23,7 +23,6 @@
         <div class="p-3 mb-2 bg-success text-white">Noticia eliminada exitosamente</div>
     <?php endif;?>
 
-    <a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/noticias_adm/actions/create" role="button">Crear nueva Noticia</a>
 
     <table class="table">
         <thead>
@@ -55,13 +54,15 @@
                     <td><?php echo $noticia['descripcion'];?> </td>
                     <td><?php echo $noticia['creado'];?></td>
                     <td>
-                        <a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/noticias_adm/actions/update&id=<?php echo $noticia['idNoticia']; ?>" role="button">Editar</a>
-                        <a class="p-2 m-1 btn btn-danger" href="index.php?p=admin/noticias_adm/actions/delete&id=<?php echo $noticia['idNoticia']; ?>" role="button">Eliminar</a>
+                        <a class="p-2 m-1 btn btn-outline-warning" href="index.php?p=admin/noticias_adm/actions/update&id=<?php echo $noticia['idNoticia']; ?>" role="button">Editar</a>
+                        <a class="p-2 m-1 btn btn-outline-danger" href="index.php?p=admin/noticias_adm/actions/delete&id=<?php echo $noticia['idNoticia']; ?>" role="button">Eliminar</a>
                     </td>
                 </tr>
             <?php endwhile;?>
         </tbody>
     </table>
+    <a class="p-2 m-1 btn btn-outline-success" href="index.php?p=admin/noticias_adm/actions/create" role="button">Crear nueva Noticia</a>
+   
 </main>
 <?php
     mysqli_close($connection);

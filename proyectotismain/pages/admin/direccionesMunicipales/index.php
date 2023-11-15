@@ -1,19 +1,18 @@
 <?php
-    include("middleware/auth.php");
-    include("database/connection.php");
+include("middleware/auth.php");
+include("database/connection.php");
 
-    if ($_SESSION['id_rol'] !== '1') {
-        // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
-        header("Location: index.php");
-        exit();
-    }
+if ($_SESSION['id_rol'] !== '1') {
+    // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
+    header("Location: index.php");
+    exit();
+}
 
-    $query = "SELECT * FROM dirmunicipales";
-    $resultadoConsulta = mysqli_query($connection, $query);
-    $resultado = $_GET['resultado'] ?? null;
+$query = "SELECT * FROM dirmunicipales";
+$resultadoConsulta = mysqli_query($connection, $query);
+$resultado = $_GET['resultado'] ?? null;
 ?>
 
-<a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/direccionesMunicipales/actions/create" role="button">Crear Nueva Dirección Municipal</a>
 
 <table class="table">
     <thead>
@@ -29,26 +28,49 @@
         </tr>
     </thead>
     <tbody>
-        <?php while($dirmunicipal = mysqli_fetch_assoc($resultadoConsulta)): ?>
+        <?php while ($dirmunicipal = mysqli_fetch_assoc($resultadoConsulta)): ?>
             <tr>
-                <th scope="row"><?php echo $dirmunicipal['id'];?></th>
-                <td><?php echo $dirmunicipal['nombre'];?></td>
-                <td><?php echo $dirmunicipal['descripcion'];?></td>
-                <td><?php echo $dirmunicipal['director'];?></td>
-                <td><?php echo $dirmunicipal['telefono'];?></td>
-                <td><?php echo $dirmunicipal['email'];?> </td>
-                <td><?php echo $dirmunicipal['direccion'];?></td>
-                <td><?php echo $dirmunicipal['funciones'];?></td>
+                <th scope="row">
+                    <?php echo $dirmunicipal['id']; ?>
+                </th>
                 <td>
-                    <a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/direccionesMunicipales/actions/update&id=<?php echo $dirmunicipal['id']; ?>" role="button">Editar</a>
-                    <a class="p-2 m-1 btn btn-danger" href="index.php?p=admin/direccionesMunicipales/actions/delete&id=<?php echo $dirmunicipal['id']; ?>" role="button">Eliminar</a>
+                    <?php echo $dirmunicipal['nombre']; ?>
+                </td>
+                <td>
+                    <?php echo $dirmunicipal['descripcion']; ?>
+                </td>
+                <td>
+                    <?php echo $dirmunicipal['director']; ?>
+                </td>
+                <td>
+                    <?php echo $dirmunicipal['telefono']; ?>
+                </td>
+                <td>
+                    <?php echo $dirmunicipal['email']; ?>
+                </td>
+                <td>
+                    <?php echo $dirmunicipal['direccion']; ?>
+                </td>
+                <td>
+                    <?php echo $dirmunicipal['funciones']; ?>
+                </td>
+                <td>
+                    <a class="p-2 m-1 btn btn-outline-warning"
+                        href="index.php?p=admin/direccionesMunicipales/actions/update&id=<?php echo $dirmunicipal['id']; ?>"
+                        role="button">Editar</a>
+                    <a class="p-2 m-1 btn btn-outline-danger"
+                        href="index.php?p=admin/direccionesMunicipales/actions/delete&id=<?php echo $dirmunicipal['id']; ?>"
+                        role="button">Eliminar</a>
                 </td>
             </tr>
-        <?php endwhile;?>
+        <?php endwhile; ?>
     </tbody>
 </table>
+<a class="p-2 m-1 btn btn-outline-success" href="index.php?p=admin/direccionesMunicipales/actions/create" role="button">Crear
+    Nueva Dirección Municipal</a>
+
 </main>
 
 <?php
-    mysqli_close($connection);
+mysqli_close($connection);
 ?>

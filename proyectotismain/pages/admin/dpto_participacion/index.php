@@ -28,8 +28,8 @@
                 echo "<tr>";
                 echo "<td>{$row['id']}</td>";
                 echo "<td>{$row['nombre_departamento']}</td>";
-                echo "<td><a href='index.php?p=admin/dpto_participacion/actions/edit&id={$row['id']}' class='btn btn-primary'>Editar</a> ";
-                echo "<a href='index.php?p=admin/dpto_participacion/actions/delete&id={$row['id']}' class='btn btn-danger'>Eliminar</a>";
+                echo "<td><a href='index.php?p=admin/dpto_participacion/actions/edit&id={$row['id']}' class='btn btn-outline-warning'>Editar</a> ";
+                echo "<a href='index.php?p=admin/dpto_participacion/actions/delete&id={$row['id']}' class='btn btn-outline-danger'>Eliminar</a>";
                 echo "</tr>";
             }
             ?>
@@ -37,7 +37,7 @@
     </table>
 
     <!-- Botón de agregar fuera del bucle -->
-    <a href='index.php?p=admin/dpto_participacion/actions/create' class='btn btn-success'>Agregar</a>
+    <a href='index.php?p=admin/dpto_participacion/actions/create' class='btn btn-outline-success'>Agregar</a>
 </div>
 
 

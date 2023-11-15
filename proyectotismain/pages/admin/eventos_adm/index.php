@@ -23,8 +23,6 @@
         <div class="p-3 mb-2 bg-success text-white">Evento eliminado exitosamente</div>
     <?php endif;?>
 
-    <a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/eventos_adm/actions/create" role="button">Crear nuevo Evento</a>
-
     <table class="table">
         <thead>
             <tr>
@@ -57,13 +55,15 @@
                         ?>
                     </td>
                     <td>
-                        <a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/eventos_adm/actions/edit&id=<?php echo $evento['idEvento']; ?>" role="button">Editar</a>
-                        <a class="p-2 m-1 btn btn-danger" href="index.php?p=admin/eventos_adm/actions/delete&id=<?php echo $evento['idEvento']; ?>" role="button">Eliminar</a>
+                        <a class="p-2 m-1 btn btn-outline-warning" href="index.php?p=admin/eventos_adm/actions/edit&id=<?php echo $evento['idEvento']; ?>" role="button">Editar</a>
+                        <a class="p-2 m-1 btn btn-outline-danger" href="index.php?p=admin/eventos_adm/actions/delete&id=<?php echo $evento['idEvento']; ?>" role="button">Eliminar</a>
                     </td>
                 </tr>
             <?php endwhile;?>
         </tbody>
     </table>
+    <a class="p-2 m-1 btn btn-outline-success" href="index.php?p=admin/eventos_adm/actions/create" role="button">Crear nuevo Evento</a>
+
 </main>
 
 <?php

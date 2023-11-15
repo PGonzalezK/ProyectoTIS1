@@ -44,6 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="register_bg">Imagen de Fondo para el Registro</label>
             <input type="file" name="register_bg">
         </div>
-        <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" name="submit" class="btn btn-outline-success">Guardar</button>
     </form>
 </div>

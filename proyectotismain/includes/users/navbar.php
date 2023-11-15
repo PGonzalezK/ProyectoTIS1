@@ -14,9 +14,7 @@
                         <a href="https://www.facebook.com" ><i class="fa-brands fa-facebook fa-2xl"></i></a>
                         <a href="https://www.twitter.com" ><i class="fa-brands fa-x-twitter fa-2xl"></i></a>
                     </div>
-            </ul>
-
-            
+            </ul>               
             <?php
             if (isset($_SESSION["email"])) {
                 ?>
@@ -26,7 +24,7 @@
                             href="index.php?p=home"><i class="fa-solid fa-house fa-xl" style="color: #095ef1;"></i></a>
                     </li>
                 </ul>
-                
+                <img src="pages\auth\images\logo.png" class="¿img-fluid rounded imagen-nexo2" width="120" >
                <!-- <ul class="navbar-nav me-auto mb-2 mb-lh-0 ">
                     <form class="d-flex" role="search">
                         <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
@@ -48,7 +46,7 @@
                             
                     </li>
                 </ul>
-
+                <img src="pages\auth\images\logo.png" class="¿img-fluid rounded imagen-nexo2" width="120" >
                <!-- <ul class="navbar-nav me-auto mb-2 mb-lh-0 ">
                     <form class="d-flex" role="search">
                         <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search">
