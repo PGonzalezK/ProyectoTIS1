@@ -73,7 +73,7 @@ if ($user = mysqli_fetch_assoc($result)) {
             </div>
 
             <div class="card-footer text-body-secondary text-end">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button> <!-- Doble confirmacion -->
             </div>
         </form>
     </div>

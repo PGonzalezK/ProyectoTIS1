@@ -1,8 +1,5 @@
 <?php
-
 require('database/connection.php');
-
-
 
 $errores = []; 
 
@@ -23,22 +20,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if ($result && mysqli_num_rows($result)) {
             $user = mysqli_fetch_assoc($result);
-            $auth = password_verify($password, $user['password']);
 
-            if ($auth) {
-                session_start();
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['id_rol'] = $user['id_rol'];
+            // Verificar si la cuenta está activada
+            if ($user['activado'] == 1) {
+                $auth = password_verify($password, $user['password']);
 
-                if ($user['id_rol'] == 1) {
-                    header("Location: index.php?p=admin/home");
-                } elseif ($user['id_rol'] == 2) {
-                    header("Location: index.php?p=home");
+                if ($auth) {
+                    session_start();
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['id_rol'] = $user['id_rol'];
+
+                    if ($user['id_rol'] == 1) {
+                        header("Location: index.php?p=admin/home");
+                    } elseif ($user['id_rol'] == 2) {
+                        header("Location: index.php?p=home");
+                    } else {
+                        echo "Rol desconocido";
+                    }
                 } else {
-                    echo "Rol desconocido";
+                    $errores[] = "El password es incorrecto";
                 }
             } else {
-                $errores[] = "El password es incorrecto";
+                $errores[] = "La cuenta no está activada. Verifica tu correo electrónico para la activación.";
             }
         } else {
             $errores[] = "El usuario no existe";

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     mail($email, $asunto, $cuerpo, $headers);
     
-    echo "Se ha enviado un correo con las instrucciones para restablecer la contraseña a $email.";
+    echo "<script>alert('Se ha enviado un correo con las instrucciones para restablecer la contraseña a $email.'); </script>"; // Hacer alerta JAVIERA
 }
 
 ?>

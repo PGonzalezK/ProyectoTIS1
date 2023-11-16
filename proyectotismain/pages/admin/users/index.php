@@ -53,7 +53,7 @@
                             <td><?= $user['id_rol'] ?></td>
                             <td>
                                 <a href="index.php?p=admin/users/edit&rut=<?= $user['rut'] ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                                <a href="index.php?p=admin/users/actions/delete&rut=<?= $user['rut'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                <a href="index.php?p=admin/users/actions/delete&rut=<?= $user['rut'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a> <!-- doble confirmacion JAVIERA -->
                             </td>
                         </tr>
 
