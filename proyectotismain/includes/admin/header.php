@@ -34,7 +34,7 @@
 		<?php require_once('includes/admin/navbar.php'); ?>
 		<button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuOffcanvas"
             aria-controls="menuOffcanvas">
-            |||
+            Menu
         </button>
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="menuOffcanvas" aria-labelledby="menuOffcanvasLabel">

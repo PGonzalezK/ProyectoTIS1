@@ -6,14 +6,11 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-
             <?php
             if (isset($_SESSION["email"])) {
             ?>
             <img src="pages\auth\images\logo.png" class="¿img-fluid rounded imagen-nexo" width="200" >
-            <?php
-            }
-            ?>
+            <?php } ?>
         </div>
     </div>
 </nav>

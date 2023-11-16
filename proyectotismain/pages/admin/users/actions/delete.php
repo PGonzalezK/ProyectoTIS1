@@ -1,4 +1,5 @@
 <?php
+
     include("database/connection.php");
     include("middleware/auth.php");
 
@@ -9,4 +10,5 @@
     $result =  mysqli_query($connection, $query);
 
     header("Location: index.php?p=admin/users/index");
+
 ?>

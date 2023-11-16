@@ -17,11 +17,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $query = "UPDATE users SET reset_token = '$token', token_expiracion = '$expirationDate' WHERE email = '$email'";
     mysqli_query($connection, $query);
 
-    // Mostrar el enlace de restablecimiento en la pantalla (puedes cambiar esto según tus necesidades)
-    $resetLink = "index.php?p=auth/recuperar/restrablecer&token=$token";
-    echo "Haz clic en el siguiente enlace para restablecer tu contraseña: <a href='$resetLink'>$resetLink</a>";
+    // Enviar el enlace de restablecimiento por correo electrónico
+    $resetLink = "http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=auth/recuperar/restrablecer&token=$token";
+    
+    $asunto = 'Restablecimiento de Contraseña';
+    $cuerpo = "Haz clic en el siguiente enlace para restablecer tu contraseña: <a href='$resetLink'>$resetLink</a>";
+    
+    $headers = "MIME-Version: 1.0\r\n";
+    $headers .= "Content-type: text/html\r\n";
+    $headers .= "From: <tu@dominio.com>\r\n";  // Reemplaza con tu dirección de correo
+    
+    mail($email, $asunto, $cuerpo, $headers);
+    
+    echo "Se ha enviado un correo con las instrucciones para restablecer la contraseña a $email.";
 }
-
 
 ?>
 
