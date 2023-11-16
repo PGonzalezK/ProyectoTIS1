@@ -15,6 +15,13 @@
     $noticia = mysqli_fetch_assoc($resultado);
 
 ?>
+    <div class="row">
+        <div class="col">
+
+        </div>
+        <?php require('includes/users/navbar_users.php'); ?>
+
+    </div>
     <div class="d-inline-flex p-2 flex-column ">
         <h1><?php echo  $noticia['titulo']?></h1>
             <div class=" p-3">
