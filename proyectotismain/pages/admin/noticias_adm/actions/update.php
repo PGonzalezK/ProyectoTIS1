@@ -83,7 +83,11 @@
 ?>
 
 <main class="contenedor">
-    <h1>Actualizar Noticia:</h1>
+    <div class="container-fluid border-bottom border-top bg-body-tertiary">
+            <div class=" p-5 rounded text-center">
+            <h2 class="fw-normal">Actualizar Noticia</h1>
+            </div>
+        </div>
 
     <?php foreach($errores as $error): ?>
         <div class="p-3 mb-2 bg-danger text-white">
@@ -91,7 +95,7 @@
         </div>
     <?php endforeach; ?>
 
-    <div class="card">
+    <div class="card ms-5 mt-5 me-5 m">
         <form method="POST" enctype="multipart/form-data">
             <div class="card-body">
                 <div class="row">

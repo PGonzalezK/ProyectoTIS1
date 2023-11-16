@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!-- Formulario para crear un nuevo departamento -->
+
 <form method="POST" action="">
     <label for="nombre_departamento">Nombre del Departamento:</label>
     <input type="text" name="nombre_departamento" required>

@@ -35,9 +35,12 @@ if (isset($_POST['submit'])) {
     }
 }
 ?>
-
-<div class="container">
-    <h1>Crear Nuevo Rol</h1>
+   <div class="container-fluid border-bottom border-top bg-body-tertiary">
+            <div class=" p-5 rounded text-center">
+            <h2 class="fw-normal">Registro de Nuevo Rol</h1>
+            </div>
+        </div>
+<div class="container mt-5">
     <form method="post">
         <div class="form-group">
             <label for="descripcion">Descripción:</label>

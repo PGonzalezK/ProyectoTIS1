@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 class="fw-normal">Configuración de Imágenes de Fondo</h1>
         </div>
     </div>
-<div class="container">
+<div class="container mt-5">
 
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
@@ -50,6 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="register_bg">Imagen de Fondo para el Registro</label>
             <input type="file" name="register_bg">
         </div>
-        <button type="submit" name="submit" class="btn btn-outline-success">Guardar</button>
+        <button type="submit" name="submit" class="btn btn-outline-success mt-2">Guardar</button>
     </form>
 </div>
