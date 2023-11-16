@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-11-2023 a las 03:55:12
+-- Tiempo de generación: 16-11-2023 a las 02:05:27
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -104,7 +104,6 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`idEvento`, `titulo`, `direccion`, `imagen`, `descripcion`, `creado`, `id_editor`) VALUES
-(5, 'Evento 1', 'Parque Isidora Cousiño, Lota', 'f11a99cfad07d596786d9a1f4ac6299b.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 10),
 (7, 'Evento en la playa', 'Parque Isidora Cousiño, Lota', '458ce8b6dd8b1802abba58f2423e3b71.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 9);
 
 -- --------------------------------------------------------
@@ -148,9 +147,7 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`) VALUES
-(1, 'Municipio de Puqueldón entrega 50 Becas a estudiantes destacados de la comuna.', 'Durante la mañana del 20 de julio, en el salón principal del Edificio Polifuncional, se realizó...', 'e519ec937dcbd5682d4afddcd53afdb3.jpg', '2023-11-07 23:00:11', 10),
-(3, 'Egresan los primeros miembros del centro diurno del adulto mayor', 'Este centro, que abrió sus puertas a la comunidad en diciembre del 2021 ...', 'ea937e44ef731f49d9bf84bb6fc158d7.jpg', '2023-11-07 23:26:09', 9),
-(4, 'Día Mundial del Medioambiente: Un llamado a la protección de los ecosistemas locales', 'En un esfuerzo conjunto por concientizar sobre la importancia de preservar el medio...', 'abffb014ec4aaac8f30494c21b648033.jpg', '2023-11-07 23:40:47', 10);
+(3, 'Egresan los primeros miembros del centro diurno del adulto mayor', 'Este centro, que abrió sus puertas a la comunidad en diciembre del 2021 ...', 'ea937e44ef731f49d9bf84bb6fc158d7.jpg', '2023-11-07 23:26:09', 9);
 
 -- --------------------------------------------------------
 
@@ -172,7 +169,7 @@ CREATE TABLE `palabrasalcalde` (
 --
 
 INSERT INTO `palabrasalcalde` (`id`, `titulo`, `contenido`, `nombre_alcalde`, `imagen`, `fecha`) VALUES
-(2, 'Bienvenidos a Concepción', 'Desde el municipio estamos trabajando para convertirnos en la Capital del Sur de Chile, teniendo en el centro de nuestras acciones, programas y proyectos a las personas que aquí viven, estudian, trabajan y a quienes vienen a visitarnos o llegaron para comenzar aquí una nueva vida. Somos la tercera ciudad más importante de Chile. Promovemos un desarrollo a escala humana, de los barrios y del centro, que respete y rescate nuestro patrimonio histórico, cultural, natural y turístico como Ciudad de la Independencia, del Rock, Universitaria, del río Biobío, de las Cinco Lagunas y Cerro Caracol, con toda una infraestructura pública y privada de conectividad, hotelería, comercio, salud, educación y negocios de alto nivel. Desde nuestra gestión queremos seguir creciendo consolidando la inclusión y la participación ciudadana, manteniendo la transparencia en nuestro quehacer y articulando sueños y compromisos para grandes y necesarios proyectos.\r\nLes invitamos a cuidar y disfrutar de nuestra ciudad.\r\nUn afectuoso abrazo.', 'Álvaro Ortiz Vera', 'pages/admin/palabras_alcalde/imagen//alcalde-foto.jpg', '2023-11-08 00:00:00');
+(2, 'Bienvenidos a Concepción', 'Desdea el municipio estamos trabajando para convertirnos en la Capital del Sur de Chile, teniendo en el centro de nuestras acciones, programas y proyectos a las personas que aquí viven, estudian, trabajan y a quienes vienen a visitarnos o llegaron para comenzar aquí una nueva vida. Somos la tercera ciudad más importante de Chile. Promovemos un desarrollo a escala humana, de los barrios y del centro, que respete y rescate nuestro patrimonio histórico, cultural, natural y turístico como Ciudad de la Independencia, del Rock, Universitaria, del río Biobío, de las Cinco Lagunas y Cerro Caracol, con toda una infraestructura pública y privada de conectividad, hotelería, comercio, salud, educación y negocios de alto nivel. Desde nuestra gestión queremos seguir creciendo consolidando la inclusión y la participación ciudadana, manteniendo la transparencia en nuestro quehacer y articulando sueños y compromisos para grandes y necesarios proyectos.\r\nLes invitamos a cuidar y disfrutar de nuestra ciudad.\r\nUn afectuoso abrazo.', 'Álvaro Ortiz Vera', 'pages/admin/palabras_alcalde/imagen//alcalde-foto.jpg', '2023-11-08 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -250,11 +247,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `rut`, `nombre`, `apellido`, `email`, `password`, `id_rol`, `reset_token`, `token_expiracion`, `trn_date`) VALUES
 (6, 21212121, 'admin', 'adminapellido', 'admin@correo.com', '$2y$10$.SYuE129.BukxB/njNtIQOIJiFWSAH92zkLPZr6zWONQ43lGvWSvK', 1, '', NULL, '2023-11-07 17:22:50'),
 (9, 20202020, 'editor1', 'editorApellido', 'editor@editor.com', '$2y$10$/loG1rrC9XG1sc/YIRUtsOubUjhwNoiOheawYJU7N7ouQBvbblqvu', 3, '', NULL, '2023-11-07 21:09:28'),
-(10, 65151215, 'editor2', 'editorApellido', 'editor2@editor.com', '$2y$10$wnw9pltAHQWpHfVPdJwfZ.flEcqDyuPuURDyzHCiXD0G9XmA4EAyC', 3, '', NULL, '2023-11-07 21:09:53'),
 (11, 78592131, 'usuario', 'usuarioapellido', 'usuario@usuario.com', '$2y$10$NheB6jZ9S4nm0dnomaG0QupHW2WdZQ0hcxGdD8xM1FbHfpzRn4elW', 2, '', NULL, '2023-11-07 22:11:10'),
-(12, 1, '1', '1', '1@1', '$2y$10$5ejCTYu/l.QA3A9QUMRidu0VIDmARtvkEj80ylYAg0eJVaXC7mEr2', 2, '', NULL, '2023-11-09 04:09:32'),
-(13, 1, '11', '123', '1@2', '$2y$10$Cid1vdEwiMwMV1FIv9sB5umxk8wgcFHeXgQpm5NS5AL.bZ2VpsQcK', 2, '', NULL, '2023-11-09 04:14:02'),
-(14, 20514299, 'Pablo', 'Monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$o1ulz2zcVTZafVIweFs2temaqWfSlinzoay/tvFZ6P5I0ACT0kIoq', 2, '', NULL, '2023-11-15 03:41:56');
+(15, 20514299, 'pablo', 'monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$6zW1ggOd8jqIArJXmZike.1MwcoxAeUyGcWmZiC99pFmINADXhPnS', 2, '', NULL, '2023-11-16 01:02:18');
 
 --
 -- Índices para tablas volcadas
@@ -392,7 +386,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
