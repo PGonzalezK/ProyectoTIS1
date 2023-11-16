@@ -78,7 +78,8 @@ if (isset($_REQUEST['email'])) {
 
             mail($email, $asunto, $cuerpo, $headers);
 
-            echo "Se ha enviado un correo con las instrucciones para verificar tu cuenta al $email."; // hacer alerta JAVIERA 
+            echo "<script>alert('Se ha enviado un correo con las instrucciones para verificar tu cuenta al $email.'); </script>";
+// hacer alerta JAVIERA 
         } else {
             echo "Error al insertar en la base de datos.";
         }
