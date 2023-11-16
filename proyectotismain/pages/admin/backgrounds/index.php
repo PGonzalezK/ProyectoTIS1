@@ -1,3 +1,4 @@
+
 <?php
 include("middleware/auth.php");
 include("database/connection.php");
@@ -33,8 +34,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <!-- Formulario para cargar imágenes de fondo -->
+<div class="container-fluid border-bottom border-top bg-body-tertiary">
+        <div class=" p-5 rounded text-center">
+            <h2 class="fw-normal">Configuración de Imágenes de Fondo</h1>
+        </div>
+    </div>
 <div class="container">
-    <h1>Configuración de Imágenes de Fondo</h1>
+
     <form method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="login_bg">Imagen de Fondo para el Login</label>

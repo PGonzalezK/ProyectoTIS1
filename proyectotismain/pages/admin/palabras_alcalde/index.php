@@ -14,7 +14,12 @@ if (mysqli_num_rows($result) > 0) {
     $imagen = $row['imagen'];
     $fecha = $row['fecha'];
 ?>
-
+  <div class="container-fluid border-bottom border-top bg-body-tertiary">
+        <div class=" p-5 rounded text-center">
+            <h2 class="fw-normal">Palabras del Alcalde</h1>
+        </div>
+    </div>
+<main class="contenedor mt-5 m-5">    
 <div class="container">
     <h1><?php echo $titulo; ?></h1>
     <p><?php echo $contenido; ?></p>
@@ -26,7 +31,7 @@ if (mysqli_num_rows($result) > 0) {
         <a href="index.php?p=admin/palabras_alcalde/actions/update2&id=<?php echo $row['id']; ?>" class="btn btn-primary">Editar</a>
     <?php endif; ?>
 </div>
-
+</main>
 <?php
 } else {
     // Mostrar el enlace "Agregar palabras" si no hay datos

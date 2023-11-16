@@ -1,3 +1,8 @@
+<div class="container-fluid border-bottom border-top bg-body-tertiary">
+        <div class=" p-5 rounded text-center">
+            <h2 class="fw-normal">Configuración de Misión y Visión</h1>
+        </div>
+    </div>
 <?php
 include("middleware/auth.php");
 include("database/connection.php");

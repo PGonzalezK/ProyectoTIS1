@@ -12,9 +12,14 @@ $query = "SELECT * FROM roles";
 $result = mysqli_query($connection, $query);
 ?>
 
-<div class="container">
-    <h1>Roles Disponibles</h1>
-    <table class="table table-bordered">
+<main class="contenedor">
+  <div class="container-fluid border-bottom border-top bg-body-tertiary">
+    <div class=" p-5 rounded text-center">
+        <h2 class="fw-normal">Roles Disponibles</h1>
+    </div>
+  </div>
+  <main class="contenedor mt-5 m-5">
+    <table class="table table-bordered text-centered">
         <thead>
             <tr>
                 <th>ID de Rol</th>
@@ -42,8 +47,9 @@ $result = mysqli_query($connection, $query);
             <?php } ?>
         </tbody>
     </table>
-    <a class=" btn btn-outline-success" href="index.php?p=admin/roles/create" role="button">Crear un Nuevo Rol</a>
-</div>
+    </main>
+    <a class=" btn btn-outline-success ms-5" href="index.php?p=admin/roles/create" role="button">Crear un Nuevo Rol</a>
+</main>
 
 <script>
     function confirmarEliminar(idRol) {
