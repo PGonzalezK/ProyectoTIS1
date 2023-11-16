@@ -56,7 +56,7 @@
                     </td>
                     <td>
                         <a class="p-2 m-1 btn btn-outline-warning" href="index.php?p=admin/eventos_adm/actions/edit&id=<?php echo $evento['idEvento']; ?>" role="button">Editar</a>
-                        <a class="p-2 m-1 btn btn-outline-danger" href="index.php?p=admin/eventos_adm/actions/delete&id=<?php echo $evento['idEvento']; ?>" role="button">Eliminar</a>
+                        <a class="p-2 m-1 btn btn-outline-danger" href="javascript:void(0);" onclick="confirmarEliminar(<?php echo $evento['idEvento']; ?>)" role="button">Eliminar</a>
                     </td>
                 </tr>
             <?php endwhile;?>
@@ -69,3 +69,12 @@
 <?php
     mysqli_close($connection);
 ?>
+
+<script>
+    function confirmarEliminar(idEvento) {
+        var confirmacion = confirm("¿Estás seguro que deseas eliminar este evento?");
+        if (confirmacion) {
+            window.location.href = "index.php?p=admin/eventos_adm/actions/delete&id=" + idEvento;
+        }
+    }
+</script>

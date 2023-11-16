@@ -12,7 +12,6 @@ $query = "SELECT * FROM roles";
 $result = mysqli_query($connection, $query);
 ?>
 
-
 <div class="container">
     <h1>Roles Disponibles</h1>
     <table class="table table-bordered">
@@ -36,7 +35,7 @@ $result = mysqli_query($connection, $query);
                         <a class="p-2 m-1 btn btn-outline-warning"
                             href="index.php?p=admin/roles/edit&id_rol=<?php echo $row['idRol']; ?>" role="button">Editar</a>
                         <a class="p-2 m-1 btn btn-outline-danger"
-                            href="index.php?p=admin/roles/action/delete&id_rol=<?php echo $row['idRol']; ?>"
+                            href="javascript:void(0);" onclick="confirmarEliminar(<?php echo $row['idRol']; ?>)"
                             role="button">Eliminar</a>
                     </td>
                 </tr>
@@ -45,3 +44,16 @@ $result = mysqli_query($connection, $query);
     </table>
     <a class=" btn btn-outline-success" href="index.php?p=admin/roles/create" role="button">Crear un Nuevo Rol</a>
 </div>
+
+<script>
+    function confirmarEliminar(idRol) {
+        var confirmacion = confirm("¿Estás seguro que deseas eliminar este rol?");
+        if (confirmacion) {
+            window.location.href = "index.php?p=admin/roles/action/delete&id_rol=" + idRol;
+        }
+    }
+</script>
+
+<?php
+mysqli_close($connection);
+?>

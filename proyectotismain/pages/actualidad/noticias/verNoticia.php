@@ -25,13 +25,12 @@
     <div class="d-inline-flex p-2 flex-column ">
         <h1><?php echo  $noticia['titulo']?></h1>
             <div class=" p-3">
-                <img src="pages/admin/noticias_adm/imagenes/<?php echo $noticia['imagen'];?>" class="card-img-top" width="350" height="500">
+                <img src="pages/admin/noticias_adm/imagenes/<?php echo $noticia['imagen'];?>" class="card-img-top" width="300" height="500">
             </div>
             <div class="p-3">
                 <p> <?php echo $noticia['descripcion']?></p>   
             </div>
     </div>
-
 
 <?php
     mysqli_close($connection);
