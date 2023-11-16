@@ -13,7 +13,7 @@
         <!-- Aquí empiezan las publicaciones de noticias -->
         <section class="row contenedorNoticias ">
             <?php
-            $limite = 3;
+            $limite = 99;
             include 'pages/admin/noticias_adm/templates/mainNoticias.php';
             ?>
         </section>

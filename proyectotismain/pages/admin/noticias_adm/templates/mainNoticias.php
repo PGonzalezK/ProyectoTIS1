@@ -22,7 +22,7 @@
                             <small class="text-body-secondary"><?php echo $noticia['creado'];?></small>
                         </div>
                 <div class="d-grid gap-2">
-                        <a class="btn btn-primary" href="index.php?p=admin/noticias_adm/templates/verNoticia&id=<?php echo $evento['idNoticia'];?>" role="button">Ver noticia</a>
+                        <a class="btn btn-primary" href="index.php?p=actualidad/noticias/verNoticia&id=<?php echo $noticia['idNoticia'];?>" role="button">Ver noticia</a>
                 </div>
             </div>
         </div>  
