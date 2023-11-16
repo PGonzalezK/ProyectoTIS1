@@ -1,15 +1,15 @@
 <?php
-    include("middleware/auth.php");
-    include("database/connection.php");
+include("middleware/auth.php");
+include("database/connection.php");
 
-    if ($_SESSION['id_rol'] !== '1') {
-        // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
-        header("Location: index.php");
-        exit();
-    }
+if ($_SESSION['id_rol'] !== '1') {
+    // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
+    header("Location: index.php");
+    exit();
+}
 
-    $query = "SELECT * FROM users";
-    $result = mysqli_query($connection, $query);
+$query = "SELECT * FROM users";
+$result = mysqli_query($connection, $query);
 
 ?>
 
@@ -19,8 +19,6 @@
     </div>
 </div>
 
-
-
 <main class="container mt-5">
     <div class="card">
         <div class="card-header">
@@ -28,7 +26,6 @@
                 <div class="text-center">
 
                 </div>
-
             </div>
         </div>
         <div class="card-body table-responsive ">
@@ -53,7 +50,7 @@
                             <td><?= $user['id_rol'] ?></td>
                             <td>
                                 <a href="index.php?p=admin/users/edit&rut=<?= $user['rut'] ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                                <a href="index.php?p=admin/users/actions/delete&rut=<?= $user['rut'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a> <!-- doble confirmacion JAVIERA -->
+                                <a href="javascript:void(0);" onclick="confirmarEliminar('<?= $user['rut'] ?>')" class="btn btn-sm btn-outline-danger">Eliminar</a>
                             </td>
                         </tr>
 
@@ -63,3 +60,16 @@
         </div>
     </div>
 </main>
+
+<script>
+    function confirmarEliminar(rut) {
+        var confirmacion = confirm("¿Estás seguro que deseas eliminar este usuario?");
+        if (confirmacion) {
+            window.location.href = "index.php?p=admin/users/actions/delete&rut=" + rut;
+        }
+    }
+</script>
+
+<?php
+mysqli_close($connection);
+?>

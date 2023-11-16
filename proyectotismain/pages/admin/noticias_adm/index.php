@@ -14,7 +14,11 @@
 ?>
 
 <main class="contenedor">
-    <h1>Administracion de Noticias</h1>
+<div class="container-fluid border-bottom border-top bg-body-tertiary">
+    <div class=" p-5 rounded text-center">
+        <h2 class="fw-normal">Gestión de Noticias</h1>
+    </div>
+</div>
     <?php if (intval($resultado) === 1):?>
         <div class="p-3 mb-2 bg-success text-white">Noticia creada exitosamente</div>
     <?php elseif (intval($resultado) === 2):?>
@@ -24,7 +28,8 @@
     <?php endif;?>
 
 
-    <table class="table">
+    <main class="contenedor mt-5 m-5">
+    <table class="table table-bordered text-center">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -40,7 +45,7 @@
             <?php while($noticia = mysqli_fetch_assoc($resultadoConsulta)): ?>
                 <tr>
                     <th scope="row"><?php echo $noticia['idNoticia'];?></th>
-                    <td><?php echo $noticia['titulo'];?></td>
+                    <td><?php echo limitarPalabras($noticia['titulo'], 4); ?></td>
                     <td>
                         <?php 
                             $idEditor = $noticia['id_editor'];
@@ -50,8 +55,8 @@
                             echo $editor['nombre'] . " " . $editor['apellido'];
                         ?>
                     </td>
-                    <td><img src="pages/admin/noticias_adm/imagenes/<?php echo $noticia['imagen'];?>" class="imagen-tabla" alt="" width="200" height="150"></td>
-                    <td><?php echo $noticia['descripcion'];?> </td>
+                    <td><img src="pages/admin/noticias_adm/imagenes/<?php echo $noticia['imagen'];?>" class="imagen-tabla" alt="" width="90" height="50"></td>
+                    <td><?php echo limitarPalabras($noticia['descripcion'], 4); ?></td>
                     <td><?php echo $noticia['creado'];?></td>
                     <td>
                         <a class="p-2 m-1 btn btn-outline-warning" href="index.php?p=admin/noticias_adm/actions/update&id=<?php echo $noticia['idNoticia']; ?>" role="button">Editar</a>
@@ -61,7 +66,9 @@
             <?php endwhile;?>
         </tbody>
     </table>
-    <a class="p-2 m-1 btn btn-outline-success" href="index.php?p=admin/noticias_adm/actions/create" role="button">Crear nueva Noticia</a>
+</main>
+
+    <a class="p-2 ms-5 btn btn-outline-success" href="index.php?p=admin/noticias_adm/actions/create" role="button">Crear nueva Noticia</a>
    
 </main>
 <?php
@@ -76,3 +83,17 @@
         }
     }
 </script>
+
+<?php
+// Función para limitar palabras en PHP con "..."
+function limitarPalabras($texto, $limite) {
+    $palabras = explode(' ', $texto);
+    $resultado = implode(' ', array_slice($palabras, 0, $limite));
+    
+    if (count($palabras) > $limite) {
+        $resultado .= '...';
+    }
+    
+    return $resultado;
+}
+?>
