@@ -15,7 +15,7 @@ $result = mysqli_query($connection, $query);
 <main class="contenedor">
   <div class="container-fluid border-bottom border-top bg-body-tertiary">
     <div class=" p-5 rounded text-center">
-        <h2 class="fw-normal">Roles Disponibles</h1>
+        <h2 class="fw-normal">Gestión de Roles</h1>
     </div>
   </div>
   <main class="contenedor mt-5 m-5">
