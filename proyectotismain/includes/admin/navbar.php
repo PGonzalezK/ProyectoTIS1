@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
             <?php
-            if (isset($_SESSION["email"])) {
+            if (isset($_SESSION["email"])){
             ?>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
