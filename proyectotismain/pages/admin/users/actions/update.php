@@ -14,8 +14,8 @@ ob_start();
 
     // ejecutar la consulta
     $result =  mysqli_query($connection, $query);
-
     // redireccionar a la pagina de usuarios
+    
     header("Location: index.php?p=admin/users/index");
     exit; // detener la ejecución del script
 ?>
