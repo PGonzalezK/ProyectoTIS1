@@ -32,12 +32,7 @@
             <?php
             if (isset($_SESSION["email"])) {
                 ?>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="row2">
-                        <a class="nav-link <?php echo ($pagina == 'home') ? 'active' : null ?>" aria-current="page"
-                            href="index.php?p=home"><i class="fa-solid fa-house fa-xl" style="color: #095ef1;"></i></a>
-                    </li>
-                </ul>
+
                 <div class="d-flex">
                     <a href="index.php?p=auth/profile" class="btn btn-sm btn-outline-primary me-2">Perfil</a>
                     <a href="pages/auth/actions/logout.php" class="btn btn-sm btn-outline-danger">Cerrar Sesión</a>
