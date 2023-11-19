@@ -24,6 +24,7 @@
                 <th>Descripción</th>
                 <th>Texto aparte</th>
                 <th>Fecha</th>
+                <th>Estado de Revisión</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -50,8 +51,16 @@
                 </td>
                 <td><?php echo $row['otro_dpto_text']; ?></td>
                 <td><?php echo $row['fecha']; ?></td>
+                <td><?php echo $row['estado_revision']; ?></td>
                 <td>
                     <button class="btn btn-link mostrar-mas-btn-acciones">Mostrar más</button>
+                    <select class="form-select" aria-label="Estado de Revisión">
+                        <option value="Sin leer" <?php echo ($row['estado_revision'] === 'Sin leer') ? 'selected' : ''; ?>>Sin leer</option>
+                        <option value="En revisión" <?php echo ($row['estado_revision'] === 'En revisión') ? 'selected' : ''; ?>>En revisión</option>
+                        <option value="En proceso" <?php echo ($row['estado_revision'] === 'En proceso') ? 'selected' : ''; ?>>En proceso</option>
+                        <option value="Ejecutando procedimientos" <?php echo ($row['estado_revision'] === 'Ejecutando procedimientos') ? 'selected' : ''; ?>>Ejecutando procedimientos</option>
+                        <option value="Terminado" <?php echo ($row['estado_revision'] === 'Terminado') ? 'selected' : ''; ?>>Terminado</option>
+                    </select>
                 </td>
             </tr>
             <?php } ?>

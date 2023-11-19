@@ -44,6 +44,24 @@ $(document).ready(function() {
         $("#tablaDetalles").show();
         $("#tablaDetalles .mostrar-mas-btn").hide();
     });
+
+    $("select.form-select").change(function() {
+        var id = $(this).closest("tr").find("td").eq(0).text(); // Obtener el ID de la fila
+        var nuevoEstado = $(this).val(); // Obtener el nuevo estado de revisión
+
+        // Realizar la solicitud AJAX para actualizar el estado en la base de datos
+        $.ajax({
+            type: "POST",
+            url: "index.php?p=admin/participacion/action/update_estado", // Ajusta la ruta al archivo PHP que manejará la actualización
+            data: { id: id, estado: nuevoEstado },
+            success: function(response) {
+                console.log(response); // Puedes mostrar la respuesta en la consola para depurar
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    });
 });
 </script>
 
