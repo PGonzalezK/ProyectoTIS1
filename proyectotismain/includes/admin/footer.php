@@ -1,8 +1,53 @@
 
-        <!-- Scripts de Bootstrap -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+</script>
+
+<script>
+$(document).ready(function() {
+    $(".mostrar-mas-btn").click(function() {
+        // Mostrar la descripción completa y ocultar el botón "Mostrar más"
+        var container = $(this).closest(".descripcion-container");
+        container.find(".descripcion-corta").hide();
+        container.find(".descripcion-completa").show();
+        container.find(".cerrar-btn").show();
+        $(this).hide();
+    });
+
+    $(".cerrar-btn").click(function() {
+        // Ocultar la descripción completa, mostrar el botón "Mostrar más" y ocultar el botón "Cerrar"
+        var container = $(this).closest(".descripcion-container");
+        container.find(".descripcion-corta").show();
+        container.find(".descripcion-completa").hide();
+        container.find(".mostrar-mas-btn").show();
+        $(this).hide();
+    });
+
+    $(".mostrar-mas-btn-acciones").click(function() {
+        // Mostrar más detalles en la tabla aparte
+        var fila = $(this).closest("tr");
+        var detalles = fila.find(".descripcion-container")
+    .html(); // Cambiado para incluir la descripción corta
+        detalles = detalles.replace(/display: none;/g, ""); // Mostrar la descripción completa
+
+        var detallesHTML = "<tr>" +
+            "<td>" + fila.find("td").eq(0).text() + "</td>" +
+            "<td>" + fila.find("td").eq(1).text() + "</td>" +
+            "<td>" + fila.find("td").eq(2).text() + "</td>" +
+            "<td>" + fila.find("td").eq(3).text() + "</td>" +
+            "<td colspan='1' class='descripcion-container'>" + detalles + "</td>" +
+
+            "<td style='max-width: 100px; overflow: hidden; text-overflow: ellipsis;'>" + fila.find(
+                "td").eq(6).text() +
+            "</td></tr>";
+        $("#detallesBody").html(detallesHTML);
+        $("#tablaDetalles").show();
+        $("#tablaDetalles .mostrar-mas-btn").hide();
+    });
+});
+</script>
+
+
+</body>
 
 </html>

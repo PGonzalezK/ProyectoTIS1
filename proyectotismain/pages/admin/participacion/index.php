@@ -12,39 +12,93 @@
     $result = mysqli_query($connection, $query);
 ?>
 
+<div class="container">
+    <h1>Participaciones enviadas</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Tipo de contribución</th>
+                <th>Departamento</th>
+                <th>Descripción</th>
+                <th>Texto aparte</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = mysqli_fetch_array($result)) { ?>
+            <tr>
+                <td><?php echo $row['id']; ?></td>
+                <td><?php echo $row['email']; ?></td>
+                <td><?php echo $row['tipo_contribucion']; ?></td>
+                <td><?php echo $row['departamento']; ?></td>
+                <td>
+                    <?php
+                        $descripcion_corta = substr($row['descripcion'], 0, 50);
+                        $mostrar_mas = strlen($row['descripcion']) > 50;
+                    ?>
+                    <div class="descripcion-container">
+                        <?php echo $descripcion_corta; ?>
+                        <?php if ($mostrar_mas) { ?>
+                        <span class="descripcion-completa"
+                            style="display: none;"><?php echo $row['descripcion']; ?></span>
 
- <div class="container">
-        <h1>Participaciones enviadas</h1>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                    <th>Tipo de contribucion</th>
-                    <th>Departamento</th>
-                    <th>Descripcion</th>
-                    <th>Texto aparte</th>
-                    <th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php while ($row = mysqli_fetch_array($result)) { ?>
-                    <tr>
-                        <td><?php echo $row['id']; ?></td>
-                        <td><?php echo $row['email']; ?></td>
-                        <td><?php echo $row['tipo_contribucion']; ?></td>
-                        <td><?php echo $row['departamento']; ?></td>
-                        <td><?php echo $row['descripcion']; ?></td>
-                        <td><?php echo $row['otro_dpto_text']; ?></td>
-                        <td><?php echo $row['fecha']; ?></td>
-                        <td>
+                        <?php } ?>
+                    </div>
+                </td>
+                <td><?php echo $row['otro_dpto_text']; ?></td>
+                <td><?php echo $row['fecha']; ?></td>
+                <td>
+                    <button class="btn btn-link mostrar-mas-btn-acciones">Mostrar más</button>
+                </td>
+            </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+</div>
 
-                            <a href="index.php?p=admin/roles/action/delete&id_rol=<?php echo $row['id']; ?>">Eliminar</a>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+<style>
 
-    </div>
 
+    #tablaDetalles table {
+        width: 100%;
+    }
+
+    #tablaDetalles .descripcion-container {
+        max-width: 100%;
+        overflow: hidden;
+        word-break: break-all;
+        white-space: pre-line; 
+    }
+
+    .mostrar-mas-btn {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+        border: none;
+        background-color: transparent;
+    }
+
+</style>
+
+<div class="container" style="display: none;" id="tablaDetalles">
+    <h1>Detalles de Participación</h1>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Tipo de contribucion</th>
+                <th>Departamento</th>
+                <th>Descripcion</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody id="detallesBody">
+
+        </tbody>
+    </table>
+    <button class="btn btn-link cerrar-detalles-btn">Cerrar</button>
+</div>
