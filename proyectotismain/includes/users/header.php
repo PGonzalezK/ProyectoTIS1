@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Admin</title>
+    <title>User</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
@@ -32,4 +32,4 @@
 
 <body>
     <div class="min-vh-100 color1">
-        <?php require_once('includes/admin/navbar.php'); ?>
+        <?php require_once('includes/users/navbar.php'); ?>

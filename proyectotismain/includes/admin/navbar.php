@@ -44,13 +44,11 @@
                     <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'backgrounds') !== false) ? 'active' : null ?>" href="index.php?p=admin/backgrounds/index">Fondos</a>
                     </li>
-
                 </ul>
                 <div class="d-flex">
                     <a href="index.php?p=admin/profile_admin" class="btn btn-sm btn-outline-primary me-2">Perfil</a>
                     <a href="pages/auth/actions/logout.php" class="btn btn-sm btn-outline-danger">Cerrar Sesión</a>
                 </div>
-                <!-- <a href="pages/auth/actions/logout.php">Cerrar Sesión</a> -->
             <?php
            } else {
             ?>

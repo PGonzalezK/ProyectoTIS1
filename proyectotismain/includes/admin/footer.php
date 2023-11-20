@@ -14,6 +14,25 @@ $(document).ready(function() {
         $(this).hide();
     });
 
+    $(document).addEventListener("DOMContentLoaded", function() {
+        // Manejar el cambio en el menú desplegable
+        document.getElementById("filtroDepartamento").addEventListener("change", function() {
+            // Obtener el valor seleccionado
+            var filtroDepartamento = this.value;
+
+            // Obtener la acción actual del formulario
+            var formAction = document.getElementById("filtroForm").getAttribute("action");
+
+            // Construir la nueva acción con los parámetros del filtro
+            var nuevaAccion = formAction + "&filtroDepartamento=" + filtroDepartamento;
+
+            // Actualizar la acción del formulario
+            document.getElementById("filtroForm").setAttribute("action", nuevaAccion);
+            
+            // Enviar el formulario
+            document.getElementById("filtroForm").submit();
+        });
+
     $(".cerrar-btn").click(function() {
         // Ocultar la descripción completa, mostrar el botón "Mostrar más" y ocultar el botón "Cerrar"
         var container = $(this).closest(".descripcion-container");

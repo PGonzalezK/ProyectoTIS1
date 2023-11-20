@@ -1,20 +1,47 @@
 <?php
-    include("middleware/auth.php");
-    include("database/connection.php");
+include("middleware/auth.php");
+include("database/connection.php");
 
-    if ($_SESSION['id_rol'] !== '1') {
-        // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
-        header("Location: index.php");
-        exit();
-    }
+if ($_SESSION['id_rol'] !== '1') {
+    // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
+    header("Location: index.php");
+    exit();
+}
 
-    $query = "SELECT * FROM participacion";
-    $result = mysqli_query($connection, $query);
+$filtroDepartamento = isset($_GET['filtroDepartamento']) ? $_GET['filtroDepartamento'] : null;
+
+$query = "SELECT * FROM participacion";
+
+// Aplicar el filtro por departamento si está presente
+if ($filtroDepartamento) {
+    $query .= " WHERE departamento = '$filtroDepartamento'";
+}
+
+$result = mysqli_query($connection, $query);
 ?>
 
-<div class="container">
-    <h1>Participaciones enviadas</h1>
-    <table class="table table-bordered">
+
+<form method="GET" action="index.php?p=admin/participacion/index" id="filtroForm">
+    <label for="filtroDepartamento">Filtrar por Departamento:</label>
+    <select name="filtroDepartamento" id="filtroDepartamento">
+        <option value="">Todos</option>
+        <option value="Vial">Vial</option>
+        <option value="OtroDepartamento">OtroDepartamento</option>
+        <!-- Agrega más opciones según tus departamentos -->
+    </select>
+    <button type="submit">Filtrar</button>
+</form>
+
+<main class="contenedor">
+    <div class="container-fluid border-bottom border-top bg-body-tertiary">
+        <div class="p-5 rounded text-center">
+            <h1 class="fw-normal">Participaciones enviadas</h1>
+        </div>
+    </div>
+
+<main class="contenedor mt-5 m-5">
+
+    <table class="table table-bordered text-center">
         <thead>
             <tr>
                 <th>ID</th>
@@ -45,7 +72,6 @@
                         <?php if ($mostrar_mas) { ?>
                         <span class="descripcion-completa"
                             style="display: none;"><?php echo $row['descripcion']; ?></span>
-
                         <?php } ?>
                     </div>
                 </td>
@@ -66,7 +92,10 @@
             <?php } ?>
         </tbody>
     </table>
-</div>
+    </main>
+    </main>
+
+
 
 <style>
 
@@ -106,7 +135,6 @@
             </tr>
         </thead>
         <tbody id="detallesBody">
-
         </tbody>
     </table>
     <button class="btn btn-link cerrar-detalles-btn">Cerrar</button>
