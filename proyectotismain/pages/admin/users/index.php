@@ -19,7 +19,7 @@ $result = mysqli_query($connection, $query);
     </div>
 </div>
 
-<main class="container mt-5">
+<main class="contenedor mt-5 m-5">
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
@@ -28,20 +28,21 @@ $result = mysqli_query($connection, $query);
                 </div>
             </div>
         </div>
-        <div class="card-body table-responsive ">
-            <table class="table table-hover">
-                <thead class="">
-                    <tr>
-                        <th scope="col">Rut</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Email</th>
-                        <th scope='col'>Rol</th>
-                        <th scope="col">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while ($user = mysqli_fetch_array($result)) : ?>
+        <main class="contenedor mt-5 m-5">
+            <div class="card-body table-responsive ">
+                <table class="table table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rut</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Email</th>
+                            <th scope='col'>Rol</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($user = mysqli_fetch_array($result)) : ?>
                         <tr>
                             <th scope="row"><?= $user['rut'] ?></th>
                             <td><?= $user['nombre'] ?></td>
@@ -49,25 +50,27 @@ $result = mysqli_query($connection, $query);
                             <td><?= $user['email'] ?></td>
                             <td><?= $user['id_rol'] ?></td>
                             <td>
-                                <a href="index.php?p=admin/users/edit&rut=<?= $user['rut'] ?>" class="btn btn-sm btn-outline-warning">Editar</a>
-                                <a href="javascript:void(0);" onclick="confirmarEliminar('<?= $user['rut'] ?>')" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                <a href="index.php?p=admin/users/edit&rut=<?= $user['rut'] ?>"
+                                    class="btn btn-sm btn-outline-warning">Editar</a>
+                                <a href="javascript:void(0);" onclick="confirmarEliminar('<?= $user['rut'] ?>')"
+                                    class="btn btn-sm btn-outline-danger">Eliminar</a>
                             </td>
                         </tr>
 
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        </div>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
     </div>
 </main>
 
 <script>
-    function confirmarEliminar(rut) {
-        var confirmacion = confirm("¿Estás seguro que deseas eliminar este usuario?");
-        if (confirmacion) {
-            window.location.href = "index.php?p=admin/users/actions/delete&rut=" + rut;
-        }
+function confirmarEliminar(rut) {
+    var confirmacion = confirm("¿Estás seguro que deseas eliminar este usuario?");
+    if (confirmacion) {
+        window.location.href = "index.php?p=admin/users/actions/delete&rut=" + rut;
     }
+}
 </script>
 
 <?php

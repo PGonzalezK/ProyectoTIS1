@@ -12,7 +12,7 @@ $(document).ready(function() {
         container.find(".descripcion-completa").show();
         container.find(".cerrar-btn").show();
         $(this).hide();
-    });
+    }});
 
     $(document).addEventListener("DOMContentLoaded", function() {
         // Manejar el cambio en el menú desplegable
@@ -82,6 +82,7 @@ $(document).ready(function() {
         });
     });
 });
+
 </script>
 
 

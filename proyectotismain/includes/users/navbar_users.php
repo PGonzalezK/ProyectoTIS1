@@ -15,7 +15,6 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="index.php?p=actualidad/noticias/noticias">Noticias</a></li>
                             <li><a class="dropdown-item" href="index.php?p=actualidad/eventos/eventos">Eventos</a></li>
-
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -28,7 +27,7 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a id="participacion-link" class="nav-link" href="index.php?p=participacion\participacion">Participacion</a>
+                        <a id="participacion-link" class="nav-link" href="index.php?p=participacion/participacion">Participacion</a>
                     </li>
 
             </div>

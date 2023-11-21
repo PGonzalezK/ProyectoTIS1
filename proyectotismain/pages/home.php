@@ -1,6 +1,6 @@
 <?php
 // Descomentar la línea 3 si se desea utilizar la autenticación para esta página
-    require("middleware/auth.php");
+  //  require("middleware/auth.php");
 ?>
 
 <div class="container text-center">
