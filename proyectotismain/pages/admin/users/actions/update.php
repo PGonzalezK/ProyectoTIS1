@@ -15,7 +15,14 @@ ob_start();
     // ejecutar la consulta
     $result =  mysqli_query($connection, $query);
     // redireccionar a la pagina de usuarios
-    
-    header("Location: index.php?p=admin/users/index");
-    exit; // detener la ejecución del script
+    echo "sdfgsd";
+
+    if (headers_sent()) {
+        die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/users/index'</script>");
+    }
+    else{
+        exit(header("Location: index.php?p=admin/users/index"));
+    }
+  
+    // die(); // detener la ejecución del script
 ?>

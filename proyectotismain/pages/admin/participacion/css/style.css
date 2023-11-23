@@ -1,0 +1,18 @@
+    #tablaDetalles table {
+        width: 100%;
+    }
+
+    #tablaDetalles .descripcion-container {
+        max-width: 100%;
+        overflow: hidden;
+        word-break: break-all;
+        white-space: pre-line; 
+    }
+
+    .mostrar-mas-btn {
+        cursor: pointer;
+        color: blue;
+        text-decoration: underline;
+        border: none;
+        background-color: transparent;
+    }
