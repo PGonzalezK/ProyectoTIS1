@@ -3,7 +3,6 @@ include("middleware/auth.php");
 include("database/connection.php");
 
 if ($_SESSION['id_rol'] !== '1') {
-    // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
     header("Location: index.php");
     exit();
 }
@@ -12,7 +11,6 @@ $filtroDepartamento = isset($_GET['filtroDepartamento']) ? $_GET['filtroDepartam
 
 $query = "SELECT * FROM participacion";
 
-// Aplicar el filtro por departamento si está presente
 if ($filtroDepartamento) {
     $query .= " WHERE departamento = '$filtroDepartamento'";
 }
@@ -23,11 +21,10 @@ $result = mysqli_query($connection, $query);
 
 <form method="GET" action="index.php?p=admin/participacion/index" id="filtroForm">
     <label for="filtroDepartamento">Filtrar por Departamento:</label>
-    <select name="filtroDepartamento" id="filtroDepartamento">
+    <select name="filtroDepartamento" id="filtroDepartamento"> <!--name agregar index.php?p=admin/participacion/index&filtroDepartamento=Vial para que dirija al filtro "Vial" ejemplo  -->
         <option value="">Todos</option>
         <option value="Vial">Vial</option>
         <option value="OtroDepartamento">OtroDepartamento</option>
-        <!-- Agrega más opciones según tus departamentos -->
     </select>
     <button type="submit">Filtrar</button>
 </form>
@@ -97,29 +94,7 @@ $result = mysqli_query($connection, $query);
 
 
 
-<style>
 
-
-    #tablaDetalles table {
-        width: 100%;
-    }
-
-    #tablaDetalles .descripcion-container {
-        max-width: 100%;
-        overflow: hidden;
-        word-break: break-all;
-        white-space: pre-line; 
-    }
-
-    .mostrar-mas-btn {
-        cursor: pointer;
-        color: blue;
-        text-decoration: underline;
-        border: none;
-        background-color: transparent;
-    }
-
-</style>
 
 <div class="container" style="display: none;" id="tablaDetalles">
     <h1>Detalles de Participación</h1>
