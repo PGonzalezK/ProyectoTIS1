@@ -6,11 +6,6 @@
                 <use xlink:href="#bootstrap"></use>
             </svg>
             </a>
-
-
-
-
-
             <div class="row align-items-center">
                 <div class="col-6 col-sm-3">
                     <img src="pages\auth\images\logo.png" class="¿img-fluid rounded" alt="" width="300">

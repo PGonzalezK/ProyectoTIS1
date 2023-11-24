@@ -79,11 +79,10 @@
     function confirmarEliminar(idEvento) {
         var confirmacion = confirm("¿Estás seguro que deseas eliminar esta Noticia?");
         if (confirmacion) {
-            window.location.href = "index.php?p=admin/noticias_adm/actions/delete&id=" + idNoticia;
+            window.location.href = "index.php?p=admin/noticias_adm/actions/delete&id=" + idEvento;
         }
     }
 </script>
-
 <?php
 // Función para limitar palabras en PHP con "..."
 function limitarPalabras($texto, $limite) {

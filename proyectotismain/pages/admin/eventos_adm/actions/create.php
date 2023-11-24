@@ -76,7 +76,12 @@ if ($_SESSION['id_rol'] !== '1') {
         $resultado = mysqli_query($connection,$query);
 
         if($resultado){
-            header('Location: index.php?p=admin/eventos_adm/index&resultado=1');
+            if (headers_sent()) {
+                die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/eventos_adm/index&resultado=1'</script>");
+            }
+            else{
+                exit(header("Location: index.php?p=admin/users/index"));
+            }
         }
         }
     }

@@ -27,8 +27,12 @@ if (isset($_POST['submit'])) {
     }
 
     // Redirige a la página de visualización o muestra un mensaje de éxito
-    header("Location: index.php?p=admin/misionvision/index");
-    exit();
+    if (headers_sent()) {
+        die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/misionvision/index'</script>");
+    }
+    else{
+        exit(header("Location: index.php?p=admin/users/index"));
+    }
 }
 
 ?>
