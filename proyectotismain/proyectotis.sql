@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-11-2023 a las 04:54:29
+-- Tiempo de generación: 25-11-2023 a las 03:54:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -37,6 +37,22 @@ CREATE TABLE `backgrounds` (
   `eventos_background` varchar(255) NOT NULL,
   `misionyvision_background` varchar(255) NOT NULL,
   `participacion_background` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `comentario_id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `noticia_id` int(11) NOT NULL,
+  `contenido` text NOT NULL,
+  `fecha_publicacion` datetime NOT NULL,
+  `likes` int(11) NOT NULL,
+  `dislikes` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,6 +102,19 @@ INSERT INTO `dirmunicipales` (`id`, `nombre`, `descripcion`, `director`, `telefo
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `dislike`
+--
+
+CREATE TABLE `dislike` (
+  `dislike_id` int(11) NOT NULL,
+  `comentario_id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `fecha_dislike` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `eventos`
 --
 
@@ -105,6 +134,19 @@ CREATE TABLE `eventos` (
 
 INSERT INTO `eventos` (`idEvento`, `titulo`, `direccion`, `imagen`, `descripcion`, `creado`, `id_editor`) VALUES
 (7, 'Evento en la playa', 'Parque Isidora Cousiño, Lota', '458ce8b6dd8b1802abba58f2423e3b71.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `likes`
+--
+
+CREATE TABLE `likes` (
+  `like_id` int(11) NOT NULL,
+  `comentario_id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `fecha_like` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -147,7 +189,8 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`) VALUES
-(3, 'Egresan los primeros miembros del centro diurno del adulto mayor', 'Este centro, que abrió sus puertas a la comunidad en diciembre del 2021 ...', '44c0fac4ce81394def575aa84867ad0f.jpg', '2023-11-07 23:26:09', 9);
+(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9),
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9);
 
 -- --------------------------------------------------------
 
@@ -169,7 +212,7 @@ CREATE TABLE `palabrasalcalde` (
 --
 
 INSERT INTO `palabrasalcalde` (`id`, `titulo`, `contenido`, `nombre_alcalde`, `imagen`, `fecha`) VALUES
-(2, 'Bienvenidos a Concepción', 'Desde el municipio estamos trabajando para convertirnos en la Capital del Sur de Chile, teniendo en el centro de nuestras acciones, programas y proyectos a las personas que aquí viven, estudian, trabajan y a quienes vienen a visitarnos o llegaron para comenzar aquí una nueva vida. Somos la tercera ciudad más importante de Chile. Promovemos un desarrollo a escala humana, de los barrios y del centro, que respete y rescate nuestro patrimonio histórico, cultural, natural y turístico como Ciudad de la Independencia, del Rock, Universitaria, del río Biobío, de las Cinco Lagunas y Cerro Caracol, con toda una infraestructura pública y privada de conectividad, hotelería, comercio, salud, educación y negocios de alto nivel. Desde nuestra gestión queremos seguir creciendo consolidando la inclusión y la participación ciudadana, manteniendo la transparencia en nuestro quehacer y articulando sueños y compromisos para grandes y necesarios proyectos.\r\nLes invitamos a cuidar y disfrutar de nuestra ciudad.\r\nUn afectuoso abrazo.', 'Álvaro Ortiz Vera', 'pages/admin/palabras_alcalde/imagen//alcalde-foto.jpg', '2023-11-08 00:00:00');
+(2, 'Bienvenidos a Concepción', 'Desdea el municipio estamos trabajando para convertirnos en la Capital del Sur de Chile, teniendo en el centro de nuestras acciones, programas y proyectos a las personas que aquí viven, estudian, trabajan y a quienes vienen a visitarnos o llegaron para comenzar aquí una nueva vida. Somos la tercera ciudad más importante de Chile. Promovemos un desarrollo a escala humana, de los barrios y del centro, que respete y rescate nuestro patrimonio histórico, cultural, natural y turístico como Ciudad de la Independencia, del Rock, Universitaria, del río Biobío, de las Cinco Lagunas y Cerro Caracol, con toda una infraestructura pública y privada de conectividad, hotelería, comercio, salud, educación y negocios de alto nivel. Desde nuestra gestión queremos seguir creciendo consolidando la inclusión y la participación ciudadana, manteniendo la transparencia en nuestro quehacer y articulando sueños y compromisos para grandes y necesarios proyectos.\r\nLes invitamos a cuidar y disfrutar de nuestra ciudad.\r\nUn afectuoso abrazo.', 'Álvaro Ortiz Vera', 'pages/admin/palabras_alcalde/imagen//alcalde-foto.jpg', '2023-11-08 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -184,8 +227,35 @@ CREATE TABLE `participacion` (
   `departamento` enum('paradero','parque','vial','alumbrado') NOT NULL,
   `descripcion` text NOT NULL,
   `otro_dpto_text` text NOT NULL,
-  `fecha` datetime NOT NULL
+  `fecha` datetime NOT NULL,
+  `estado_revision` varchar(255) DEFAULT 'Sin leer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `participacion`
+--
+
+INSERT INTO `participacion` (`id`, `email`, `tipo_contribucion`, `departamento`, `descripcion`, `otro_dpto_text`, `fecha`, `estado_revision`) VALUES
+(1, 'pmonjes@ing.ucsc.cl', 'denuncia', 'paradero', 'aaaa', '', '2023-11-19 02:24:48', 'Sin leer'),
+(2, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'vial', '1', '', '2023-11-19 02:28:24', 'Sin leer'),
+(3, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'a', '', '2023-11-19 02:29:55', 'Sin leer'),
+(4, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'a', '', '2023-11-19 02:29:59', 'Sin leer'),
+(5, 'pmonjes@ing.ucsc.cl', 'sugerencia', 'parque', 'a', '', '2023-11-19 02:31:25', 'Sin leer'),
+(6, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'a', '', '2023-11-19 02:32:39', 'Sin leer'),
+(7, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', '2', '', '2023-11-19 02:36:09', 'Sin leer'),
+(8, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '3', '', '2023-11-19 02:40:25', 'Sin leer'),
+(9, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'a', '', '2023-11-19 02:45:53', 'Sin leer'),
+(10, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'paradero', '123', '', '2023-11-19 02:52:22', 'Sin leer'),
+(11, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'vial', '111', '', '2023-11-19 03:02:21', 'Sin leer'),
+(12, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '11', '', '2023-11-19 03:03:02', 'Sin leer'),
+(13, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '111', '', '2023-11-19 03:04:34', 'Sin leer'),
+(14, 'pmonjes@ing.ucsc.cl', 'denuncia', 'paradero', 'aaaaaaav', '', '2023-11-19 03:05:31', 'Sin leer'),
+(15, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'prueba1', '', '2023-11-19 03:09:34', 'Sin leer'),
+(16, 'pmonjes@ing.ucsc.cl', 'sugerencia', 'parque', 'prueba 2', '', '2023-11-19 03:10:21', 'Sin leer'),
+(17, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'prueba3', '', '2023-11-19 03:13:46', 'Sin leer'),
+(18, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '', '2023-11-19 03:33:55', 'En proceso'),
+(19, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aa', '', '2023-11-20 03:08:45', 'Sin leer'),
+(20, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'aaaaaa', '', '2023-11-20 03:18:53', 'Sin leer');
 
 -- --------------------------------------------------------
 
@@ -248,11 +318,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `rut`, `nombre`, `apellido`, `email`, `password`, `id_rol`, `verification_token`, `activado`, `reset_token`, `token_expiration_verification`, `token_expiracion`, `trn_date`) VALUES
-(6, 21212121, 'admin', 'adminapellido', 'admin@correo.com', '$2y$10$.SYuE129.BukxB/njNtIQOIJiFWSAH92zkLPZr6zWONQ43lGvWSvK', 1, '0', 1, '', NULL, NULL, '2023-11-07 17:22:50'),
+(6, 21212121, 'admin sdsd', 'adminapellido', 'admin@correo.com', '$2y$10$.SYuE129.BukxB/njNtIQOIJiFWSAH92zkLPZr6zWONQ43lGvWSvK', 1, '0', 1, '', NULL, NULL, '2023-11-07 17:22:50'),
 (9, 20202020, 'editor1', 'editorApellido', 'editor@editor.com', '$2y$10$/loG1rrC9XG1sc/YIRUtsOubUjhwNoiOheawYJU7N7ouQBvbblqvu', 3, '0', 1, '', NULL, NULL, '2023-11-07 21:09:28'),
 (11, 78592131, 'usuario', 'usuarioapellido', 'usuario@usuario.com', '$2y$10$NheB6jZ9S4nm0dnomaG0QupHW2WdZQ0hcxGdD8xM1FbHfpzRn4elW', 2, '0', 1, '', NULL, NULL, '2023-11-07 22:11:10'),
-(15, 20514299, 'pablo', 'monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$6zW1ggOd8jqIArJXmZike.1MwcoxAeUyGcWmZiC99pFmINADXhPnS', 1, '0', 1, 'bc8fc6bc01b21fce0a8d54beeb8b3ebcc0552a47ae091fac8f1f6f3ec74ac1a4', NULL, '2023-11-16 03:35:19', '2023-11-16 01:02:18'),
-(34, 11111111, 'a', 'b', 'p.monjesz1@gmail.com', '$2y$10$ezOLWs.Pr24B/DB3Jkgv3ucF5A62DshQdO3akhXEeUW1y0y/kC5uS', 1, '701d3a97b4174ec553afe6898ced6be9f750c729c4bb1be32826e91b01d4af24', 1, '2158734eb683778a3b34f8b51b61a522bd81fe0c82ac66f15b1e61ed901a4f8b', '2023-11-16 05:44:14', '2023-11-16 05:45:56', '2023-11-16 04:44:14');
+(15, 20514299, 'pablo', 'monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$6zW1ggOd8jqIArJXmZike.1MwcoxAeUyGcWmZiC99pFmINADXhPnS', 2, '0', 1, 'bc8fc6bc01b21fce0a8d54beeb8b3ebcc0552a47ae091fac8f1f6f3ec74ac1a4', NULL, '2023-11-16 03:35:19', '2023-11-16 01:02:18');
 
 --
 -- Índices para tablas volcadas
@@ -263,6 +332,14 @@ INSERT INTO `users` (`id`, `rut`, `nombre`, `apellido`, `email`, `password`, `id
 --
 ALTER TABLE `backgrounds`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`comentario_id`),
+  ADD KEY `noticia_id` (`noticia_id`),
+  ADD KEY `fk_usuario` (`usuario_id`);
 
 --
 -- Indices de la tabla `departamento_participacion`
@@ -277,11 +354,25 @@ ALTER TABLE `dirmunicipales`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `dislike`
+--
+ALTER TABLE `dislike`
+  ADD PRIMARY KEY (`dislike_id`),
+  ADD KEY `dislike_ibfk_1` (`comentario_id`);
+
+--
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
   ADD PRIMARY KEY (`idEvento`),
   ADD KEY `FK_id_editor` (`id_editor`);
+
+--
+-- Indices de la tabla `likes`
+--
+ALTER TABLE `likes`
+  ADD PRIMARY KEY (`like_id`),
+  ADD KEY `likes_ibfk_1` (`comentario_id`);
 
 --
 -- Indices de la tabla `misionvision`
@@ -339,16 +430,34 @@ ALTER TABLE `backgrounds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `comentario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `dislike`
+--
+ALTER TABLE `dislike`
+  MODIFY `dislike_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
   MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `likes`
+--
+ALTER TABLE `likes`
+  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `misionvision`
@@ -360,7 +469,7 @@ ALTER TABLE `misionvision`
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `palabrasalcalde`
@@ -372,7 +481,7 @@ ALTER TABLE `palabrasalcalde`
 -- AUTO_INCREMENT de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `restrablecer_password`
@@ -390,17 +499,37 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
+-- Filtros para la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`noticia_id`) REFERENCES `noticias` (`idNoticia`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `dislike`
+--
+ALTER TABLE `dislike`
+  ADD CONSTRAINT `dislike_ibfk_1` FOREIGN KEY (`comentario_id`) REFERENCES `comentario` (`comentario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Filtros para la tabla `eventos`
 --
 ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `likes`
+--
+ALTER TABLE `likes`
+  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`comentario_id`) REFERENCES `comentario` (`comentario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `noticias`
