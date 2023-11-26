@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     session_start();
                     $_SESSION['email'] = $user['email'];
                     $_SESSION['id_rol'] = $user['id_rol'];
+                    
 
                     if ($user['id_rol'] == 1) {
                         header("Location: index.php?p=admin/home");

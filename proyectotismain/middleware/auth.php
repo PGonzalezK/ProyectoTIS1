@@ -12,6 +12,7 @@
     }else{
         
         // Obtener el nombre de usuario de la sesión
+        
         $email = $_SESSION["email"];
 
         $sql = "SELECT * FROM users WHERE email = '$email'";

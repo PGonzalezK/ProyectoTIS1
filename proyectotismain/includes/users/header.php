@@ -39,3 +39,4 @@
 <body>
     <div class="min-vh-100 color1">
         <?php require_once('includes/users/navbar.php'); ?>
+        <div id="fb-root"></div>
