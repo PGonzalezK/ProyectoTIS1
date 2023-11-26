@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-11-2023 a las 03:54:02
+-- Tiempo de generación: 26-11-2023 a las 20:36:12
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,18 +42,57 @@ CREATE TABLE `backgrounds` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `comentario`
+-- Estructura de tabla para la tabla `comentarios`
 --
 
-CREATE TABLE `comentario` (
-  `comentario_id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `noticia_id` int(11) NOT NULL,
-  `contenido` text NOT NULL,
-  `fecha_publicacion` datetime NOT NULL,
-  `likes` int(11) NOT NULL,
-  `dislikes` int(11) NOT NULL
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `comentario` text NOT NULL,
+  `id_users` int(11) NOT NULL,
+  `reply` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `id_noticia` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `comentario`, `id_users`, `reply`, `fecha`, `id_noticia`) VALUES
+(19, 'aaaa', 15, 0, '2023-11-26 16:17:49', 7),
+(20, 'a', 15, 0, '2023-11-26 16:18:12', 7),
+(21, 'a', 15, 0, '2023-11-26 16:18:14', 7),
+(22, 'asdasd', 15, 0, '2023-11-26 16:19:21', 7),
+(23, 'aaaaac', 15, 0, '2023-11-26 16:19:25', 6),
+(24, 'aaaa21', 15, 0, '2023-11-26 16:20:14', 6),
+(25, 'aaaa21', 15, 0, '2023-11-26 16:22:17', 7),
+(26, 'aaaa21', 15, 0, '2023-11-26 16:22:34', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario_usuario_enlace`
+--
+
+CREATE TABLE `comentario_usuario_enlace` (
+  `id` int(11) NOT NULL,
+  `id_comentario` int(11) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `comentario_usuario_enlace`
+--
+
+INSERT INTO `comentario_usuario_enlace` (`id`, `id_comentario`, `id_user`) VALUES
+(16, 19, 15),
+(17, 20, 15),
+(18, 21, 15),
+(19, 22, 15),
+(20, 23, 15),
+(21, 24, 15),
+(22, 25, 15),
+(23, 26, 15);
 
 -- --------------------------------------------------------
 
@@ -102,19 +141,6 @@ INSERT INTO `dirmunicipales` (`id`, `nombre`, `descripcion`, `director`, `telefo
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `dislike`
---
-
-CREATE TABLE `dislike` (
-  `dislike_id` int(11) NOT NULL,
-  `comentario_id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `fecha_dislike` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `eventos`
 --
 
@@ -134,19 +160,6 @@ CREATE TABLE `eventos` (
 
 INSERT INTO `eventos` (`idEvento`, `titulo`, `direccion`, `imagen`, `descripcion`, `creado`, `id_editor`) VALUES
 (7, 'Evento en la playa', 'Parque Isidora Cousiño, Lota', '458ce8b6dd8b1802abba58f2423e3b71.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 9);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `likes`
---
-
-CREATE TABLE `likes` (
-  `like_id` int(11) NOT NULL,
-  `comentario_id` int(11) NOT NULL,
-  `usuario_id` int(11) NOT NULL,
-  `fecha_like` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -334,12 +347,20 @@ ALTER TABLE `backgrounds`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `comentario`
+-- Indices de la tabla `comentarios`
 --
-ALTER TABLE `comentario`
-  ADD PRIMARY KEY (`comentario_id`),
-  ADD KEY `noticia_id` (`noticia_id`),
-  ADD KEY `fk_usuario` (`usuario_id`);
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_users` (`id_users`),
+  ADD KEY `id_noticia` (`id_noticia`);
+
+--
+-- Indices de la tabla `comentario_usuario_enlace`
+--
+ALTER TABLE `comentario_usuario_enlace`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_comentario` (`id_comentario`);
 
 --
 -- Indices de la tabla `departamento_participacion`
@@ -354,25 +375,11 @@ ALTER TABLE `dirmunicipales`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `dislike`
---
-ALTER TABLE `dislike`
-  ADD PRIMARY KEY (`dislike_id`),
-  ADD KEY `dislike_ibfk_1` (`comentario_id`);
-
---
 -- Indices de la tabla `eventos`
 --
 ALTER TABLE `eventos`
   ADD PRIMARY KEY (`idEvento`),
   ADD KEY `FK_id_editor` (`id_editor`);
-
---
--- Indices de la tabla `likes`
---
-ALTER TABLE `likes`
-  ADD PRIMARY KEY (`like_id`),
-  ADD KEY `likes_ibfk_1` (`comentario_id`);
 
 --
 -- Indices de la tabla `misionvision`
@@ -417,6 +424,7 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`),
   ADD KEY `FK_id_rol` (`id_rol`);
 
 --
@@ -430,10 +438,16 @@ ALTER TABLE `backgrounds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `comentario`
+-- AUTO_INCREMENT de la tabla `comentarios`
 --
-ALTER TABLE `comentario`
-  MODIFY `comentario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario_usuario_enlace`
+--
+ALTER TABLE `comentario_usuario_enlace`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT de la tabla `dirmunicipales`
@@ -442,22 +456,10 @@ ALTER TABLE `dirmunicipales`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de la tabla `dislike`
---
-ALTER TABLE `dislike`
-  MODIFY `dislike_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
   MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT de la tabla `likes`
---
-ALTER TABLE `likes`
-  MODIFY `like_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `misionvision`
@@ -506,30 +508,24 @@ ALTER TABLE `users`
 --
 
 --
--- Filtros para la tabla `comentario`
+-- Filtros para la tabla `comentarios`
 --
-ALTER TABLE `comentario`
-  ADD CONSTRAINT `comentario_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `comentario_ibfk_2` FOREIGN KEY (`noticia_id`) REFERENCES `noticias` (`idNoticia`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comentarios`
+  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_noticia`) REFERENCES `noticias` (`idNoticia`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `dislike`
+-- Filtros para la tabla `comentario_usuario_enlace`
 --
-ALTER TABLE `dislike`
-  ADD CONSTRAINT `dislike_ibfk_1` FOREIGN KEY (`comentario_id`) REFERENCES `comentario` (`comentario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `comentario_usuario_enlace`
+  ADD CONSTRAINT `comentario_usuario_enlace_ibfk_1` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comentario_usuario_enlace_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `eventos`
 --
 ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `likes`
---
-ALTER TABLE `likes`
-  ADD CONSTRAINT `likes_ibfk_1` FOREIGN KEY (`comentario_id`) REFERENCES `comentario` (`comentario_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `noticias`
