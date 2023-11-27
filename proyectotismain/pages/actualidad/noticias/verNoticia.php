@@ -2,7 +2,6 @@
 
 // Incluir la conexión a la base de datos
 include("database/connection.php");
-
 // Verificar si se proporciona un ID válido
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
@@ -17,6 +16,67 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     // Verificar si se encontró la noticia
     if ($resultado->num_rows) {
         $noticia = mysqli_fetch_assoc($resultado);
+
+        // Incrementar el contador de visitas
+        $id_noticia = $noticia['idNoticia'];
+        mysqli_query($connection, "UPDATE noticias SET visitas = visitas + 1 WHERE idNoticia = $id_noticia");
+
+        // Verificar si el usuario ya ha dado like o dislike
+        $email_usuario  = obtenerEmailUsuarioActual();  // Ajusta esta función según tu implementación de autenticación
+        $accion = obtenerAccionUsuario($connection, $email_usuario, $id_noticia);
+        
+        if (isset($_POST['like'])) {
+            if ($accion === 'like') {
+                // El usuario ya dio like, ahora cambiamos a dislike
+                mysqli_query($connection, "UPDATE noticias SET likes = likes - 1 WHERE idNoticia = $id_noticia");
+        
+                $query_update = "INSERT INTO acciones_usuarios (email_usuario, id_noticia, accion) VALUES (?, ?, 'dislike') ON DUPLICATE KEY UPDATE accion = 'dislike'";
+                $stmt_update = mysqli_prepare($connection, $query_update);
+                mysqli_stmt_bind_param($stmt_update, 'si', $email_usuario, $id_noticia);
+                mysqli_stmt_execute($stmt_update);
+            } else {
+                // El usuario aún no dio like o dio dislike, actualizamos a like
+                mysqli_query($connection, "UPDATE noticias SET likes = likes + 1 WHERE idNoticia = $id_noticia");
+        
+                if ($accion === 'dislike') {
+                    // Si previamente dio dislike, restamos 1 de dislikes
+                    mysqli_query($connection, "UPDATE noticias SET dislikes = dislikes - 1 WHERE idNoticia = $id_noticia");
+                }
+        
+                // Asegúrate de cambiar 'id_usuario' por 'email_usuario' si estás usando el correo electrónico
+                $query_insert = "INSERT INTO acciones_usuarios (email_usuario, id_noticia, accion) VALUES (?, ?, 'like') ON DUPLICATE KEY UPDATE accion = 'like'";
+                $stmt_insert = mysqli_prepare($connection, $query_insert);
+                mysqli_stmt_bind_param($stmt_insert, 'si', $email_usuario, $id_noticia);
+                mysqli_stmt_execute($stmt_insert);
+            }
+        }
+        
+        if (isset($_POST['dislike'])) {
+            if ($accion === 'dislike') {
+                // El usuario ya dio dislike, ahora cambiamos a like
+                mysqli_query($connection, "UPDATE noticias SET dislikes = dislikes - 1 WHERE idNoticia = $id_noticia");
+        
+                $query_update = "INSERT INTO acciones_usuarios (email_usuario, id_noticia, accion) VALUES (?, ?, 'like') ON DUPLICATE KEY UPDATE accion = 'like'";
+                $stmt_update = mysqli_prepare($connection, $query_update);
+                mysqli_stmt_bind_param($stmt_update, 'si', $email_usuario, $id_noticia);
+                mysqli_stmt_execute($stmt_update);
+            } else {
+                // El usuario aún no dio dislike o dio like, actualizamos a dislike
+                mysqli_query($connection, "UPDATE noticias SET dislikes = dislikes + 1 WHERE idNoticia = $id_noticia");
+        
+                if ($accion === 'like') {
+                    // Si previamente dio like, restamos 1 de likes
+                    mysqli_query($connection, "UPDATE noticias SET likes = likes - 1 WHERE idNoticia = $id_noticia");
+                }
+        
+                // Asegúrate de cambiar 'id_usuario' por 'email_usuario' si estás usando el correo electrónico
+                $query_insert = "INSERT INTO acciones_usuarios (email_usuario, id_noticia, accion) VALUES (?, ?, 'dislike') ON DUPLICATE KEY UPDATE accion = 'dislike'";
+                $stmt_insert = mysqli_prepare($connection, $query_insert);
+                mysqli_stmt_bind_param($stmt_insert, 'si', $email_usuario, $id_noticia);
+                mysqli_stmt_execute($stmt_insert);
+            }
+        }
+
     } else {
         // Redirigir si no se encuentra la noticia
         header('Location: ../../../index.php');
@@ -28,6 +88,40 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     exit();
 }
 
+// Funciones adicionales
+
+function obtenerEmailUsuarioActual() {
+    // Verifica si el correo electrónico está presente en la sesión
+    if (isset($_SESSION['email'])) {
+        // Devuelve el correo electrónico desde la sesión
+        return $_SESSION['email'];
+    }
+
+    // Devuelve algún valor que indique que no hay un usuario autenticado
+    return null;
+}
+
+function obtenerAccionUsuario($connection, $email_usuario, $id_noticia) {
+    $query = "SELECT accion FROM acciones_usuarios WHERE email_usuario = ? AND id_noticia = ?";
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, 'si', $email_usuario, $id_noticia);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    if ($resultado->num_rows) {
+        $accion = mysqli_fetch_assoc($resultado)['accion'];
+        return $accion;
+    }
+
+    return null;
+}
+
+function registrarAccionUsuario($connection, $email_usuario, $id_noticia, $accion) {
+    $query = "INSERT INTO acciones_usuarios (email_usuario, id_noticia, accion) VALUES (?, ?, ?)";
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, 'sis', $email_usuario, $id_noticia, $accion);
+    mysqli_stmt_execute($stmt);
+}
 ?>
 
 <div class="row">
@@ -47,6 +141,12 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </div>
 </div>
 
+<form method="post">
+    <input type="submit" name="like" value="Like">
+    <input type="submit" name="dislike" value="Dislike">
+</form>
+
+
 <div>
     <h2>Comentarios</h2>
 
@@ -62,6 +162,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             </p>
         </center>
     </form>
+
+
 
     <?php
 
