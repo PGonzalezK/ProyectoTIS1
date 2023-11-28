@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2023 a las 02:13:09
+-- Tiempo de generación: 28-11-2023 a las 04:00:40
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -117,6 +117,26 @@ INSERT INTO `comentario_usuario_enlace` (`id`, `id_comentario`, `id_user`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `denuncias`
+--
+
+CREATE TABLE `denuncias` (
+  `id` int(11) NOT NULL,
+  `id_comentario` int(11) DEFAULT NULL,
+  `id_usuario_reporta` int(11) DEFAULT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `denuncias`
+--
+
+INSERT INTO `denuncias` (`id`, `id_comentario`, `id_usuario_reporta`, `fecha`) VALUES
+(2, 24, 15, '2023-11-28 02:19:29');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `departamento_participacion`
 --
 
@@ -225,8 +245,8 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`) VALUES
-(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9, 14, 3, 2),
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9, 2, 0, 0);
+(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9, 24, 3, 2),
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9, 9, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -393,6 +413,14 @@ ALTER TABLE `comentario_usuario_enlace`
   ADD KEY `id_comentario` (`id_comentario`);
 
 --
+-- Indices de la tabla `denuncias`
+--
+ALTER TABLE `denuncias`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_comentario` (`id_comentario`),
+  ADD KEY `id_usuario_reporta` (`id_usuario_reporta`);
+
+--
 -- Indices de la tabla `departamento_participacion`
 --
 ALTER TABLE `departamento_participacion`
@@ -480,6 +508,12 @@ ALTER TABLE `comentario_usuario_enlace`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT de la tabla `denuncias`
+--
+ALTER TABLE `denuncias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
@@ -556,6 +590,13 @@ ALTER TABLE `comentarios`
 ALTER TABLE `comentario_usuario_enlace`
   ADD CONSTRAINT `comentario_usuario_enlace_ibfk_1` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `comentario_usuario_enlace_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `denuncias`
+--
+ALTER TABLE `denuncias`
+  ADD CONSTRAINT `denuncias_ibfk_1` FOREIGN KEY (`id_comentario`) REFERENCES `comentarios` (`id`),
+  ADD CONSTRAINT `denuncias_ibfk_2` FOREIGN KEY (`id_usuario_reporta`) REFERENCES `users` (`id`);
 
 --
 -- Filtros para la tabla `eventos`

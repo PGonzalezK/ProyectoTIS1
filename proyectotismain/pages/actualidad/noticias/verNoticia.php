@@ -101,6 +101,21 @@ function obtenerEmailUsuarioActual() {
     return null;
 }
 
+function obtenerIdUsuarioPorEmail($connection, $email) {
+    $query = "SELECT id FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    if ($resultado->num_rows) {
+        $id_usuario = mysqli_fetch_assoc($resultado)['id'];
+        return $id_usuario;
+    }
+
+    return null;
+}
+
 function obtenerAccionUsuario($connection, $email_usuario, $id_noticia) {
     $query = "SELECT accion FROM acciones_usuarios WHERE email_usuario = ? AND id_noticia = ?";
     $stmt = mysqli_prepare($connection, $query);
@@ -167,59 +182,59 @@ function registrarAccionUsuario($connection, $email_usuario, $id_noticia, $accio
 
     <?php
 
-if (isset($_POST['comentar']) || isset($_POST['reply'])) {
-    $email_usuario = isset($_SESSION['email']) ? $_SESSION['email'] : null;
-    // Obtener el ID del usuario
-    
-    $id_usuario = null;
-    if ($email_usuario) {
-        $query_id = mysqli_query($connection, "SELECT id FROM users WHERE email = '$email_usuario'");
-        $id_usuario_row = mysqli_fetch_assoc($query_id);
-        $id_usuario = $id_usuario_row['id'];
-    }
+    if (isset($_POST['comentar']) || isset($_POST['reply'])) {
+        $email_usuario = isset($_SESSION['email']) ? $_SESSION['email'] : null;
+        // Obtener el ID del usuario
+        
+        $id_usuario = null;
+        if ($email_usuario) {
+            $query_id = mysqli_query($connection, "SELECT id FROM users WHERE email = '$email_usuario'");
+            $id_usuario_row = mysqli_fetch_assoc($query_id);
+            $id_usuario = $id_usuario_row['id'];
+        }
 
-    if (!$email_usuario || !$id_usuario) {
-        echo "Error: El usuario no está autenticado o no se encontró el ID del usuario.";
-    } else {
-        $comentario = mysqli_real_escape_string($connection, $_POST['comentario']);
-        $id_noticia = $idNoticia; // El ID de la noticia al que pertenece el comentario
+        if (!$email_usuario || !$id_usuario) {
+            echo "Error: El usuario no está autenticado o no se encontró el ID del usuario.";
+        } else {
+            $comentario = mysqli_real_escape_string($connection, $_POST['comentario']);
+            $id_noticia = $idNoticia; // El ID de la noticia al que pertenece el comentario
 
-        // Iniciar la transacción
-        mysqli_begin_transaction($connection);
+            // Iniciar la transacción
+            mysqli_begin_transaction($connection);
 
-        try {
-            // Insertar comentario
-            $query_comentario = mysqli_query($connection, "INSERT INTO comentarios (comentario, id_users, id_noticia, fecha) VALUES ('$comentario', '$id_usuario', '$id_noticia', NOW())");
+            try {
+                // Insertar comentario
+                $query_comentario = mysqli_query($connection, "INSERT INTO comentarios (comentario, id_users, id_noticia, fecha) VALUES ('$comentario', '$id_usuario', '$id_noticia', NOW())");
 
-                if (!$query_comentario) {
-                    throw new Exception("Error al insertar el comentario: " . mysqli_error($connection));
+                    if (!$query_comentario) {
+                        throw new Exception("Error al insertar el comentario: " . mysqli_error($connection));
+                    }
+
+                    // Obtener el ID del comentario recién insertado
+                    $id_comentario_insertado = mysqli_insert_id($connection);
+
+                    if ($id_comentario_insertado <= 0) {
+                        throw new Exception("Error al obtener el ID del comentario recién insertado.");
+                    }
+
+                    // Insertar relación en la tabla de enlace
+                    $query_enlace = mysqli_query($connection, "INSERT INTO comentario_usuario_enlace (id_comentario, id_user) VALUES ('$id_comentario_insertado', '$id_usuario')");
+
+                    if (!$query_enlace) {
+                        throw new Exception("Error al insertar la relación en la tabla de enlace: " . mysqli_error($connection));
+                    }
+
+                    // Confirmar la transacción
+                    mysqli_commit($connection);
+                } catch (Exception $e) {
+                    // Revertir la transacción en caso de error
+                    mysqli_rollback($connection);
+                    echo $e->getMessage();
                 }
-
-                // Obtener el ID del comentario recién insertado
-                $id_comentario_insertado = mysqli_insert_id($connection);
-
-                if ($id_comentario_insertado <= 0) {
-                    throw new Exception("Error al obtener el ID del comentario recién insertado.");
-                }
-
-                // Insertar relación en la tabla de enlace
-                $query_enlace = mysqli_query($connection, "INSERT INTO comentario_usuario_enlace (id_comentario, id_user) VALUES ('$id_comentario_insertado', '$id_usuario')");
-
-                if (!$query_enlace) {
-                    throw new Exception("Error al insertar la relación en la tabla de enlace: " . mysqli_error($connection));
-                }
-
-                // Confirmar la transacción
-                mysqli_commit($connection);
-            } catch (Exception $e) {
-                // Revertir la transacción en caso de error
-                mysqli_rollback($connection);
-                echo $e->getMessage();
             }
         }
-    }
 
-    ?>
+        ?>
 
     <br>
     <div id="container">
@@ -247,13 +262,22 @@ if (isset($_POST['comentar']) || isset($_POST['reply'])) {
                     </p>
                 </div>
 
+                </div>
+    <!-- Agregar el botón de Denunciar -->
+    <div>
+        <form method="POST" action="">
+            <input type="hidden" name="comment_id" value="<?php echo $row['id']; ?>">
+            <button type="submit" name="report_comment">Denunciar</button>
+        </form>
+
+
                 <?php
- $respuestas = mysqli_query($connection, "SELECT * FROM comentarios WHERE reply = '" . $row['id'] . "'");
- while ($rep = mysqli_fetch_array($respuestas)) {
-     // Obtener información del usuario para la respuesta
-     $usuario_respuesta = mysqli_query($connection, "SELECT * FROM users WHERE id = '" . $rep['id_users'] . "'");
-     $user_respuesta = mysqli_fetch_array($usuario_respuesta);
- ?>
+                    $respuestas = mysqli_query($connection, "SELECT * FROM comentarios WHERE reply = '" . $row['id'] . "'");
+                    while ($rep = mysqli_fetch_array($respuestas)) {
+                        // Obtener información del usuario para la respuesta
+                        $usuario_respuesta = mysqli_query($connection, "SELECT * FROM users WHERE id = '" . $rep['id_users'] . "'");
+                        $user_respuesta = mysqli_fetch_array($usuario_respuesta);
+                    ?>
 
                 <ul class="replies">
                     <li class="cmmnt">
@@ -272,6 +296,23 @@ if (isset($_POST['comentar']) || isset($_POST['reply'])) {
             </li>
 
             <?php } ?>
+            <?php
+
+            if (isset($_POST['report_comment'])) {
+                $comment_id_to_report = mysqli_real_escape_string($connection, $_POST['comment_id']);
+                $email_usuario_reporta = obtenerEmailUsuarioActual();
+                $id_usuario_reporta = obtenerIdUsuarioPorEmail($connection, $email_usuario_reporta);
+
+                // Insertar la denuncia en la tabla de denuncias
+                $query_denuncia = mysqli_query($connection, "INSERT INTO denuncias (id_comentario, id_usuario_reporta) VALUES ('$comment_id_to_report', '$id_usuario_reporta')");
+
+                if ($query_denuncia) {
+                    echo "Comentario con ID $comment_id_to_report denunciado correctamente.";
+                } else {
+                    echo "Error al denunciar el comentario: " . mysqli_error($connection);
+                }
+            }
+            ?>
         </ul>
 
     </div>
