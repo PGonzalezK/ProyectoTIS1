@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-11-2023 a las 20:36:12
+-- Tiempo de generación: 28-11-2023 a las 02:13:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `proyectotis`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `acciones_usuarios`
+--
+
+CREATE TABLE `acciones_usuarios` (
+  `email_usuario` varchar(255) NOT NULL,
+  `id_noticia` int(11) NOT NULL,
+  `accion` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `acciones_usuarios`
+--
+
+INSERT INTO `acciones_usuarios` (`email_usuario`, `id_noticia`, `accion`) VALUES
+('pmonjes@ing.ucsc.cl', 6, 'dislike'),
+('pmonjes@ing.ucsc.cl', 7, 'like');
 
 -- --------------------------------------------------------
 
@@ -194,16 +214,19 @@ CREATE TABLE `noticias` (
   `descripcion` text NOT NULL,
   `imagen` varchar(60) NOT NULL,
   `creado` datetime NOT NULL,
-  `id_editor` int(11) NOT NULL
+  `id_editor` int(11) NOT NULL,
+  `visitas` int(11) NOT NULL DEFAULT 0,
+  `likes` int(11) DEFAULT 0,
+  `dislikes` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `noticias`
 --
 
-INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`) VALUES
-(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9),
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9);
+INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`) VALUES
+(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9, 14, 3, 2),
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -334,11 +357,18 @@ INSERT INTO `users` (`id`, `rut`, `nombre`, `apellido`, `email`, `password`, `id
 (6, 21212121, 'admin sdsd', 'adminapellido', 'admin@correo.com', '$2y$10$.SYuE129.BukxB/njNtIQOIJiFWSAH92zkLPZr6zWONQ43lGvWSvK', 1, '0', 1, '', NULL, NULL, '2023-11-07 17:22:50'),
 (9, 20202020, 'editor1', 'editorApellido', 'editor@editor.com', '$2y$10$/loG1rrC9XG1sc/YIRUtsOubUjhwNoiOheawYJU7N7ouQBvbblqvu', 3, '0', 1, '', NULL, NULL, '2023-11-07 21:09:28'),
 (11, 78592131, 'usuario', 'usuarioapellido', 'usuario@usuario.com', '$2y$10$NheB6jZ9S4nm0dnomaG0QupHW2WdZQ0hcxGdD8xM1FbHfpzRn4elW', 2, '0', 1, '', NULL, NULL, '2023-11-07 22:11:10'),
-(15, 20514299, 'pablo', 'monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$6zW1ggOd8jqIArJXmZike.1MwcoxAeUyGcWmZiC99pFmINADXhPnS', 2, '0', 1, 'bc8fc6bc01b21fce0a8d54beeb8b3ebcc0552a47ae091fac8f1f6f3ec74ac1a4', NULL, '2023-11-16 03:35:19', '2023-11-16 01:02:18');
+(15, 20514299, 'Pablo', 'Monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$6zW1ggOd8jqIArJXmZike.1MwcoxAeUyGcWmZiC99pFmINADXhPnS', 2, '0', 1, 'bc8fc6bc01b21fce0a8d54beeb8b3ebcc0552a47ae091fac8f1f6f3ec74ac1a4', NULL, '2023-11-16 03:35:19', '2023-11-16 01:02:18'),
+(37, 22222222, 'a', 'b', 'asdas@asdas.com', '$2y$10$ftkKAiTvsXY97W9OOAcmv.C9a8wVDfLPjJKGmaw18rgOn.8W4y0g6', 2, 'c06daddd851f4c5cf8739be8c6923f3514d8743b607d1b6b99feaee68e62abce', 0, '', '2023-11-26 22:58:24', NULL, '2023-11-26 21:58:24');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `acciones_usuarios`
+--
+ALTER TABLE `acciones_usuarios`
+  ADD PRIMARY KEY (`email_usuario`,`id_noticia`);
 
 --
 -- Indices de la tabla `backgrounds`
@@ -501,11 +531,17 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `acciones_usuarios`
+--
+ALTER TABLE `acciones_usuarios`
+  ADD CONSTRAINT `acciones_usuarios_ibfk_1` FOREIGN KEY (`email_usuario`) REFERENCES `users` (`email`);
 
 --
 -- Filtros para la tabla `comentarios`
