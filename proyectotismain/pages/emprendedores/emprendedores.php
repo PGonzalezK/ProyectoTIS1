@@ -1,19 +1,9 @@
 
-
+<div>
+        <?php require('includes/users/navbar_users.php'); ?>
+</div>
 
         <div class="container text-center">
-        <div class="row">
-            <div class="col">
-
-            </div>
-            <?php require ('includes/users/navbar_users.php'); ?>
-            
-         </div>
-
-
-
-
-
 
             <div id="carouselExampleDark" class="carousel carousel-dark slide">
                 <div class="carousel-indicators">

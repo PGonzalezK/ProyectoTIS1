@@ -17,14 +17,8 @@ while ($row = mysqli_fetch_assoc($result)) {
     }
 }
 ?>
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
-
-        </div>
+<div>
         <?php require('includes/users/navbar_users.php'); ?>
-
-    </div>
 </div>
 <div class="mision-backg">
     <div class="container text-center">

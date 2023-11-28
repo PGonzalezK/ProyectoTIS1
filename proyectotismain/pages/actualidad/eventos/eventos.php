@@ -1,9 +1,7 @@
+<div>
+        <?php require('includes/users/navbar_users.php'); ?>
+</div>
 <div class="row">
-    <div class="col">
-
-    </div>
-    <?php require ('includes/users/navbar_users.php'); ?>
-   
     <br>
     <br>
     <div class="container text-center">
