@@ -42,7 +42,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <label for="vision">Visión:</label>
             <textarea id="vision" name="vision" class="form-control" rows="5"><?php echo $vision; ?></textarea>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" name="submit" class="btn btn-outline-success">Guardar</button>
     </form>
     </div>
 

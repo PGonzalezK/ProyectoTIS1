@@ -42,7 +42,6 @@ if ($user = mysqli_fetch_assoc($result)) {
                 <li class="list-group-item"><strong>Rut:</strong> <?= $rut ?></li>
                 <li class="list-group-item"><strong>Nombre:</strong> <?= $nombre ?></li>
                 <li class="list-group-item"><strong>Apellido:</strong> <?= $apellido ?></li>
-                <li class="list-group-item"><strong>Contraseña:</strong> <?= $password ?></li>
                 <li class="list-group-item"><strong>Email:</strong> <?= $email ?></li>
             </ul>
             <a href="index.php?p=admin/actions/editprofileadmin&email=<?= $email ?>" class="btn btn-primary mt-3">Editar Perfil</a>

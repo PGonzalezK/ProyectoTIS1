@@ -7,6 +7,11 @@ $rut = $_GET["rut"];
 $query = "SELECT * FROM users WHERE rut = " . $rut . ";";
 $result = mysqli_query($connection, $query);
 
+/*Consulta para obtener roles*/ 
+
+$consultaRol = "SELECT * FROM roles";
+$resultadoRol = mysqli_query($connection,$consultaRol);
+
 
 if ($user = mysqli_fetch_assoc($result)) {
     $nombre = $user["nombre"];
@@ -49,8 +54,14 @@ if ($user = mysqli_fetch_assoc($result)) {
                             required>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="id_rol" class="form-label">Rol del usuario</label>
-                        <input type="text" id="id_rol" class="form-control" name="id_rol" value="<?php echo $id_rol ?>" placeholder="id_rol" required>
+                        <label for="id_rol" class="form-label">Rol</label>
+                        <select class="form-control" id="origin" name="id_rol">
+                            <?php while($rol = mysqli_fetch_assoc($resultadoRol)): ?>
+                                <option value="<?php echo $rol['idRol']; ?>" <?php if ($rol['idRol'] == $id_rol) echo 'selected'; ?>>
+                                    <?php echo $rol['idRol'] . " " . $rol['nombreRol']; ?>
+                                </option>
+                            <?php endwhile; ?>
+                        </select>
                     </div>
 
                     <!-- <div class="col-md-12 mb-3">
@@ -62,7 +73,7 @@ if ($user = mysqli_fetch_assoc($result)) {
             </div>
 
             <div class="card-footer text-body-secondary text-end">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button> <!-- Doble confirmacion -->
             </div>
         </form>
     </div>

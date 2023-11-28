@@ -4,6 +4,10 @@
 require('database/connection.php');
 // Si se envía el formulario, inserte valores en la base de datos.
 
+$verification_token = bin2hex(random_bytes(32));
+
+$expirationDate = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
 
 if (isset($_REQUEST['email'])) {
     $rut = $_REQUEST['rut'];
@@ -28,11 +32,23 @@ if (isset($_REQUEST['email'])) {
         $errorMessages[] = "El apellido no es válido. Debe contener solo letras.";
     }
 
+    if (
+        filter_var(
+            $email,
+            FILTER_VALIDATE_EMAIL
+        ) && (strpos($email, '.com') !== false ||
+            strpos($email, '.cl') !== false)
+    ) {
+    } else {
+        $errorMessages[] = "El email no es válido.";
+    }
+
     // Validación de la Contraseña
     if (strlen($password) < 8) {
         $errorMessages[] = "La contraseña debe contener al menos 8 caracteres.";
     }
-    
+    // Validación del Nombre
+
 
     if (empty($errorMessages)) {
         // Todas las restricciones se cumplieron, procede con la inserción en la base de datos.
@@ -44,11 +60,26 @@ if (isset($_REQUEST['email'])) {
         $trn_date = date("Y-m-d H:i:s");
         $id_rol = 2;
 
-        $query = "INSERT into `users` (rut, nombre, apellido, email, password, id_rol, trn_date) VALUES ('$rut', '$nombre', '$apellido', '$email', '$passwordHash', '$id_rol', '$trn_date')";
+
+        $query = "INSERT INTO users (rut, nombre, apellido, email, password, id_rol, verification_token, trn_date, token_expiration_verification) VALUES ('$rut', '$nombre', '$apellido', '$email', '$passwordHash', '$id_rol', '$verification_token', '$trn_date', '$expirationDate')";
         $result = mysqli_query($connection, $query);
 
+
+
         if ($result) {
-            echo "<div class='form'><h3>Te has registrado correctamente!</h3><br/>Haz click aquí para <a href='index.php?p=auth/login'>Logearte</a></div>";
+            $verificationlink = "http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=auth/verificar&email=$email&token=$verification_token";
+
+            $asunto = 'Verificacion de cuenta';
+            $cuerpo = "Haz clic en el siguiente enlace para verificar tu cuenta: <a href='$verificationlink'>$verificationlink</a>";
+
+            $headers = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html\r\n";
+            $headers .= "From: <tu@dominio.com>\r\n";  // Reemplaza con tu dirección de correo
+
+            mail($email, $asunto, $cuerpo, $headers);
+
+            echo "<script>alert('Se ha enviado un correo con las instrucciones para verificar tu cuenta al $email.'); </script>";
+// hacer alerta JAVIERA 
         } else {
             echo "Error al insertar en la base de datos.";
         }
@@ -61,25 +92,25 @@ if (isset($_REQUEST['email'])) {
 }
 ?>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Selecciona elementos relevantes
-    const passwordField = document.getElementById('password');
-    const submitButton = document.getElementById('submit-button');
+    document.addEventListener('DOMContentLoaded', function () {
+        // Selecciona elementos relevantes
+        const passwordField = document.getElementById('password');
+        const submitButton = document.getElementById('submit-button');
 
-    // Agrega un controlador de eventos al botón "Registrarse"
-    submitButton.addEventListener('click', function(event) {
-      const password = passwordField.value;
+        // Agrega un controlador de eventos al botón "Registrarse"
+        submitButton.addEventListener('click', function (event) {
+            const password = passwordField.value;
 
-      // Verifica si la contraseña tiene al menos 8 caracteres
-      if (password.length < 8) {
-        // Evita el envío del formulario
-        event.preventDefault();
-        
-        // Muestra un mensaje emergente (pop-up) de error
-        alert("La contraseña debe contener al menos 8 caracteres.");
-      }
+            // Verifica si la contraseña tiene al menos 8 caracteres
+            if (password.length < 8) {
+                // Evita el envío del formulario
+                event.preventDefault();
+
+                // Muestra un mensaje emergente (pop-up) de error
+                alert("La contraseña debe contener al menos 8 caracteres.");
+            }
+        });
     });
-  });
 </script>
 <section class="register-backg register-backg bg-center">
     <div class="container">
@@ -87,7 +118,7 @@ if (isset($_REQUEST['email'])) {
             <div class="col-md-6">
                 <div class="card-5">
                     <div class="card-header">
-                        <h1 class="text-center" style="color: white;">Registrate Aquí</h1>
+                        <h1 class="text-center" style="color: black;">Registrate Aquí</h1>
                     </div>
                     <div class="card-body">
                         <form name="registration" action="" method="POST">
@@ -126,3 +157,4 @@ if (isset($_REQUEST['email'])) {
         </div>
     </div>
 </section>
+

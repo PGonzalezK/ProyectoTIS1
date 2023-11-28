@@ -1,6 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom ">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">
+        <img src="pages\auth\images\logo-largo.png" alt="Logo" height="40">
+        </a>
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,7 +11,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
 
             <?php
-            if (isset($_SESSION["email"])) {
+            if (isset($_SESSION["email"])){
             ?>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
@@ -36,6 +39,9 @@
                         <a class="nav-link <?php echo (strpos($pagina, 'direccionesMunicipales') !== false) ? 'active' : null ?>" href="index.php?p=admin/direccionesMunicipales/index">Direcciones Municipales</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?php echo (strpos($pagina, 'participacion') !== false) ? 'active' : null ?>" href="index.php?p=admin/participacion/index">Participacion</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?php echo (strpos($pagina, 'backgrounds') !== false) ? 'active' : null ?>" href="index.php?p=admin/backgrounds/index">Fondos</a>
                     </li>
                 </ul>
@@ -43,7 +49,6 @@
                     <a href="index.php?p=admin/profile_admin" class="btn btn-sm btn-outline-primary me-2">Perfil</a>
                     <a href="pages/auth/actions/logout.php" class="btn btn-sm btn-outline-danger">Cerrar Sesión</a>
                 </div>
-                <!-- <a href="pages/auth/actions/logout.php">Cerrar Sesión</a> -->
             <?php
            } else {
             ?>
@@ -62,3 +67,4 @@
         </div>
     </div>
 </nav>
+

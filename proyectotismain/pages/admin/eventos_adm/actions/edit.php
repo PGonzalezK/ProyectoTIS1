@@ -80,14 +80,23 @@
             $resultado = mysqli_query($connection, $query);
     
             if($resultado){
-                header('Location: index.php?p=admin/eventos_adm/index&resultado=2');
+                if (headers_sent()) {
+                    die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/eventos_adm/index&resultado=2'</script>");
+                }
+                else{
+                    exit(header("Location: index.php?p=admin/users/index"));
+                }
             }
         }
     }
 ?>
 
 <main class="contenedor">
-    <h1>Actualizar evento:</h1>
+        <div class="container-fluid border-bottom border-top bg-body-tertiary">
+            <div class=" p-5 rounded text-center">
+            <h2 class="fw-normal">Actualización Evento</h1>
+            </div>
+        </div>
 
     <?php foreach($errores as $error): ?>
         <div class="p-3 mb-2 bg-danger text-white">
@@ -95,7 +104,7 @@
         </div>
     <?php endforeach; ?>
 
-    <div class="card">
+    <div class="card ms-5 mt-5 me-5">
         <form method="POST" enctype="multipart/form-data">
             <div class="card-body">
                 <div class="row">

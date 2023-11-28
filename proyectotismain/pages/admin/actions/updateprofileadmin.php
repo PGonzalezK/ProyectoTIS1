@@ -18,8 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = mysqli_query($connection, $update_query);
 
         if ($result) {
-            header("Location: index.php?p=admin/profile_admin");
-            exit();
+            if (headers_sent()) {
+                die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/profile_admin'</script>");
+            }
+            else{
+                exit(header("Location: index.php?p=admin/users/index"));
+            }
         } else {
             echo "Error al actualizar el perfil.";
         }

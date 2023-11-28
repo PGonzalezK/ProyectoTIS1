@@ -76,7 +76,12 @@ if ($_SESSION['id_rol'] !== '1') {
         $resultado = mysqli_query($connection,$query);
 
         if($resultado){
-            header('Location: index.php?p=admin/eventos_adm/index&resultado=1');
+            if (headers_sent()) {
+                die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/eventos_adm/index&resultado=1'</script>");
+            }
+            else{
+                exit(header("Location: index.php?p=admin/users/index"));
+            }
         }
         }
     }
@@ -84,7 +89,11 @@ if ($_SESSION['id_rol'] !== '1') {
 ?>
 
     <main class = "contenedor">
-        <h1>Creacion de evento:</h1>
+        <div class="container-fluid border-bottom border-top bg-body-tertiary">
+            <div class=" p-5 rounded text-center">
+            <h2 class="fw-normal">Registro de Nuevo Evento</h1>
+            </div>
+        </div>
 
         <?php foreach($errores as $error):?>
             <div class="p-3 mb-2 bg-danger text-white">
@@ -92,7 +101,7 @@ if ($_SESSION['id_rol'] !== '1') {
             </div>
         <?php endforeach;?>
 
-        <div class="card">
+        <div class="card ms-5 me-5 mt-5 ">
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="card-body">
                 <div class="row">

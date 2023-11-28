@@ -14,7 +14,11 @@
 ?>
 
 <main class="contenedor">
-    <h1>Administracion Eventos</h1>
+<div class="container-fluid border-bottom border-top bg-body-tertiary">
+    <div class=" p-5 rounded text-center">
+        <h2 class="fw-normal">Gestión de Eventos</h1>
+    </div>
+</div>
     <?php if (intval($resultado) === 1):?>
         <div class="p-3 mb-2 bg-success text-white">Evento creado exitosamente</div>
     <?php elseif (intval($resultado) === 2):?>
@@ -22,10 +26,8 @@
     <?php elseif (intval($resultado) === 3):?>
         <div class="p-3 mb-2 bg-success text-white">Evento eliminado exitosamente</div>
     <?php endif;?>
-
-    <a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/eventos_adm/actions/create" role="button">Crear nuevo Evento</a>
-
-    <table class="table">
+<main class="contenedor mt-5 m-5">
+    <table class="table table-bordered text-center">
         <thead>
             <tr>
                 <th scope="col">ID</th>
@@ -42,10 +44,10 @@
             <?php while($evento = mysqli_fetch_assoc($resultadoConsulta)): ?>
                 <tr>
                     <th scope="row"><?php echo $evento['idEvento'];?></th>
-                    <td><?php echo $evento['titulo'];?></td>
+                    <td><?php echo limitarPalabras($evento['titulo'], 4); ?></td>
                     <td><?php echo $evento['direccion'];?></td>
-                    <td><img src="pages/admin/eventos_adm/imagenes/<?php echo $evento['imagen'];?>" class="imagen-tabla" alt="" width="200" height="150"></td>
-                    <td><?php echo $evento['descripcion'];?> </td>
+                    <td><img src="pages/admin/eventos_adm/imagenes/<?php echo $evento['imagen'];?>" class="imagen-tabla" alt="" width="90" height="50"></td>
+                    <td><?php echo limitarPalabras($evento['descripcion'], 4); ?></td>
                     <td><?php echo $evento['creado'];?></td>
                     <td>
                         <?php 
@@ -57,15 +59,39 @@
                         ?>
                     </td>
                     <td>
-                        <a class="p-2 m-1 btn btn-primary" href="index.php?p=admin/eventos_adm/actions/edit&id=<?php echo $evento['idEvento']; ?>" role="button">Editar</a>
-                        <a class="p-2 m-1 btn btn-danger" href="index.php?p=admin/eventos_adm/actions/delete&id=<?php echo $evento['idEvento']; ?>" role="button">Eliminar</a>
+                        <a class="p-2 m-1 btn btn-outline-warning" href="index.php?p=admin/eventos_adm/actions/edit&id=<?php echo $evento['idEvento']; ?>" role="button">Editar</a>
+                        <a class="p-2 m-1 btn btn-outline-danger" href="javascript:void(0);" onclick="confirmarEliminar(<?php echo $evento['idEvento']; ?>)" role="button">Eliminar</a>
                     </td>
                 </tr>
             <?php endwhile;?>
         </tbody>
     </table>
+    </main>
+    <a class="p-2 ms-5 btn btn-outline-success" href="index.php?p=admin/eventos_adm/actions/create" role="button">Crear nuevo Evento</a>
+
 </main>
 
 <?php
     mysqli_close($connection);
+?>
+
+<script>
+    function confirmarEliminar(idEvento) {
+        var confirmacion = confirm("¿Estás seguro que deseas eliminar este evento?");
+        if (confirmacion) {
+            window.location.href = "index.php?p=admin/eventos_adm/actions/delete&id=" + idEvento;
+        }
+    }
+</script>
+
+<?php function limitarPalabras($texto, $limite) {
+    $palabras = explode(' ', $texto);
+    $resultado = implode(' ', array_slice($palabras, 0, $limite));
+    
+    if (count($palabras) > $limite) {
+        $resultado .= '...';
+    }
+    
+    return $resultado;
+}
 ?>

@@ -18,8 +18,13 @@ if (isset($_GET["id_rol"])) {
     $result =  mysqli_query($connection, $query);
 
     // Redirigir a la página de roles
-    header("Location: index.php?p=admin/roles/index");
-    exit();
+    if (headers_sent()) {
+        die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/roles/index'</script>");
+    }
+    else{
+        exit(header("Location: index.php?p=admin/users/index"));
+    }
+
 } else {
     // Manejar el caso en el que el parámetro id_rol no está definido
     echo "El parámetro id_rol no está definido.";

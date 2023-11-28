@@ -18,5 +18,11 @@
     $result =  mysqli_query($connection, $query);
 
     // redireccionar a la pagina de roles
-    header("Location: index.php?p=admin/roles/index");
+
+    if (headers_sent()) {
+        die("<script > window.location.href = 'http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=admin/roles/index'</script>");
+    }
+    else{
+        exit(header("Location: index.php?p=admin/users/index"));
+    }
 ?>

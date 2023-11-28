@@ -1,16 +1,15 @@
 <?php
 // Descomentar la línea 3 si se desea utilizar la autenticación para esta página
-// require("middleware/auth.php");
+  //  require("middleware/auth.php");
 ?>
 
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
 
-        </div>
+    <div>
         <?php require('includes/users/navbar_users.php'); ?>
-
     </div>
+
+<div class="container text-center">
+
 </div>
 <div class="iniciobackg">
     <div class="container text-center">
