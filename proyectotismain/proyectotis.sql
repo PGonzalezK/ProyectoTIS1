@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2023 a las 04:00:40
+-- Tiempo de generación: 29-11-2023 a las 23:46:22
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -38,7 +38,7 @@ CREATE TABLE `acciones_usuarios` (
 --
 
 INSERT INTO `acciones_usuarios` (`email_usuario`, `id_noticia`, `accion`) VALUES
-('pmonjes@ing.ucsc.cl', 6, 'dislike'),
+('pmonjes@ing.ucsc.cl', 6, 'like'),
 ('pmonjes@ing.ucsc.cl', 7, 'like');
 
 -- --------------------------------------------------------
@@ -181,6 +181,32 @@ INSERT INTO `dirmunicipales` (`id`, `nombre`, `descripcion`, `director`, `telefo
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `emprendedores`
+--
+
+CREATE TABLE `emprendedores` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `ano_creacion` varchar(255) DEFAULT NULL,
+  `descripcion` text DEFAULT NULL,
+  `direccion` varchar(255) NOT NULL,
+  `foto` varchar(255) DEFAULT NULL,
+  `aprobado` tinyint(1) DEFAULT 0,
+  `fecha` datetime NOT NULL,
+  `email` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `emprendedores`
+--
+
+INSERT INTO `emprendedores` (`id`, `nombre`, `ano_creacion`, `descripcion`, `direccion`, `foto`, `aprobado`, `fecha`, `email`) VALUES
+(1, 'Venta de juegos', '1 de enero 2015', 'Vendo juegos de Steam ', 'Via internet', 'store_home_share.jpg', 0, '2023-11-29 22:46:26', 'pmonjes@ing.ucsc.cl'),
+(2, 'asd', 'dsda', 'asda', 'asda', '', 0, '2023-11-29 23:08:50', 'pmonjes@ing.ucsc.cl');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `eventos`
 --
 
@@ -237,16 +263,19 @@ CREATE TABLE `noticias` (
   `id_editor` int(11) NOT NULL,
   `visitas` int(11) NOT NULL DEFAULT 0,
   `likes` int(11) DEFAULT 0,
-  `dislikes` int(11) DEFAULT 0
+  `dislikes` int(11) DEFAULT 0,
+  `valorizacion` int(11) DEFAULT NULL,
+  `num_valorizaciones` int(11) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `noticias`
 --
 
-INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`) VALUES
-(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9, 24, 3, 2),
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9, 9, 0, 0);
+INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`) VALUES
+(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9, 37, 4, 1, 4, 1),
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9, 30, 2, 0, 4, 1),
+(8, 'Metro', 'metrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometro', '70e0bc3ce23704677129bbe3902f1f94.jpg', '2023-11-29 21:43:51', 9, 1, 0, 0, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -311,7 +340,8 @@ INSERT INTO `participacion` (`id`, `email`, `tipo_contribucion`, `departamento`,
 (17, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'prueba3', '', '2023-11-19 03:13:46', 'Sin leer'),
 (18, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '', '2023-11-19 03:33:55', 'En proceso'),
 (19, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aa', '', '2023-11-20 03:08:45', 'Sin leer'),
-(20, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'aaaaaa', '', '2023-11-20 03:18:53', 'Sin leer');
+(20, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'aaaaaa', '', '2023-11-20 03:18:53', 'Sin leer'),
+(21, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'asdasd', '', '2023-11-29 22:04:13', 'Sin leer');
 
 -- --------------------------------------------------------
 
@@ -380,6 +410,27 @@ INSERT INTO `users` (`id`, `rut`, `nombre`, `apellido`, `email`, `password`, `id
 (15, 20514299, 'Pablo', 'Monjes', 'pmonjes@ing.ucsc.cl', '$2y$10$6zW1ggOd8jqIArJXmZike.1MwcoxAeUyGcWmZiC99pFmINADXhPnS', 2, '0', 1, 'bc8fc6bc01b21fce0a8d54beeb8b3ebcc0552a47ae091fac8f1f6f3ec74ac1a4', NULL, '2023-11-16 03:35:19', '2023-11-16 01:02:18'),
 (37, 22222222, 'a', 'b', 'asdas@asdas.com', '$2y$10$ftkKAiTvsXY97W9OOAcmv.C9a8wVDfLPjJKGmaw18rgOn.8W4y0g6', 2, 'c06daddd851f4c5cf8739be8c6923f3514d8743b607d1b6b99feaee68e62abce', 0, '', '2023-11-26 22:58:24', NULL, '2023-11-26 21:58:24');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `valorizaciones`
+--
+
+CREATE TABLE `valorizaciones` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) DEFAULT NULL,
+  `id_noticia` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `valorizaciones`
+--
+
+INSERT INTO `valorizaciones` (`id`, `id_usuario`, `id_noticia`) VALUES
+(5, 15, 6),
+(3, 15, 7),
+(4, 15, 8);
+
 --
 -- Índices para tablas volcadas
 --
@@ -430,6 +481,12 @@ ALTER TABLE `departamento_participacion`
 -- Indices de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `emprendedores`
+--
+ALTER TABLE `emprendedores`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -486,6 +543,14 @@ ALTER TABLE `users`
   ADD KEY `FK_id_rol` (`id_rol`);
 
 --
+-- Indices de la tabla `valorizaciones`
+--
+ALTER TABLE `valorizaciones`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_user_noticia` (`id_usuario`,`id_noticia`),
+  ADD KEY `id_noticia` (`id_noticia`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -511,12 +576,18 @@ ALTER TABLE `comentario_usuario_enlace`
 -- AUTO_INCREMENT de la tabla `denuncias`
 --
 ALTER TABLE `denuncias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `emprendedores`
+--
+ALTER TABLE `emprendedores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
@@ -535,7 +606,7 @@ ALTER TABLE `misionvision`
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `palabrasalcalde`
@@ -547,7 +618,7 @@ ALTER TABLE `palabrasalcalde`
 -- AUTO_INCREMENT de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `restrablecer_password`
@@ -566,6 +637,12 @@ ALTER TABLE `roles`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de la tabla `valorizaciones`
+--
+ALTER TABLE `valorizaciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
@@ -621,6 +698,13 @@ ALTER TABLE `restrablecer_password`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`id_rol`) REFERENCES `roles` (`idRol`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `valorizaciones`
+--
+ALTER TABLE `valorizaciones`
+  ADD CONSTRAINT `valorizaciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `valorizaciones_ibfk_2` FOREIGN KEY (`id_noticia`) REFERENCES `noticias` (`idNoticia`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -34,5 +34,8 @@
         <li class="nav-item">
             <a id="participacion-link" class="nav-link" href="index.php?p=participacion/participacion">Participacion</a>
         </li>
+        <li class="nav-item">
+            <a id="participacion-link" class="nav-link" href="index.php?p=emprendimiento/create">Subir mi Emprendimiento</a>
+        </li>
 
 </div>

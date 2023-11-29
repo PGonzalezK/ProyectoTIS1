@@ -23,9 +23,13 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 
         // Verificar si el usuario ya ha dado like o dislike
         $email_usuario  = obtenerEmailUsuarioActual();  // Ajusta esta función según tu implementación de autenticación
-        $accion = obtenerAccionUsuario($connection, $email_usuario, $id_noticia);
         
+        if (!$email_usuario) {
+            // Mostrar un mensaje si el usuario no está autenticado
+            echo "Debes iniciar sesión para dar like o dislike a la publicación.";
+        } else {
         if (isset($_POST['like'])) {
+            $accion = obtenerAccionUsuario($connection, $email_usuario, $id_noticia);
             if ($accion === 'like') {
                 // El usuario ya dio like, ahora cambiamos a dislike
                 mysqli_query($connection, "UPDATE noticias SET likes = likes - 1 WHERE idNoticia = $id_noticia");
@@ -76,7 +80,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                 mysqli_stmt_execute($stmt_insert);
             }
         }
-
+    }
     } else {
         // Redirigir si no se encuentra la noticia
         header('Location: ../../../index.php');
@@ -262,7 +266,7 @@ function registrarAccionUsuario($connection, $email_usuario, $id_noticia, $accio
                     </p>
                 </div>
 
-                </div>
+    </div>
     <!-- Agregar el botón de Denunciar -->
     <div>
         <form method="POST" action="">
@@ -271,7 +275,7 @@ function registrarAccionUsuario($connection, $email_usuario, $id_noticia, $accio
         </form>
 
 
-                <?php
+        <?php
                     $respuestas = mysqli_query($connection, "SELECT * FROM comentarios WHERE reply = '" . $row['id'] . "'");
                     while ($rep = mysqli_fetch_array($respuestas)) {
                         // Obtener información del usuario para la respuesta
@@ -279,39 +283,47 @@ function registrarAccionUsuario($connection, $email_usuario, $id_noticia, $accio
                         $user_respuesta = mysqli_fetch_array($usuario_respuesta);
                     ?>
 
-                <ul class="replies">
-                    <li class="cmmnt">
-                        <header>
-                            <a href="#" class="user-link">
-                                <?php echo $user_respuesta['nombre'] . ' ' . $user_respuesta['apellido'] . ' - ' . $rep['fecha']; ?></a>
-                        </header>
-                        <p>
-                            <?php echo $rep['comentario']; ?>
-                        </p>
-                    </li>
-                </ul>
-
-                <?php } ?>
-
+        <ul class="replies">
+            <li class="cmmnt">
+                <header>
+                    <a href="#" class="user-link">
+                        <?php echo $user_respuesta['nombre'] . ' ' . $user_respuesta['apellido'] . ' - ' . $rep['fecha']; ?></a>
+                </header>
+                <p>
+                    <?php echo $rep['comentario']; ?>
+                </p>
             </li>
+        </ul>
 
-            <?php } ?>
-            <?php
+        <?php } ?>
 
-            if (isset($_POST['report_comment'])) {
-                $comment_id_to_report = mysqli_real_escape_string($connection, $_POST['comment_id']);
-                $email_usuario_reporta = obtenerEmailUsuarioActual();
-                $id_usuario_reporta = obtenerIdUsuarioPorEmail($connection, $email_usuario_reporta);
+        </li>
 
-                // Insertar la denuncia en la tabla de denuncias
-                $query_denuncia = mysqli_query($connection, "INSERT INTO denuncias (id_comentario, id_usuario_reporta) VALUES ('$comment_id_to_report', '$id_usuario_reporta')");
+        <?php } ?>
+        <?php
 
-                if ($query_denuncia) {
-                    echo "Comentario con ID $comment_id_to_report denunciado correctamente.";
-                } else {
-                    echo "Error al denunciar el comentario: " . mysqli_error($connection);
+                if (isset($_POST['report_comment'])) {
+                    // Verificar si el usuario está autenticado
+                    $email_usuario_reporta = obtenerEmailUsuarioActual();
+
+                    if (!$email_usuario_reporta) {
+                        // Mostrar un mensaje si el usuario no está autenticado
+                        echo "Tienes que iniciar sesión para denunciar este comentario.";
+                    } else {
+                        // El usuario está autenticado, proceder con la denuncia
+                        $comment_id_to_report = mysqli_real_escape_string($connection, $_POST['comment_id']);
+                        $id_usuario_reporta = obtenerIdUsuarioPorEmail($connection, $email_usuario_reporta);
+
+                        // Insertar la denuncia en la tabla de denuncias
+                        $query_denuncia = mysqli_query($connection, "INSERT INTO denuncias (id_comentario, id_usuario_reporta) VALUES ('$comment_id_to_report', '$id_usuario_reporta')");
+
+                        if ($query_denuncia) {
+                            echo "Comentario con ID $comment_id_to_report denunciado correctamente.";
+                        } else {
+                            echo "Error al denunciar el comentario: " . mysqli_error($connection);
+                        }
+                    }
                 }
-            }
             ?>
         </ul>
 

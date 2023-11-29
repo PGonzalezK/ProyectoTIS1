@@ -20,7 +20,7 @@ include("database/connection.php");
         <section class="row contenedorNoticias ">
             <?php
             $limite = 99;
-            include 'pages/admin/noticias_adm/templates/mainNoticias.php';
+            include 'pages/actualidad/noticias/mainNoticias.php';
             ?>
         </section>
         <!-- Termina sección noticias -->

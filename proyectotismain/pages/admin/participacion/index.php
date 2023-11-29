@@ -7,9 +7,6 @@ if ($_SESSION['id_rol'] !== '1') {
     exit();
 }
 
-
-
-
 $filtroDepartamento = isset($_GET['filtroDepartamentoNuevo']) ? $_GET['filtroDepartamentoNuevo'] : null;
 
 $query = "SELECT * FROM participacion";
