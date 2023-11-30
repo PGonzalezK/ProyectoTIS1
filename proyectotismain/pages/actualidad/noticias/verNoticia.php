@@ -2,6 +2,7 @@
 
 // Incluir la conexión a la base de datos
 include("database/connection.php");
+$accion = null;
 // Verificar si se proporciona un ID válido
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
