@@ -88,7 +88,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                         </p>
                                         <p>
                                             <div class="d-ads">
-                                                <input type="button" <?php if (isset($_GET['id'])) { ?> name="reply" <?php } else { ?> name="comentar" <?php } ?> class="btn" value="Comentar">
+                                                <input type="submit" <?php if (isset($_GET['id'])) { ?> name="reply" <?php } else { ?> name="comentar" <?php } ?> class="btn" value="Comentar">
                                             </div>
                                         </p>
                                     </form>
@@ -97,6 +97,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                          
 
     <?php
+    $id_noticia = $id;
     if (isset($_POST['comentar']) || isset($_POST['reply'])) {
         $email_usuario = isset($_SESSION['email']) ? $_SESSION['email'] : null;
         $id_usuario = null;
@@ -107,15 +108,14 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
             $id_usuario = $id_usuario_row['id'];
         }
 
-        if (!$email_usuario || !$id_usuario) {
-            echo "Error: El usuario no está autenticado o no se encontró el ID del usuario.";
+        if (!$email_usuario || !$id_usuario || !$id_noticia) {
+            echo "Error: El usuario no está autenticado, no se encontró el ID del usuario o el ID de la noticia.";
         } else {
             $comentario = mysqli_real_escape_string($connection, $_POST['comentario']);
-            $id_noticia = $idNoticia;
-
             mysqli_begin_transaction($connection);
 
             try {
+                
                 $query_comentario = mysqli_query($connection, "INSERT INTO comentarios (comentario, id_users, id_noticia, fecha) VALUES ('$comentario', '$id_usuario', '$id_noticia', NOW())");
 
                 if (!$query_comentario) {
