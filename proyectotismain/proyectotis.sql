@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2023 a las 22:43:52
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 30-11-2023 a las 23:16:59
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -129,26 +129,6 @@ CREATE TABLE `denuncias` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamento_participacion`
---
-
-CREATE TABLE `departamento_participacion` (
-  `id` int(11) NOT NULL,
-  `nombre_departamento` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `departamento_participacion`
---
-
-INSERT INTO `departamento_participacion` (`id`, `nombre_departamento`) VALUES
-(1, 'Acera en mal estado'),
-(2, 'Calle en mal estado'),
-(3, 'Auto abandonado');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `dirmunicipales`
 --
 
@@ -222,32 +202,6 @@ INSERT INTO `eventos` (`idEvento`, `titulo`, `direccion`, `imagen`, `descripcion
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mapa`
---
-
-CREATE TABLE `mapa` (
-  `id_mapa` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `nombre_punto` varchar(255) NOT NULL,
-  `descripcion` varchar(255) NOT NULL,
-  `lat` varchar(255) NOT NULL,
-  `lng` varchar(255) NOT NULL,
-  `aprobado` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `mapa`
---
-
-INSERT INTO `mapa` (`id_mapa`, `email`, `nombre_punto`, `descripcion`, `lat`, `lng`, `aprobado`) VALUES
-(1, 'pmonjes@ing.ucsc.cl', 'Barberia', 'a', '-36.81960852562662', '-73.0465050314474', 1),
-(2, 'pmonjes@ing.ucsc.cl', 'asd', 'asd', '-40', '-20', 0),
-(4, 'pmonjes@ing.ucsc.cl', 'cs', 'sd', '-3', '-1', 0),
-(5, 'pmonjes@ing.ucsc.cl', 'dd', 'dd', '2', '2', 0);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `misionvision`
 --
 
@@ -291,7 +245,7 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`) VALUES
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 38, 2, 0, 4, 1),
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 39, 2, 0, 4, 1),
 (9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 18, 1, 0, NULL, 0);
 
 -- --------------------------------------------------------
@@ -326,39 +280,12 @@ CREATE TABLE `participacion` (
   `id` int(11) NOT NULL,
   `email` varchar(60) NOT NULL,
   `tipo_contribucion` enum('denuncia','felicitacion','sugerencia') NOT NULL,
-  `departamento` enum('paradero','parque','vial','alumbrado') NOT NULL,
+  `id_departamento` int(11) NOT NULL,
   `descripcion` text NOT NULL,
   `otro_dpto_text` text NOT NULL,
   `fecha` datetime NOT NULL,
   `estado_revision` varchar(255) DEFAULT 'Sin leer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `participacion`
---
-
-INSERT INTO `participacion` (`id`, `email`, `tipo_contribucion`, `departamento`, `descripcion`, `otro_dpto_text`, `fecha`, `estado_revision`) VALUES
-(1, 'pmonjes@ing.ucsc.cl', 'denuncia', 'paradero', 'aaaa', '', '2023-11-19 02:24:48', 'En proceso'),
-(2, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'vial', '1', '', '2023-11-19 02:28:24', 'En proceso'),
-(3, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'a', '', '2023-11-19 02:29:55', 'En revisión'),
-(4, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'a', '', '2023-11-19 02:29:59', 'Terminado'),
-(5, 'pmonjes@ing.ucsc.cl', 'sugerencia', 'parque', 'a', '', '2023-11-19 02:31:25', 'Sin leer'),
-(6, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'a', '', '2023-11-19 02:32:39', 'Sin leer'),
-(7, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', '2', '', '2023-11-19 02:36:09', 'Sin leer'),
-(8, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '3', '', '2023-11-19 02:40:25', 'Sin leer'),
-(9, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'a', '', '2023-11-19 02:45:53', 'Sin leer'),
-(10, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'paradero', '123', '', '2023-11-19 02:52:22', 'Sin leer'),
-(11, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'vial', '111', '', '2023-11-19 03:02:21', 'Sin leer'),
-(12, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '11', '', '2023-11-19 03:03:02', 'Sin leer'),
-(13, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '111', '', '2023-11-19 03:04:34', 'Sin leer'),
-(14, 'pmonjes@ing.ucsc.cl', 'denuncia', 'paradero', 'aaaaaaav', '', '2023-11-19 03:05:31', 'Sin leer'),
-(15, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'prueba1', '', '2023-11-19 03:09:34', 'Sin leer'),
-(16, 'pmonjes@ing.ucsc.cl', 'sugerencia', 'parque', 'prueba 2', '', '2023-11-19 03:10:21', 'Sin leer'),
-(17, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'prueba3', '', '2023-11-19 03:13:46', 'Sin leer'),
-(18, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '', '2023-11-19 03:33:55', 'En proceso'),
-(19, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aa', '', '2023-11-20 03:08:45', 'Sin leer'),
-(20, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'aaaaaa', '', '2023-11-20 03:18:53', 'Sin leer'),
-(21, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'asdasd', '', '2023-11-29 22:04:13', 'Sin leer');
 
 -- --------------------------------------------------------
 
@@ -490,12 +417,6 @@ ALTER TABLE `denuncias`
   ADD KEY `id_usuario_reporta` (`id_usuario_reporta`);
 
 --
--- Indices de la tabla `departamento_participacion`
---
-ALTER TABLE `departamento_participacion`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
@@ -513,13 +434,6 @@ ALTER TABLE `emprendedores`
 ALTER TABLE `eventos`
   ADD PRIMARY KEY (`idEvento`),
   ADD KEY `FK_id_editor` (`id_editor`);
-
---
--- Indices de la tabla `mapa`
---
-ALTER TABLE `mapa`
-  ADD PRIMARY KEY (`id_mapa`),
-  ADD KEY `email` (`email`);
 
 --
 -- Indices de la tabla `misionvision`
@@ -544,7 +458,8 @@ ALTER TABLE `palabrasalcalde`
 -- Indices de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_departamento` (`id_departamento`);
 
 --
 -- Indices de la tabla `restrablecer_password`
@@ -622,12 +537,6 @@ ALTER TABLE `eventos`
   MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `mapa`
---
-ALTER TABLE `mapa`
-  MODIFY `id_mapa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT de la tabla `misionvision`
 --
 ALTER TABLE `misionvision`
@@ -649,7 +558,7 @@ ALTER TABLE `palabrasalcalde`
 -- AUTO_INCREMENT de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `restrablecer_password`
@@ -714,16 +623,16 @@ ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `mapa`
---
-ALTER TABLE `mapa`
-  ADD CONSTRAINT `mapa_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
-
---
 -- Filtros para la tabla `noticias`
 --
 ALTER TABLE `noticias`
   ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `participacion`
+--
+ALTER TABLE `participacion`
+  ADD CONSTRAINT `fk_depto` FOREIGN KEY (`id_departamento`) REFERENCES `dirmunicipales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `restrablecer_password`
