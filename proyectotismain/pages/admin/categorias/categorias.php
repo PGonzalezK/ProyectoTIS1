@@ -39,10 +39,10 @@ $resultado = $_GET['resultado'] ?? null;
                     </td>
                     <td>
                         <a class="p-2 m-1 btn btn-outline-warning"
-                            href="index.php?p=admin/direccionesMunicipales/actions/update&id=<?php echo $dirmunicipal['id_categoria']; ?>"
+                            href="index.php?p=admin/categorias/actions/update&id_categoria=<?php echo $categorias['id_categoria']; ?>"
                             role="button">Editar</a>
                         <a class="p-2 m-1 btn btn-outline-danger"
-                            href="index.php?p=admin/direccionesMunicipales/actions/delete&id=<?php echo $dirmunicipal['id_categoria']; ?>"
+                            href="index.php?p=admin/categorias/actions/delete&id_categoria=<?php echo $categorias['id_categoria']; ?>"
                             role="button">Eliminar</a>
                     </td>
                 </tr>

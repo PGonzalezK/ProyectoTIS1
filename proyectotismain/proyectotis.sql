@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2023 a las 00:29:54
+-- Tiempo de generación: 01-12-2023 a las 00:42:26
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -90,8 +90,7 @@ INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
 (1, 'Política'),
 (2, 'Deportes'),
 (3, 'Tecnología'),
-(4, 'Entretenimiento'),
-(5, 'a');
+(4, 'Entretenimiento');
 
 -- --------------------------------------------------------
 
