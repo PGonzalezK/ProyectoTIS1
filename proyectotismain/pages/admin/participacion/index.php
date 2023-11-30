@@ -34,7 +34,6 @@ $result = mysqli_query($connection, $query);
                     <th>ID</th>
                     <th>Email</th>
                     <th>Tipo de contribución</th>
-                    <th>Departamento</th>
                     <th>Descripción</th>
                     <th>Texto aparte</th>
                     <th>Fecha</th>
@@ -48,7 +47,6 @@ $result = mysqli_query($connection, $query);
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['tipo_contribucion']; ?></td>
-                    <td><?php echo $row['departamento']; ?></td>
                     <td>
                         <?php
                             $descripcion_corta = substr($row['descripcion'], 0, 50);

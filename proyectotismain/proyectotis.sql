@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2023 a las 06:38:53
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 30-11-2023 a las 21:31:38
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,26 @@ CREATE TABLE `acciones_usuarios` (
 INSERT INTO `acciones_usuarios` (`email_usuario`, `id_noticia`, `accion`) VALUES
 ('pmonjes@ing.ucsc.cl', 6, 'like'),
 ('pmonjes@ing.ucsc.cl', 7, 'like');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asuntos`
+--
+
+CREATE TABLE `asuntos` (
+  `id` int(11) NOT NULL,
+  `asunto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `asuntos`
+--
+
+INSERT INTO `asuntos` (`id`, `asunto`) VALUES
+(1, 'Acera en mal estado'),
+(2, 'Calle en mal estado'),
+(3, 'Auto abandonado');
 
 -- --------------------------------------------------------
 
@@ -137,26 +157,6 @@ INSERT INTO `denuncias` (`id`, `id_comentario`, `id_usuario_reporta`, `fecha`) V
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `departamento_participacion`
---
-
-CREATE TABLE `departamento_participacion` (
-  `id` int(11) NOT NULL,
-  `nombre_departamento` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `departamento_participacion`
---
-
-INSERT INTO `departamento_participacion` (`id`, `nombre_departamento`) VALUES
-(1, 'Acera en mal estado'),
-(2, 'Calle en mal estado'),
-(3, 'Auto abandonado');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `dirmunicipales`
 --
 
@@ -176,7 +176,11 @@ CREATE TABLE `dirmunicipales` (
 --
 
 INSERT INTO `dirmunicipales` (`id`, `nombre`, `descripcion`, `director`, `telefono`, `email`, `direccion`, `funciones`) VALUES
-(2, 'DIRECCIÓN DE DESARROLLO COMUNITARIO', 'La Dirección de Desarrollo Comunitario tiene como objetivo la promoción del desarrollo comunitario, el fortalecimiento de las organizaciones comunitarias, la proposición de medidas relacionadas con asistencia social y contingencia, la salud pública, la protección del medio ambiente, educación y cultura, capacitación laboral, deporte y recreación, promoción del empleo, fomento productivo local y turismo.', 'Paula Concha Constanzo', 2147483647, 'pconcha@concepcion.com', 'O’Higgins 525, 2° piso, Concepción', 'Asesorar al Alcalde y también al Concejo Municipal en la promoción del desarrollo comunitario.\r\nPrestar asesoría técnica a las organizaciones comunitarias, fomentar su desarrollo y legalización, y promover su efectiva participación en el municipio.\r\nProponer y ejecutar, dentro de su ámbito y cuando corresponda, medidas tendientes a materializar acciones relacionadas con la salud pública- protección del medio ambiente, educación y cultura, capacitación laboral, deportes y recreación, promoción del empleo, fomento productivo local y turismo.\r\nPrestar el servicio diseñado por el Sistema de información Social según la normativa que lo regula y proporcionar datos estadísticos y/o diagnósticos sociales para necesidades generales de la Dideco o de la Municipalidad.\r\nRealizar los procesos pertinentes en la gestión de abastecimiento, según las normas de la Plataforma Mercado Público y Reglamentos de Adquisiciones vigentes en el municipio.');
+(2, 'Dirección de Desarrollo Comunitario', 'La Dirección de Desarrollo Comunitario tiene como objetivo la promoción del desarrollo comunitario, el fortalecimiento de las organizaciones comunitarias, la proposición de medidas relacionadas con asistencia social y contingencia, la salud pública, la protección del medio ambiente, educación y cultura, capacitación laboral, deporte y recreación, promoción del empleo, fomento productivo local y turismo.', 'Paula Concha Constanzo', 2147483647, 'pconcha@concepcion.com', 'O’Higgins 525, 2° piso, Concepción', 'Asesorar al Alcalde y también al Concejo Municipal en la promoción del desarrollo comunitario.\r\nPrestar asesoría técnica a las organizaciones comunitarias, fomentar su desarrollo y legalización, y promover su efectiva participación en el municipio.\r\nProponer y ejecutar, dentro de su ámbito y cuando corresponda, medidas tendientes a materializar acciones relacionadas con la salud pública- protección del medio ambiente, educación y cultura, capacitación laboral, deportes y recreación, promoción del empleo, fomento productivo local y turismo.\r\nPrestar el servicio diseñado por el Sistema de información Social según la normativa que lo regula y proporcionar datos estadísticos y/o diagnósticos sociales para necesidades generales de la Dideco o de la Municipalidad.\r\nRealizar los procesos pertinentes en la gestión de abastecimiento, según las normas de la Plataforma Mercado Público y Reglamentos de Adquisiciones vigentes en el municipio.'),
+(3, 'Dirección de Administración de Salud', 'La Dirección de Desarrollo Comunitario tiene como objetivo la promoción del desarrollo comunitario, el fortalecimiento de las organizaciones comunitarias, la proposición de medidas relacionadas con asistencia social y contingencia, la salud pública, la protección del medio ambiente, educación y cultura, capacitación laboral, deporte y recreación, promoción del empleo, fomento productivo local y turismo.', 'Director: Aldo Mardones Alarcón', 41, 'amardones@concepcion.cl', 'O´Higgins 525, 2° piso', 'Asesorar al Alcalde y también al Concejo Municipal en la promoción del desarrollo comunitario.\r\nPrestar asesoría técnica a las organizaciones comunitarias, fomentar su desarrollo y legalización, y promover su efectiva participación en el municipio.\r\nProponer y ejecutar, dentro de su ámbito y cuando corresponda, medidas tendientes a materializar acciones relacionadas con la salud pública- protección del medio ambiente, educación y cultura, capacitación laboral, deportes y recreación, promoción del empleo, fomento productivo local y turismo.\r\nPrestar el servicio diseñado por el Sistema de información Social según la normativa que lo regula y proporcionar datos estadísticos y/o diagnósticos sociales para necesidades generales de la Dideco o de la Municipalidad.\r\nRealizar los procesos pertinentes en la gestión de abastecimiento, según las normas de la Plataforma Mercado Público y Reglamentos de Adquisiciones vigentes en el municipio.'),
+(4, 'Dirección de Obras municipales', 'Es una unidad de línea, de dependencia administrativa directa del Alcalde, y dependencia técnica del MINVU a través de la O.G.U. y C, Ley Gral. De Urbanismo y Construcciones. Es una unidad de línea, de dependencia administrativa directa del Alcalde, y dependencia técnica del MINVU a través de la O.G.U. y C, Ley Gral. De Urbanismo y Construcciones. Tiene como objetivo La Dirección de Obras Municipales, tendrá como objetivo procurar el desarrollo urbano de la comuna y velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del Plan Regulador Comunal y de las ordenanzas correspondientes. Es una unidad de línea, de dependencia administrativa directa del Alcalde, y dependencia técnica del MINVU a través de la O.G.U. y C, Ley Gral. De Urbanismo y Construcciones. Tiene como objetivo La Dirección de Obras Municipales, tendrá como objetivo procurar el desarrollo urbano de la comuna y velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del Plan Regulador Comunal y de las ordenanzas correspondientes. Es una unidad de línea, de dependencia administrativa directa del Alcalde, y dependencia técnica del MINVU a través de la O.G.U. y C, Ley Gral. De Urbanismo y Construcciones. Tiene como objetivo La Dirección de Obras Municipales, tendrá como objetivo procurar el desarrollo urbano de la comuna y velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del Plan Regulador Comunal y de las ordenanzas correspondientes. Es una unidad de línea, de dependencia administrativa directa del Alcalde, y dependencia técnica del MINVU a través de la O.G.U. y C, Ley Gral. De Urbanismo y Construcciones. Tiene como objetivo La Dirección de Obras Municipales, tendrá como objetivo procurar el desarrollo urbano de la comuna y velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del Plan Regulador Comunal y de las ordenanzas correspondientes. Tiene como objetivo La Dirección de Obras Municipales, tendrá como objetivo procurar el desarrollo urbano de la comuna y velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del Plan Regulador Comunal y de las ordenanzas correspondientes. Es una unidad de línea, de dependencia administrativa directa del Alcalde, y dependencia técnica del MINVU a través de la O.G.U. y C, Ley Gral. De Urbanismo y Construcciones. Tiene como objetivo La Dirección de Obras Municipales, tendrá como objetivo procurar el desarrollo urbano de la comuna y velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del Plan Regulador Comunal y de las ordenanzas correspondientes. Es una unidad de línea, de dependencia administrativa directa del Alcalde, y dependencia técnica del MINVU a través de la O.G.U. y C, Ley Gral. De Urbanismo y Construcciones. Tiene como objetivo La Dirección de Obras Municipales, tendrá como objetivo procurar el desarrollo urbano de la comuna y velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del Plan Regulador Comunal y de las ordenanzas correspondientes.', 'Juan Andreoli González', 2147483647, 'jandreoli@concepcion.cl', 'Barros Arana 544, Tercer piso.', 'Velar por el cumplimiento de las disposiciones de la Ley General de Urbanismo y Construcciones, del plan regulador comunal y de las Ordenanzas correspondientes.\r\nFiscalizar las obras en ejecución, a fin de verificar el cumplimiento de las disposiciones legales y técnicas que las rijan.\r\nVelar por el cumplimiento de la normativa ambiental vigente.\r\nConfeccionar y mantener actualizado el catastro de las obras de urbanización y edificación realizadas en la comuna.\r\nVelar por el cumplimiento de la normativa vigente sobre vialidad establecida por el Plan Regulador Comunal.\r\nEn general, aplicar las normas generales sobre construcción y urbanización en la comuna.\r\nVelar por el cumplimiento del Plan Regulador Comunal y de las ordenanzas correspondientes, en sus aspectos territoriales y las normas legales sobre la materia a través de las siguientes medidas:\r\nAprobar las subdivisiones de predios urbanos y expansión urbana.\r\nAprobar los proyectos de obras de urbanización que se efectúen en las zonas urbanas y de expansión urbana, previo informe de la Asesoría Urbana, y de construcción en general, que se efectúen en las áreas urbanas y urbano-rurales.\r\nAprobar los proyectos de construcción de obras nuevas de ampliación, reparación transformación, demolición, etc., de las obras existentes, y otorgar los permisos de edificación de las construcciones antes señaladas.\r\nFiscalizar las obras de urbanización y construcción en ejecución hasta el momento de su recepción, y\r\nOtorgar la recepción de las obras ya citadas y autorizar su uso.\r\nConfeccionar, implementar y mantener actualizado el catastro de las obras de urbanización y edificación realizadas en la comuna.'),
+(5, 'Dirección de Aseo y Ornato', 'La Dirección de Aseo, Ornato y Medio Ambiente tiene como objetivo, velar por el aseo y orden de los espacios públicos de la comuna, proporcionando una adecuada y eficiente extracción y disposición de los residuos domiciliarios, así como también la administración, ornamentación y mantención de las áreas verdes, todo lo anterior en contribución al mejoramiento del medio ambiente, haciendo de Concepción una comuna sustentable.', 'Mauricio Talpen Sanhueza', 2147483647, 'mtalpen@concepcion.cl', 'Ejército 1058, Concepción', 'Diseñar programas para la disposición final de la basura.\r\nOrganizar el aseo de vías públicas, la mantención de parques, jardines y en general, el aseo de los bienes nacionales de uso público existentes en la comuna.\r\nAdministrar las áreas verdes de la comuna y proponer programas de construcción, reparación, mantención y cuidado de éstas.\r\nEvaluar permanentemente los procedimientos empleados en su unidad, de manera tal, que éstos se encuentren actualizados y estén acordes con una buena gestión.\r\nControlar el rendimiento y la eficiencia en las labores del personal de su dependencia.\r\nControlar la correcta disposición final de la basura inerte que se deposite en el vertedero.\r\nColaborar en la protección y defensa de las áreas verdes públicas de la comuna y en la elaboración de proyectos de ornamentación.\r\nApoyar a la solución de problemas medioambientales de la Comuna\r\nControlar el retiro oportuno de escombros y micro basurales, denunciando ante la autoridad sanitaria correspondiente para la iniciación de los procesos que fuesen pertinentes.\r\nDisponer el control y correcto funcionamiento del equipo rodante que efectúa labores de aseo y recolección de basuras.\r\nOtras funciones que impliquen desarrollar acciones tendientes a la solución de problemas que afecten a la comunidad en el área de su competencia.\r\nRecepcionar áreas verdes producto de loteos habitacionales.\r\nRecepcionar áreas verdes construidas por otros organismos públicos.'),
+(6, 'Dirección de Seguridad Pública', 'Contribuir a incrementar los niveles de seguridad de la ciudad, previniendo actos de violencia e incivilidades, en particular respecto de los grupos más vulnerables. La Dirección de Seguridad Pública depende directamente del Alcalde y tiene a su cargo:  Sección de Seguridad Pública Sección de Seguridad Ciudadana Central de llamadas y cámaras de televigilancia', 'Daisy Cardenas', 412263055, 'dcardenas@concepcion.cl', 'Ejército #1020, Concepción', 'Colaborar directamente con el alcalde en las tareas de implementación, evaluación, promoción, capacitación y apoyo de acciones de prevención social y situacional, la celebración de convenios con otras entidades públicas para la aplicación de planes de reinserción social y de asistencia a víctimas, así como también la adopción de medidas en el ámbito de la seguridad pública a nivel comunal.\r\n\r\nColaborar directamente con el alcalde en la elaboración, aprobación, ejecución y evaluación del Plan Comunal de Seguridad Pública.\r\n\r\nPreparar información y proponer políticas, estudios, proyectos y programas en materia de seguridad pública.\r\n\r\nEstablecer mesas de trabajo vinculadas a la seguridad pública y seguridad ciudadana.\r\n\r\nAdministrar los contratos relacionados con servicios de seguridad pública y seguridad ciudadana.');
 
 -- --------------------------------------------------------
 
@@ -276,7 +280,7 @@ INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`
 (6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '51731b9122b22500e906db278f4c82cf.jpg', '2023-11-24 02:24:41', 9, 40, 4, 1, 4, 1),
 (7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 30, 2, 0, 4, 1),
 (8, 'Metro', 'metrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometro', '1cdea6084b17f934e5746a421d166d6e.jpg', '2023-11-29 21:43:51', 9, 3, 0, 0, 4, 1),
-(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 2, 0, 0, NULL, 0);
+(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 3, 0, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -310,39 +314,12 @@ CREATE TABLE `participacion` (
   `id` int(11) NOT NULL,
   `email` varchar(60) NOT NULL,
   `tipo_contribucion` enum('denuncia','felicitacion','sugerencia') NOT NULL,
-  `departamento` enum('paradero','parque','vial','alumbrado') NOT NULL,
+  `id_departamento` int(11) NOT NULL,
   `descripcion` text NOT NULL,
   `otro_dpto_text` text NOT NULL,
   `fecha` datetime NOT NULL,
   `estado_revision` varchar(255) DEFAULT 'Sin leer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `participacion`
---
-
-INSERT INTO `participacion` (`id`, `email`, `tipo_contribucion`, `departamento`, `descripcion`, `otro_dpto_text`, `fecha`, `estado_revision`) VALUES
-(1, 'pmonjes@ing.ucsc.cl', 'denuncia', 'paradero', 'aaaa', '', '2023-11-19 02:24:48', 'Sin leer'),
-(2, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'vial', '1', '', '2023-11-19 02:28:24', 'Sin leer'),
-(3, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'a', '', '2023-11-19 02:29:55', 'Sin leer'),
-(4, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'a', '', '2023-11-19 02:29:59', 'Sin leer'),
-(5, 'pmonjes@ing.ucsc.cl', 'sugerencia', 'parque', 'a', '', '2023-11-19 02:31:25', 'Sin leer'),
-(6, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'a', '', '2023-11-19 02:32:39', 'Sin leer'),
-(7, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', '2', '', '2023-11-19 02:36:09', 'Sin leer'),
-(8, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '3', '', '2023-11-19 02:40:25', 'Sin leer'),
-(9, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'a', '', '2023-11-19 02:45:53', 'Sin leer'),
-(10, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'paradero', '123', '', '2023-11-19 02:52:22', 'Sin leer'),
-(11, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'vial', '111', '', '2023-11-19 03:02:21', 'Sin leer'),
-(12, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '11', '', '2023-11-19 03:03:02', 'Sin leer'),
-(13, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', '111', '', '2023-11-19 03:04:34', 'Sin leer'),
-(14, 'pmonjes@ing.ucsc.cl', 'denuncia', 'paradero', 'aaaaaaav', '', '2023-11-19 03:05:31', 'Sin leer'),
-(15, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'prueba1', '', '2023-11-19 03:09:34', 'Sin leer'),
-(16, 'pmonjes@ing.ucsc.cl', 'sugerencia', 'parque', 'prueba 2', '', '2023-11-19 03:10:21', 'Sin leer'),
-(17, 'pmonjes@ing.ucsc.cl', 'felicitacion', 'parque', 'prueba3', '', '2023-11-19 03:13:46', 'Sin leer'),
-(18, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '', '2023-11-19 03:33:55', 'En proceso'),
-(19, 'pmonjes@ing.ucsc.cl', 'denuncia', 'vial', 'aa', '', '2023-11-20 03:08:45', 'Sin leer'),
-(20, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'aaaaaa', '', '2023-11-20 03:18:53', 'Sin leer'),
-(21, 'pmonjes@ing.ucsc.cl', 'denuncia', 'parque', 'asdasd', '', '2023-11-29 22:04:13', 'Sin leer');
 
 -- --------------------------------------------------------
 
@@ -443,6 +420,12 @@ ALTER TABLE `acciones_usuarios`
   ADD PRIMARY KEY (`email_usuario`,`id_noticia`);
 
 --
+-- Indices de la tabla `asuntos`
+--
+ALTER TABLE `asuntos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `backgrounds`
 --
 ALTER TABLE `backgrounds`
@@ -471,12 +454,6 @@ ALTER TABLE `denuncias`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id_comentario` (`id_comentario`),
   ADD KEY `id_usuario_reporta` (`id_usuario_reporta`);
-
---
--- Indices de la tabla `departamento_participacion`
---
-ALTER TABLE `departamento_participacion`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `dirmunicipales`
@@ -520,7 +497,8 @@ ALTER TABLE `palabrasalcalde`
 -- Indices de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_departamento` (`id_departamento`);
 
 --
 -- Indices de la tabla `restrablecer_password`
@@ -583,7 +561,7 @@ ALTER TABLE `denuncias`
 -- AUTO_INCREMENT de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `emprendedores`
@@ -619,7 +597,7 @@ ALTER TABLE `palabrasalcalde`
 -- AUTO_INCREMENT de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `restrablecer_password`
@@ -687,6 +665,12 @@ ALTER TABLE `eventos`
 --
 ALTER TABLE `noticias`
   ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `participacion`
+--
+ALTER TABLE `participacion`
+  ADD CONSTRAINT `fk_departamento` FOREIGN KEY (`id_departamento`) REFERENCES `dirmunicipales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `restrablecer_password`

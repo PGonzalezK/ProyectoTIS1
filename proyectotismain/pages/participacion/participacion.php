@@ -5,7 +5,7 @@ require("database\connection.php");
 // Comprueba si el usuario está logueado
 $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
 
-$query = "SELECT id, nombre_departamento FROM departamento_participacion";
+$query = "SELECT id, asunto FROM asuntos";
 $result = mysqli_query($connection, $query);
 
 // Verificar si la consulta fue exitosa
@@ -60,7 +60,22 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
                                 // Verificar si hay departamentos disponibles
                                 if (isset($departamentos) && !empty($departamentos)) {
                                     foreach ($departamentos as $departamento) {
-                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['nombre_departamento'] . '</option>';
+                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['id_departamento'] . '</option>';
+                                    }
+                                }
+                                ?>
+                                <option value="otro">Otro Departamento</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="departamento"><h4>Asunto:</h4></label>
+                            <select id="departamento" class="form-control">
+                                <option value="" disabled selected>Elija asunto.</option>
+                                <?php
+                                // Verificar si hay departamentos disponibles
+                                if (isset($departamentos) && !empty($departamentos)) {
+                                    foreach ($departamentos as $departamento) {
+                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['asunto'] . '</option>';
                                     }
                                 }
                                 ?>
