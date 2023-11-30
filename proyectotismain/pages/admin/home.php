@@ -1,5 +1,5 @@
 <?php
-// Descomentar linea 3 si es que se quiere usar la autenticación para esta página
+// Descomentar línea 3 si es que se quiere usar la autenticación para esta página
 //session_start();
 require("middleware\auth.php");
 if ($_SESSION['id_rol'] !== '1') {
@@ -7,7 +7,13 @@ if ($_SESSION['id_rol'] !== '1') {
     header("Location: index.php");
     exit();
 }
+
+// ...
+
+
+
 ?>
+
 <div class="text-center">
     <div class="centrado">
         <div class="px-4 py-5 text-center ">
@@ -29,5 +35,7 @@ if ($_SESSION['id_rol'] !== '1') {
                 </div>
             </div>
         </div>
+
+        
     </div>
 </div>
