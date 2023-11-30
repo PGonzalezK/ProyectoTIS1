@@ -189,12 +189,12 @@ button.btn:hover {
 .brand .b-ads .d-flex {
     align-items: center;
     justify-content: flex-end;
-    height: 100%; /* Asegura que el contenedor ocupa toda la altura */
+    height: 100%; 
 }
 
 .brand .b-ads .btn {
-    margin-left: 10px; /* Ajusta el margen según sea necesario */
-    margin-right: 0px;   /* Agregado para eliminar margen derecho */
+    margin-left: 10px; 
+    margin-right: 0px;  
     background-color: #00a8a8;
     color: #ffffff;
     width: 10rem;
@@ -785,6 +785,15 @@ button.btn:hover {
     margin-bottom: 15px;
 }
 
+.single-news .sn-button .btn {
+    background-color: #00a8a8;
+    color: #ffffff;
+    width: 10rem;
+}
+
+.single-news .sn-button .btn:hover {
+    background-color: #008080;
+}
 .single-news .sn-img {
     position: relative;
     overflow: hidden;

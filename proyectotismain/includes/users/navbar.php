@@ -13,7 +13,7 @@
                     
             </div>
             <div class="col-lg-6 col-md-4">
-                <div class="b-ads d-flex justify-content-end"> <!-- Añadido justify-content-end aquí -->
+                <div class="b-ads d-flex justify-content-end">
                     <?php
                     if (isset($_SESSION["email"])) {
                         ?>
