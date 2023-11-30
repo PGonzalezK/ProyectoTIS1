@@ -33,12 +33,8 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
 }
 </style>
 
-<div class="container text-center">
-    <div class="row">
-        <div class="col">
-        </div>
-        <?php require('includes/users/navbar_users.php'); ?>
-    </div>
+<div>
+    <?php require('includes/users/navbar_users.php'); ?>
 </div>
 <div class="participacionbackg">
     <div class="container justify-content-between align-items-center">
