@@ -67,15 +67,167 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         <?php if (!$email_usuario) { ?>
                             <!-- Si el usuario no ha iniciado sesión, mostrar un mensaje y los botones de registro e inicio de sesión -->
                             <div class="news-list">
-                            <p>Inicia sesión o crea una cuenta en Nexo Municipal para comentar. Como una forma de mantener un debate respetuoso, eliminaremos mensajes agresivos u ofensivos.</p>
-                            <div class="brand">
-                                <div class="b-ads ">
-                                <div class="d-flex p-5">
-                                <a href="index.php?p=auth/login" class="btn">Iniciar Sesión</a>
-                                <a href="index.php?p=auth/register" class="btn">Registrarse</a>
+                                <p>Inicia sesión o crea una cuenta en Nexo Municipal para comentar. Como una forma de mantener un debate respetuoso, eliminaremos mensajes agresivos u ofensivos.</p>
+                                <div class="brand">
+                                    <div class="b-ads ">
+                                        <div class="d-flex p-5">
+                                            <a href="index.php?p=auth/login" class="btn">Iniciar Sesión</a>
+                                            <a href="index.php?p=auth/register" class="btn">Registrarse</a>
+                                        </div>
                                     </div>
                                 </div>
+                            <?php } else { ?>
+                                <div class="news-list">
+                                    <div>
+                                        <!--caja comentarios-->
+                                        <div class="sn-button">
+                                            <form name="form1" method="POST" action="">
+                                                <label for="textarea"></label>
+                                                <p>
+                                                    <textarea name="comentario" col="80" rows="5" id="textarea"></textarea>
+                                                </p>
+                                                <p>
+                                                <div class="d-ads">
+                                                    <input type="submit" <?php if (isset($_GET['id'])) { ?> name="reply" <?php } else { ?> name="comentar" <?php } ?> class="btn" value="Comentar">
+                                                </div>
+                                                </p>
+                                            </form>
+                                        </div>
+                                    </div>
+
+
+                                    <?php
+                                    if (isset($_POST['comentar']) || isset($_POST['reply'])) {
+                                        $email_usuario = isset($_SESSION['email']) ? $_SESSION['email'] : null;
+                                        $id_usuario = null;
+
+                                        if ($email_usuario) {
+                                            $query_id = mysqli_query($connection, "SELECT id FROM users WHERE email = '$email_usuario'");
+                                            $id_usuario_row = mysqli_fetch_assoc($query_id);
+                                            $id_usuario = $id_usuario_row['id'];
+                                        }
+
+                                        if (!$email_usuario || !$id_usuario) {
+                                            echo "Error: El usuario no está autenticado o no se encontró el ID del usuario.";
+                                        } else {
+                                            $comentario = mysqli_real_escape_string($connection, $_POST['comentario']);
+                                            $id_noticia = $idNoticia;
+
+                                            mysqli_begin_transaction($connection);
+
+                                            try {
+                                                $query_comentario = mysqli_query($connection, "INSERT INTO comentarios (comentario, id_users, id_noticia, fecha) VALUES ('$comentario', '$id_usuario', '$id_noticia', NOW())");
+
+                                                if (!$query_comentario) {
+                                                    throw new Exception("Error al insertar el comentario: " . mysqli_error($connection));
+                                                }
+
+                                                $id_comentario_insertado = mysqli_insert_id($connection);
+
+                                                if ($id_comentario_insertado <= 0) {
+                                                    throw new Exception("Error al obtener el ID del comentario recién insertado.");
+                                                }
+
+                                                $query_enlace = mysqli_query($connection, "INSERT INTO comentario_usuario_enlace (id_comentario, id_user) VALUES ('$id_comentario_insertado', '$id_usuario')");
+
+                                                if (!$query_enlace) {
+                                                    throw new Exception("Error al insertar la relación en la tabla de enlace: " . mysqli_error($connection));
+                                                }
+
+                                                mysqli_commit($connection);
+                                            } catch (Exception $e) {
+                                                mysqli_rollback($connection);
+                                                echo $e->getMessage();
+                                            }
+                                        }
+                                    }
+                                    ?>
+
+                                    <br>
+
+                                    <div id="container">
+                                        <ul id="comments">
+                                            <?php
+                                            $comentarios = mysqli_query($connection, "SELECT * FROM comentarios WHERE reply = 0 AND id_noticia = '$id' ORDER BY id DESC");
+
+                                            while ($row = mysqli_fetch_array($comentarios)) {
+                                                $usuario = mysqli_query($connection, "SELECT * FROM users WHERE id = '" . $row['id_users'] . "'");
+                                                $user = mysqli_fetch_array($usuario);
+                                            ?>
+                                                <li class="cmmnt">
+                                                    <div class="avatar"></div>
+                                                    <div class="cmmnt-content">
+                                                        <header>
+                                                            <?php echo $user['nombre'] . ' ' . $user['apellido'] . ' - ' . $row['fecha']; ?>
+                                                        </header>
+                                                        <p>
+                                                            <?php echo $row['comentario']; ?>
+                                                        </p>
+                                                        <div class="comment-actions">
+                                                            <form method="POST" action="">
+                                                                <a href="#" onclick="mostrarDenunciarModal(<?php echo $row['id']; ?>); return false;">Denunciar</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+
+                                                    <?php
+                                                    $respuestas = mysqli_query($connection, "SELECT * FROM comentarios WHERE reply = '" . $row['id'] . "'");
+                                                    while ($rep = mysqli_fetch_array($respuestas)) {
+                                                        $usuario_respuesta = mysqli_query($connection, "SELECT * FROM users WHERE id = '" . $rep['id_users'] . "'");
+                                                        $user_respuesta = mysqli_fetch_array($usuario_respuesta);
+                                                    ?>
+
+                                                        <ul class="replies">
+                                                            <li class="cmmnt">
+                                                                <header>
+                                                                    <a href="#" class="user-link">
+                                                                        <?php echo $user_respuesta['nombre'] . ' ' . $user_respuesta['apellido'] . ' - ' . $rep['fecha']; ?></a>
+                                                                </header>
+                                                                <p>
+                                                                    <?php echo $rep['comentario']; ?>
+                                                                </p>
+                                                                <div class="comment-actions">
+                                                                    <form method="POST" action="">
+                                                                        <a href="#" onclick="mostrarDenunciarModal(<?php echo $rep['id']; ?>); return false;">Denunciar</a>
+                                                                    </form>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+
+                                                    <?php } ?>
+
+                                                </li>
+
+                                            <?php } ?>
+
+                                            <?php
+                                            if (isset($_POST['comment_id'])) {
+                                                $email_usuario_reporta = obtenerEmailUsuarioActual();
+
+                                                if (!$email_usuario_reporta) {
+                                                    echo "<script>alert('Tienes que iniciar sesión para denunciar este comentario.');</script>";
+                                                } else {
+                                                    $comment_id_to_report = mysqli_real_escape_string($connection, $_POST['comment_id']);
+                                                    $id_usuario_reporta = obtenerIdUsuarioPorEmail($connection, $email_usuario_reporta);
+
+                                                    $query_denuncia = mysqli_query($connection, "INSERT INTO denuncias (id_comentario, id_usuario_reporta) VALUES ('$comment_id_to_report', '$id_usuario_reporta')");
+
+                                                    if ($query_denuncia) {
+                                                        echo "<script>alert('Comentario con ID $comment_id_to_report denunciado correctamente.');</script>";
+                                                    } else {
+                                                        echo "<script>alert('Error al denunciar el comentario: " . mysqli_error($connection) . "');</script>";
+                                                    }
+                                                }
+                                            }
+                                            ?>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            <?php } ?>
+
                             </div>
+<<<<<<< HEAD
                         <?php } else { ?>
                             <div class="news-list">
                             <div>
@@ -92,10 +244,20 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                             </div>
                                         </p>
                                     </form>
+=======
+
+
+
+
+
+                            <div class="sidebar-widget">
+                                <div class="image">
+                                    <a href="https://htmlcodex.com"><img src="img/ads-2.jpg" alt="Image"></a>
+>>>>>>> 00bd393d2baed25746b983f8a248afe9e0280405
                                 </div>
                             </div>
-                         
 
+<<<<<<< HEAD
     <?php
     $id_noticia = $id;
     if (isset($_POST['comentar']) || isset($_POST['reply'])) {
@@ -190,79 +352,33 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                                     <form method="POST" action="">
                                         <a href="#" onclick="mostrarDenunciarModal(<?php echo $rep['id']; ?>); return false;">Denunciar</a>
                                     </form>
+=======
+                            <div class="sidebar-widget">
+                                <h2 class="sw-title">Noticias por Categoría</h2>
+                                <div class="category">
+                                    <ul>
+                                        <li><a href="">National</a><span>(98)</span></li>
+                                        <li><a href="">International</a><span>(87)</span></li>
+                                        <li><a href="">Economics</a><span>(76)</span></li>
+                                        <li><a href="">Politics</a><span>(65)</span></li>
+                                        <li><a href="">Lifestyle</a><span>(54)</span></li>
+                                        <li><a href="">Technology</a><span>(43)</span></li>
+                                        <li><a href="">Trades</a><span>(32)</span></li>
+                                    </ul>
+>>>>>>> 00bd393d2baed25746b983f8a248afe9e0280405
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
 
-                    <?php } ?>
-
-                </li>
-
-            <?php } ?>
-
-            <?php
-            if (isset($_POST['comment_id'])) {
-                $email_usuario_reporta = obtenerEmailUsuarioActual();
-
-                if (!$email_usuario_reporta) {
-                    echo "<script>alert('Tienes que iniciar sesión para denunciar este comentario.');</script>";
-                } else {
-                    $comment_id_to_report = mysqli_real_escape_string($connection, $_POST['comment_id']);
-                    $id_usuario_reporta = obtenerIdUsuarioPorEmail($connection, $email_usuario_reporta);
-
-                    $query_denuncia = mysqli_query($connection, "INSERT INTO denuncias (id_comentario, id_usuario_reporta) VALUES ('$comment_id_to_report', '$id_usuario_reporta')");
-
-                    if ($query_denuncia) {
-                        echo "<script>alert('Comentario con ID $comment_id_to_report denunciado correctamente.');</script>";
-                    } else {
-                        echo "<script>alert('Error al denunciar el comentario: " . mysqli_error($connection) . "');</script>";
-                    }
-                }
-            }
-            ?>
-        </ul>
-    </div>
-</div>
-
-                        <?php } ?>
-
-                    </div>
-
-
-
-
-
-                    <div class="sidebar-widget">
-                        <div class="image">
-                            <a href="https://htmlcodex.com"><img src="img/ads-2.jpg" alt="Image"></a>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-widget">
-                        <h2 class="sw-title">Noticias por Categoría</h2>
-                        <div class="category">
-                            <ul>
-                                <li><a href="">National</a><span>(98)</span></li>
-                                <li><a href="">International</a><span>(87)</span></li>
-                                <li><a href="">Economics</a><span>(76)</span></li>
-                                <li><a href="">Politics</a><span>(65)</span></li>
-                                <li><a href="">Lifestyle</a><span>(54)</span></li>
-                                <li><a href="">Technology</a><span>(43)</span></li>
-                                <li><a href="">Trades</a><span>(32)</span></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="sidebar-widget">
-                        <div class="image">
-                            <a href="https://htmlcodex.com"><img src="img/ads-2.jpg" alt="Image"></a>
-                        </div>
+                            <div class="sidebar-widget">
+                                <div class="image">
+                                    <a href="https://htmlcodex.com"><img src="img/ads-2.jpg" alt="Image"></a>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
     </div>
 
 

@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['id_rol'] = $user['id_rol'];
                     
 
-                    if ($user['id_rol'] == 1) {
+                    if ($user['id_rol'] == 1 || $user['id_rol'] == 3 || $user['id_rol'] == 5 || $user['id_rol'] == 6 ) {
                         header("Location: index.php?p=admin/home");
                     } elseif ($user['id_rol'] == 2) {
                         header("Location: index.php?p=home");

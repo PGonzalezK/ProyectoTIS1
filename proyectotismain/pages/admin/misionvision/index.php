@@ -7,7 +7,7 @@
 include("middleware/auth.php");
 include("database/connection.php");
 
-if ($_SESSION['id_rol'] !== '1') {
+if ($_SESSION['id_rol'] !== '1' || $_SESSION['id_rol'] === '3') {
     header("Location: index.php");
     exit();
 }
