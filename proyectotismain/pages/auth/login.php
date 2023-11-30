@@ -1,6 +1,7 @@
 <?php
 require('database/connection.php');
 
+
 $errores = []; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -50,6 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+    <br>
 
 <section class="ftco-section login-backg bg-center">
     <div class="container">

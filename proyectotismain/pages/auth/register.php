@@ -2,6 +2,7 @@
 
 
 require('database/connection.php');
+include("includes/users/navbar_users.php");
 // Si se envía el formulario, inserte valores en la base de datos.
 
 $verification_token = bin2hex(random_bytes(32));
@@ -91,6 +92,7 @@ if (isset($_REQUEST['email'])) {
     }
 }
 ?>
+<br>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Selecciona elementos relevantes

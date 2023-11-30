@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2023 a las 04:49:43
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 30-11-2023 a las 06:38:53
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -191,7 +191,7 @@ CREATE TABLE `emprendedores` (
   `descripcion` text DEFAULT NULL,
   `direccion` varchar(255) NOT NULL,
   `foto` varchar(255) DEFAULT NULL,
-  `aprobado` tinyint(1) DEFAULT 0,
+  `aprobado` tinyint(1) NOT NULL,
   `fecha` datetime NOT NULL,
   `email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -201,8 +201,8 @@ CREATE TABLE `emprendedores` (
 --
 
 INSERT INTO `emprendedores` (`id`, `nombre`, `ano_creacion`, `descripcion`, `direccion`, `foto`, `aprobado`, `fecha`, `email`) VALUES
-(1, 'Venta de juegos', '1 de enero 2015', 'Vendo juegos de Steam ', 'Via internet', 'store_home_share.jpg', 0, '2023-11-29 22:46:26', 'pmonjes@ing.ucsc.cl'),
-(2, 'asd', 'dsda', 'asda', 'asda', '', 0, '2023-11-29 23:08:50', 'pmonjes@ing.ucsc.cl');
+(6, 'Venta de juegos', '1 de enero 2015', 'Vendo juegos de Steam ', 'Via internet', '1be0c432ddc64a9243f5fd0c77319868.jpg', 0, '2023-11-30 06:30:26', 'pmonjes@ing.ucsc.cl'),
+(7, 'Vendo entradas', '22 de noviembre del 2023', 'Vendo entradas para concierto', 'Calle siempre viva #2247', 'ddcdd598257d5563e6a2ed6a8bbe07ee.jpg', 1, '2023-11-30 06:31:04', 'pmonjes@ing.ucsc.cl');
 
 -- --------------------------------------------------------
 
@@ -275,8 +275,8 @@ CREATE TABLE `noticias` (
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`) VALUES
 (6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '51731b9122b22500e906db278f4c82cf.jpg', '2023-11-24 02:24:41', 9, 40, 4, 1, 4, 1),
 (7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 30, 2, 0, 4, 1),
-(8, 'Metro', 'metrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometro', '1cdea6084b17f934e5746a421d166d6e.jpg', '2023-11-29 21:43:51', 9, 1, 0, 0, 4, 1),
-(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 0, 0, 0, NULL, 0);
+(8, 'Metro', 'metrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometro', '1cdea6084b17f934e5746a421d166d6e.jpg', '2023-11-29 21:43:51', 9, 3, 0, 0, 4, 1),
+(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 2, 0, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -589,7 +589,7 @@ ALTER TABLE `dirmunicipales`
 -- AUTO_INCREMENT de la tabla `emprendedores`
 --
 ALTER TABLE `emprendedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `eventos`
