@@ -8,18 +8,38 @@
 ?>
 
 
-<div class="row">
-        <?php while ($row = mysqli_fetch_array($resultado)) { ?>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="pages/admin/emprendedores/imagenes/<?php echo $row['foto']; ?>" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['nombre']; ?></h5>
-                        <p class="card-text"><?php echo $row['descripcion']; ?></p>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Emprendedores Aprobados</h2>
+
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <?php
+            $active = true;
+            while ($row = mysqli_fetch_array($resultado)) {
+            ?>
+                <div class="carousel-item <?php echo $active ? 'active' : ''; ?>">
+                    <img src="pages/admin/emprendedores/imagenes/<?php echo $row['foto']; ?>" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5><?php echo $row['nombre']; ?></h5>
+                        <p><?php echo $row['descripcion']; ?></p>
                         <!-- Puedes agregar más detalles según tus necesidades -->
                     </div>
                 </div>
-            </div>
-        <?php } ?>
+            <?php
+                $active = false;
+            }
+            ?>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
 </div>
+<?php
+mysqli_close($connection);
+?>
