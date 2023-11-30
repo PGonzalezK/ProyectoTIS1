@@ -48,8 +48,9 @@
                         <a class="nav-link <?php echo (strpos($pagina, 'emprendedores') !== false) ? 'active' : null ?>" href="index.php?p=admin/emprendedores/index">Emprendedores</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php echo (strpos($pagina, 'graficos') !== false) ? 'active' : null ?>" href="index.php?p=admin/graficos/graficos">Graficos</a>
+                        <a class="nav-link <?php echo (strpos($pagina, 'mapa') !== false) ? 'active' : null ?>" href="index.php?p=admin/mapa/mapa">Mapa</a>
                     </li>
+                    
                 </ul>
                 <div class="d-flex">
                     <a href="index.php?p=admin/profile_admin" class="btn btn-sm btn-outline-primary me-2">Perfil</a>
