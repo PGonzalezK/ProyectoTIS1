@@ -19,6 +19,8 @@
                     </div>
                     <div class="social ml-auto">
                         <a href=""><i class="fa fa-thumbs-up"></i><?php echo $noticia['likes'];?></a>
+                        <a href="https://www.facebook.com/sharer.php?u=http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=actualidad/noticias/verNoticia&id=<?php echo $noticia['idNoticia']?>" target="_black"> Facebook </a>
+                        <a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Noticia%20NexoMunicipal&url=http://localhost/xampp/ProyectoTIS1/proyectotismain/index.php?p=actualidad/noticias/verNoticia&id=<?php echo $noticia['idNoticia']?>" target="_black">Tweet</a>
                     </div>
                 </div>
             </div>

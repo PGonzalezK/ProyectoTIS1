@@ -31,6 +31,7 @@
                     <th scope="col">Descripción</th>
                     <th scope="col">Imagen</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col">Aprobado</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
@@ -47,6 +48,10 @@
                         <td><img src="pages/admin/emprendedores/imagenes/<?php echo $row['foto']; ?>" class="imagen-tabla" alt="" width="90" height="50"></td>
                         <td><?php echo $row['fecha']; ?></td>
                         <td><?php echo $row['aprobado']; ?></td>
+                        <td>
+                            <a href="index.php?p=admin/emprendedores/actions/aprobado&id=<?php echo $row['id']; ?>" class="btn btn-success">Aprobar</a>
+                            <a href="index.php?p=admin/emprendedores/actions/delete&id=<?php echo $row['id']; ?>" class="btn btn-danger">Eliminar</a>
+                        </td>
                     </tr>
                 <?php } ?>
             </tbody>

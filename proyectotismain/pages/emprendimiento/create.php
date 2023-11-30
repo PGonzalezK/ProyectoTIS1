@@ -4,7 +4,7 @@ require("database\connection.php");
 
 // Comprueba si el usuario está logueado
 $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
-
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $usuarioAutenticado) {
 $query = "SELECT * FROM emprendedores";
 $stmt = $connection->prepare($query);
 $stmt->execute();
@@ -13,9 +13,16 @@ $resultado = $stmt->get_result();
 // Verificar si la consulta fue exitosa
 
 
-if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
-    echo '<div class="alert alert-success">Su participación se envió con éxito. Recibirá un feedback por correo electrónico.</div>';
+    if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
+    echo '<div class="alert alert-success">Su emprendimiento se envió con éxito. Recibirá un feedback por correo electrónico y un correo de confirmacion de que se activo la cuenta.</div>';
+    }
+header("Location: index.php?mensajeExito=1");
+exit();
 }
+if ($_SERVER["REQUEST_METHOD"] == "POST" && !$usuarioAutenticado) {
+    echo '<div class="alert alert-danger">Inicie sesión para enviar su emprendimiento.</div>';
+}
+
 ?>
 
 <div class="container text-center">
@@ -50,7 +57,7 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
     </div>
 
     <div class="col-12">
-        <button class="btn btn-primary" type="submit">Enviar</button>
-    </div>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </div>
     </form>
 </div>

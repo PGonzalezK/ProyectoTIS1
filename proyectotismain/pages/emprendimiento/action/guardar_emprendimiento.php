@@ -10,6 +10,16 @@ $descripcion = $_POST["descripcion"];
 $direccion = $_POST["direccion"];
 $fecha = date("Y-m-d H:i:s");
 
+$usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
+
+// Verifica si el usuario está autenticado
+if (!$usuarioAutenticado) {
+    // Si no está autenticado, redirige a la página de inicio de sesión o muestra un mensaje de error
+    echo 'Inicia sesion';
+    exit();
+}
+
+
 // Verificar si se subió una imagen
 if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
     $foto = $_FILES['foto'];

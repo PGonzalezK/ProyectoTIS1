@@ -30,6 +30,7 @@
                         </div>
                     </div>
                     <a id="participacion-link" class="nav-item nav-link <?php echo (isset($_GET['p']) && $_GET['p'] == 'participacion/participacion') ? 'active' : ''; ?>" href="index.php?p=participacion/participacion">Participación</a>
+                    <a id="participacion-link" class="nav-item nav-link <?php echo (isset($_GET['p']) && $_GET['p'] == 'emprendimiento/create') ? 'active' : ''; ?>" href="index.php?p=emprendimiento/create">Subir mi Emprendimiento</a>
                 </div>
                 <div class="social ml-auto">
                     <a href=""><i class="fab fa-twitter"></i></a>
