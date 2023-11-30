@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-11-2023 a las 23:46:22
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 30-11-2023 a las 04:49:43
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -273,9 +273,10 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`) VALUES
-(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '4716b520bc470b193d25c3363ca50244.jpg', '2023-11-24 02:24:41', 9, 37, 4, 1, 4, 1),
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', 'bfd2457810416306db3389ff38477cbf.jpg', '2023-11-24 02:31:29', 9, 30, 2, 0, 4, 1),
-(8, 'Metro', 'metrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometro', '70e0bc3ce23704677129bbe3902f1f94.jpg', '2023-11-29 21:43:51', 9, 1, 0, 0, 4, 1);
+(6, 'aaaaa', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '51731b9122b22500e906db278f4c82cf.jpg', '2023-11-24 02:24:41', 9, 40, 4, 1, 4, 1),
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 30, 2, 0, 4, 1),
+(8, 'Metro', 'metrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometrometro', '1cdea6084b17f934e5746a421d166d6e.jpg', '2023-11-29 21:43:51', 9, 1, 0, 0, 4, 1),
+(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 0, 0, 0, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -606,7 +607,7 @@ ALTER TABLE `misionvision`
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `palabrasalcalde`
