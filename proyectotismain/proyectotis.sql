@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2023 a las 23:16:59
+-- Tiempo de generación: 30-11-2023 a las 23:30:02
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -41,6 +41,26 @@ INSERT INTO `acciones_usuarios` (`email_usuario`, `id_noticia`, `accion`) VALUES
 ('pmonjes@ing.ucsc.cl', 6, 'like'),
 ('pmonjes@ing.ucsc.cl', 7, 'like'),
 ('pmonjes@ing.ucsc.cl', 9, 'like');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `asuntos`
+--
+
+CREATE TABLE `asuntos` (
+  `id` int(11) NOT NULL,
+  `asunto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `asuntos`
+--
+
+INSERT INTO `asuntos` (`id`, `asunto`) VALUES
+(1, 'Acera en mal estado'),
+(2, 'Calle en mal estado'),
+(3, 'Auto abandonado');
 
 -- --------------------------------------------------------
 
@@ -198,6 +218,32 @@ CREATE TABLE `eventos` (
 
 INSERT INTO `eventos` (`idEvento`, `titulo`, `direccion`, `imagen`, `descripcion`, `creado`, `id_editor`) VALUES
 (7, 'Evento en la playa', 'Parque Isidora Cousiño, Lota', '458ce8b6dd8b1802abba58f2423e3b71.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 9);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mapa`
+--
+
+CREATE TABLE `mapa` (
+  `id_mapa` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nombre_punto` varchar(255) NOT NULL,
+  `descripcion` varchar(255) NOT NULL,
+  `lat` varchar(255) NOT NULL,
+  `lng` varchar(255) NOT NULL,
+  `aprobado` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `mapa`
+--
+
+INSERT INTO `mapa` (`id_mapa`, `email`, `nombre_punto`, `descripcion`, `lat`, `lng`, `aprobado`) VALUES
+(1, 'pmonjes@ing.ucsc.cl', 'Barberia', 'a', '-36.81960852562662', '-73.0465050314474', 1),
+(2, 'pmonjes@ing.ucsc.cl', 'asd', 'asd', '-40', '-20', 0),
+(4, 'pmonjes@ing.ucsc.cl', 'cs', 'sd', '-3', '-1', 0),
+(5, 'pmonjes@ing.ucsc.cl', 'dd', 'dd', '2', '2', 0);
 
 -- --------------------------------------------------------
 
@@ -387,6 +433,12 @@ ALTER TABLE `acciones_usuarios`
   ADD PRIMARY KEY (`email_usuario`,`id_noticia`);
 
 --
+-- Indices de la tabla `asuntos`
+--
+ALTER TABLE `asuntos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `backgrounds`
 --
 ALTER TABLE `backgrounds`
@@ -434,6 +486,13 @@ ALTER TABLE `emprendedores`
 ALTER TABLE `eventos`
   ADD PRIMARY KEY (`idEvento`),
   ADD KEY `FK_id_editor` (`id_editor`);
+
+--
+-- Indices de la tabla `mapa`
+--
+ALTER TABLE `mapa`
+  ADD PRIMARY KEY (`id_mapa`),
+  ADD KEY `email` (`email`);
 
 --
 -- Indices de la tabla `misionvision`
@@ -537,6 +596,12 @@ ALTER TABLE `eventos`
   MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT de la tabla `mapa`
+--
+ALTER TABLE `mapa`
+  MODIFY `id_mapa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `misionvision`
 --
 ALTER TABLE `misionvision`
@@ -621,6 +686,12 @@ ALTER TABLE `denuncias`
 --
 ALTER TABLE `eventos`
   ADD CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `mapa`
+--
+ALTER TABLE `mapa`
+  ADD CONSTRAINT `mapa_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users` (`email`);
 
 --
 -- Filtros para la tabla `noticias`
