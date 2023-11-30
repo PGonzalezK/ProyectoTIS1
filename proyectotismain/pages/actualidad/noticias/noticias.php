@@ -3,21 +3,19 @@
 include("database/connection.php");
 
 ?>
-
 <div>
     <?php require('includes/users/navbar_users.php'); ?>
 </div>
 
-
-<div class="noticiasbackg">
-    <div class="container text-center">
-        <!-- Aquí empiezan las publicaciones de noticias -->
-        <section class="row contenedorNoticias ">
-            <?php
-            $limite = 99;
-            include 'pages/actualidad/noticias/mainNoticias.php';
-            ?>
-        </section>
-        <!-- Termina sección noticias -->
+<div class="top-news">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 tn-left">
+                <?php
+                    $limite = 5;
+                    include 'pages/actualidad/noticias/mainNoticias.php';
+                ?>
+            </div>
+        </div>
     </div>
 </div>

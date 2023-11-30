@@ -36,75 +36,76 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
 <div>
     <?php require('includes/users/navbar_users.php'); ?>
 </div>
-<div class="participacionbackg">
-    <div class="container justify-content-between align-items-center">
-        <form class="was-validated" method="POST" id="miFormulario"
-            action="index.php?p=participacion\action\guardar_participacion">
-            <div class="mb-3">
-                <label for="tipo_contribucion" class="form-label" style="color: white;">TIPO CONTRIBUCIÓN</label>
-                <select class="form-select" id="tipo_contribucion" name="tipo_contribucion"
-                    aria-label="Default select example" required>
-                    <option value="" disabled selected>Elija opción.</option>
-                    <option value="denuncia">DENUNCIA</option>
-                    <option value="felicitacion">FELICITACION</option>
-                    <option value="sugerencia">SUGERENCIA</option>
-                </select>
-                <div class="invalid-feedback">Por favor elija una opción.</div>
+
+<div class="formulario">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="contribucionType"><h4>Tipo Contribución:</h4></label>
+                            <select id="contribucionType" class="form-control">
+                                <option value="" disabled selected>Elija opción.</option>
+                                <option value="denuncia">DENUNCIA</option>
+                                <option value="felicitacion">FELICITACION</option>
+                                <option value="sugerencia">SUGERENCIA</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="departamento"><h4>Departamento:</h4></label>
+                            <select id="departamento" class="form-control">
+                                <option value="" disabled selected>Elija departamento.</option>
+                                <?php
+                                // Verificar si hay departamentos disponibles
+                                if (isset($departamentos) && !empty($departamentos)) {
+                                    foreach ($departamentos as $departamento) {
+                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['nombre_departamento'] . '</option>';
+                                    }
+                                }
+                                ?>
+                                <option value="otro">Otro Departamento</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion"><h4>Descripción:</h4></label>
+                            <textarea id="descripcion" class="form-control" rows="5" placeholder="Escriba breve descripción"></textarea>
+                        </div>
+                        <?php if (!$usuarioAutenticado): ?>
+                            <button type="button" onclick="mostrarIniciarSesionModal()" class="btn">Enviar Contribución</button>
+                        <?php else: ?>
+                            <button type="button" onclick="mostrarFeedbackModal()" class="btn">Enviar Contribución</button>
+                        <?php endif; ?>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="departamento" class="form-label" style="color: white;">DEPARTAMENTO</label>
-                <select class="form-select" id="departamento" name="departamento" required>
-                    <option value="" disabled selected>Elija departamento.</option>
-                    <?php
-                    // Verificar si hay departamentos disponibles
-                    if (isset($departamentos) && !empty($departamentos)) {
-                        foreach ($departamentos as $departamento) {
-                            echo '<option value="' . $departamento['id'] . '">' . $departamento['nombre_departamento'] . '</option>';
-                        }
-                    }
-                    ?>
-                    <option value="otro">Otro Departamento</option>
-                </select>
-                <div class="invalid-feedback">Por favor elija una opción.</div>
+
+            <div class="col-md-4">
+                <div class="contact-info">
+                    <h3>Envíanos tu contribución:</h3>
+                    <p>
+                       Porque queremos saber tu opinión respecto a nuestros servicios así como también
+                       ayudarte en caso de alguna problemática cerca de ti.
+                       ¡Escribe a Nuestros diferentes departamentos dentro de la comuna y les haremos llegar tu contribución!
+                    </p>
+                    <br>
+                    <p>¡Hagamos entre todos una mejor comunidad!</p>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="descripcion" class="form-label" style="color: white;">DESCRIPCIÓN</label>
-                <textarea class="form-control" id="descripcion" name="descripcion"
-                    placeholder="Escriba una breve descripción" required></textarea>
-                <div class="invalid-feedback">Realice su mensaje.</div>
-            </div>
-            <div class="mb-3" id="otro_dpto_text_div" style="display: none;">
-                <label for="otro_dpto_text" class="form-label">Indique departamento que pertenece</label>
-                <input type="text" class="form-control" id="otro_dpto_text" name="otro_dpto_text"
-                    placeholder="Especifique el departamento">
-            </div>
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="anonimo" name="anonimo">
-                <label class="form-check-label" for="anonimo" style="color: white;">Mandar Anónimamente</label>
-            </div>
-            <?php if (!$usuarioAutenticado): ?>
-            <div class="col-12">
-                <button type="button" onclick="mostrarModal()" class="btn btn-primary">Enviar</button>
-            </div>
-            <?php else: ?>
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Enviar</button>
-            </div>
-            <?php endif; ?>
-        </form>
+        </div>
     </div>
 </div>
 
 <!-- Modal para feedback participacion -->
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Participacion</h5>
+                <h5 class="modal-title" id="feedbackModalLabel">Participación Enviada</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p> Su participación ha sido enviada. Se le enviará un correo con el feedback correspondiente.</p>
+                <p>Su participación ha sido enviada. Se le enviará un correo con el feedback correspondiente.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
@@ -113,9 +114,32 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
     </div>
 </div>
 
+<!-- Modal para iniciar sesión -->
+<div class="modal fade" id="iniciarSesionModal" tabindex="-1" aria-labelledby="iniciarSesionModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="iniciarSesionModalLabel">Iniciar Sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Debe iniciar sesión para poder enviar su contribución.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 // Función para mostrar el modal de feedback
-function mostrarModal() {
-    $('#loginModal').modal('show');
+function mostrarFeedbackModal() {
+    $('#feedbackModal').modal('show');
+}
+
+// Función para mostrar el modal de iniciar sesión
+function mostrarIniciarSesionModal() {
+    $('#iniciarSesionModal').modal('show');
 }
 </script>

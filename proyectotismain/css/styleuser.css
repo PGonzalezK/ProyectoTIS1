@@ -120,67 +120,6 @@ button.btn:hover {
 }
 
 
-/**********************************/
-/*********** Top Bar CSS **********/
-/**********************************/
-.top-bar {
-    padding: 2px 0;
-    background: #000000;
-}
-
-.top-bar .tb-contact p {
-    display: inline-block;
-    margin: 0;
-    color: #00a8a8;
-    font-size: 14px;
-}
-
-.top-bar .tb-contact p i {
-    margin-right: 6px;
-}
-
-.top-bar .tb-contact p:first-child {
-    margin-right: 15px;
-}
-
-.top-bar .tb-menu {
-    font-size: 0;
-    text-align: right;
-}
-
-.top-bar .tb-menu a {
-    color: #00a8a8;
-    font-size: 14px;
-    margin: 0 8px;
-}
-
-.top-bar .tb-menu a:hover {
-    color: #ffffff;
-}
-
-.top-bar .tb-menu a:last-child {
-    margin-right: 0;
-}
-
-.top-bar .tb-menu a::after {
-    position: absolute;
-    content: "/";
-    margin: 1px 0 0 6px;
-    color: #00a8a8;
-    font-size: 14px;
-}
-
-.top-bar .tb-menu a:last-child::after {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .top-bar .tb-contact,
-    .top-bar .tb-menu {
-        text-align: center;
-    }
-}
-
 
 /**********************************/
 /*********** Brand CSS ************/
@@ -400,7 +339,7 @@ button.btn:hover {
 
 
 /**********************************/
-/********** Top News CSS **********/
+/********** Noticias CSS **********/
 /**********************************/
 .top-news {
     position: relative;
@@ -1153,35 +1092,35 @@ button.btn:hover {
 
 
 /**********************************/
-/********** Contact CSS ***********/
+/********** Formulario CSS ***********/
 /**********************************/
-.contact {
+.formulario {
     position: relative;
     padding: 25px 0 15px 0;
 }
 
-.contact .contact-form,
-.contact .contact-info {
+.formulario .formulario-form,
+.formulario .formulario-info {
     margin-bottom: 45px;
 }
 
-.contact .contact-info h4 {
+.formulario .formulario-info h4 {
     margin-bottom: 10px;
     font-size: 16px;
     font-weight: 400;
 }
 
-.contact .contact-info h4 i {
+.formulario .formulario-info h4 i {
     color: #000000;
     margin-right: 5px;
 }
 
-.contact .social {
+.formulario .social {
     position: relative;
     width: 100%;
 }
 
-.contact .social a {
+.formulario .social a {
     display: inline-block;
     margin: 10px 10px 0 0;
     width: 40px;
@@ -1193,16 +1132,16 @@ button.btn:hover {
     border-radius: 4px;
 }
 
-.contact .social a i {
+.formulario .social a i {
     color: #000000;
 }
 
-.contact .social a:hover {
+.formulario .social a:hover {
     background: #00a8a8;
     border-color: #00a8a8;
 }
 
-.contact .social a:hover i {
+.formulario .social a:hover i {
     color: #ffffff;
 }
 
