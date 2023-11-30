@@ -798,6 +798,8 @@ button.btn:hover {
     position: relative;
     width: 100%;
     padding: 30px 0;
+    height: auto;
+    overflow-wrap: break-word; /* O word-wrap: break-word; */
 }
 
 .single-news .sn-content h1.sn-title {
@@ -805,7 +807,6 @@ button.btn:hover {
     width: 100%;
     color: #000000;
 }
-
 .single-news .sn-related {
     margin-bottom: 45px;
 }

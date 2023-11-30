@@ -19,7 +19,7 @@
                             <ul>
                                 <li><a href="index.php?p=actualidad/noticias/noticias">Noticias</a></li>
                                 <li><a href="index.php?p=actualidad/eventos/eventos">Eventos</a></li>
-                                <li><a href="index.php?p=nexo-municipal/alcalde/alcalde">Palabras del Alcalde</a></li>
+                                <li><a href="index.php?p=emprendimiento/create">Subir Emprendimiento</a></li>
                                 <li><a href="index.php?p=nexo-municipal/misionyvision/misionvision">Misión y Visión</a></li>
                                 <li><a href="index.php?p=nexo-municipal/direccionesmunicipales/direcciones">Direcciones Municipales</a></li>
                             </ul>
