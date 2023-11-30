@@ -38,13 +38,8 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
             </div>
 
             <div class="mb-3">
-                <label for="lat">Latitud:</label>
-                <input type="text" name="lat" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="lng">Longitud:</label>
-                <input type="text" name="lng" required>
+                <label for="direccion">Direccion:</label>
+                <input type="text" name="direccion" required>
             </div>
 
             <button type="submit">Enviar</button>

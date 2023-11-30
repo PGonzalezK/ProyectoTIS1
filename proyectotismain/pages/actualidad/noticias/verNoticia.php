@@ -239,16 +239,10 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                             <?php } ?>
                         </div>
                         <div class="sidebar-widget">
-                            <h2 class="sw-title">Noticias por Categoría</h2>
+                            <h2 class="sw-title">Categoría</h2>
                             <div class="category">
                                 <ul>
-                                    <li><a href="">National</a><span>(98)</span></li>
-                                    <li><a href="">International</a><span>(87)</span></li>
-                                    <li><a href="">Economics</a><span>(76)</span></li>
-                                    <li><a href="">Politics</a><span>(65)</span></li>
-                                    <li><a href="">Lifestyle</a><span>(54)</span></li>
-                                    <li><a href="">Technology</a><span>(43)</span></li>
-                                    <li><a href="">Trades</a><span>(32)</span></li>
+                                    <li><?php echo $noticia['categoria_nombre']; ?></li>
                                 </ul>
                             </div>
                         </div>
@@ -266,25 +260,24 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     </form>
 
     <!-- Modal para denunciar comentario -->
-<div class="modal fade" id="denunciarModal" tabindex="-1" aria-labelledby="denunciarModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="denunciarModalLabel">Denunciar Comentario</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro de que quieres denunciar este comentario?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary"
-                    data-comment-id="<?php echo $comment_id; ?>"
-                    onclick="reportComment(this.getAttribute('data-comment-id'))">Denunciar</button>
+    <div class="modal fade" id="denunciarModal" tabindex="-1" aria-labelledby="denunciarModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="denunciarModalLabel">Denunciar Comentario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que quieres denunciar este comentario?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" data-comment-id="<?php echo $comment_id; ?>"
+                        onclick="reportComment(this.getAttribute('data-comment-id'))">Denunciar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <script>

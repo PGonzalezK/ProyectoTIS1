@@ -11,7 +11,8 @@ function obtenerEmailUsuarioActual()
 
 function obtenerNoticiaPorId($connection, $id)
 {
-    $query = "SELECT * FROM noticias WHERE idNoticia = ?";
+    $query = "SELECT noticias.*, categoria.nombre AS categoria_nombre FROM noticias JOIN categoria ON noticias.id_categoria = categoria.id_categoria WHERE idNoticia = ?";
+    
     $stmt = mysqli_prepare($connection, $query);
     mysqli_stmt_bind_param($stmt, 'i', $id);
     mysqli_stmt_execute($stmt);
@@ -23,6 +24,7 @@ function obtenerNoticiaPorId($connection, $id)
 
     return null;
 }
+
 
 function incrementarVisitas($connection, $id)
 {

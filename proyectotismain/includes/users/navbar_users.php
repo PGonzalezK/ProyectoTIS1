@@ -26,7 +26,6 @@
                         <div class="dropdown-menu">
                             <li><a class="dropdown-item <?php echo (isset($_GET['p']) && $_GET['p'] == 'nexo-municipal/misionyvision/misionvision') ? 'active' : ''; ?>" href="index.php?p=nexo-municipal/misionyvision/misionvision">Mision y Vision</a></li>
                             <li><a class="dropdown-item <?php echo (isset($_GET['p']) && $_GET['p'] == 'nexo-municipal/alcalde/alcalde') ? 'active' : ''; ?>" href="index.php?p=nexo-municipal/alcalde/alcalde">Palabras del alcalde</a></li>
-                            <li><a class="dropdown-item <?php echo (isset($_GET['p']) && $_GET['p'] == 'nexo-municipal/direccionesmunicipales/direcciones') ? 'active' : ''; ?>" href="index.php?p=nexo-municipal/direccionesmunicipales/direcciones">Direcciones Municipales</a></li>
                         </div>
                     </div>
                     <a id="participacion-link" class="nav-item nav-link <?php echo (isset($_GET['p']) && $_GET['p'] == 'participacion/participacion') ? 'active' : ''; ?>" href="index.php?p=participacion/participacion">Participación</a>

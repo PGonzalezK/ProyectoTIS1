@@ -1,42 +1,38 @@
 <?php
+// Incluir archivos y configuraciones necesarias
+
 include("middleware/auth.php");
 include("database/connection.php");
 
+// Verificar permisos
 if ($_SESSION['id_rol'] !== '1') {
-    // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
     header("Location: index.php");
     exit();
 }
 
+// Consulta para obtener periodistas
+$consulta = "SELECT * FROM users WHERE id_rol = 3";
+$resultado = mysqli_query($connection, $consulta);
 
-//consulta para obtener periodistas
-    $consulta = "SELECT * FROM users WHERE  id_rol= 3";
-    $resultado = mysqli_query($connection, $consulta);
+// Consulta para obtener categorías
+$queryCategorias = "SELECT id_categoria, nombre FROM categoria";
+$resultadoCategorias = mysqli_query($connection, $queryCategorias);
 
+// Inicializar variables
+$errores = [];
+$titulo = '';
+$descripcion = '';
+$idEditor = '';
+$id_categoria = '';
 
-   //almacena errores 
-    $errores = [];
-
-    $titulo = '';
-    $descripcion ='';
-    $idEditor = '';
-
-
-    if($_SERVER['REQUEST_METHOD'] == 'POST'){
-        /*echo "<pre>";
-        var_dump($_POST);
-        echo "</pre>";*/
-        
-
-        $titulo = mysqli_real_escape_string($connection,$_POST['titulo']);
-        $descripcion =mysqli_real_escape_string($connection,$_POST['descripcion']);
-        $idEditor = mysqli_real_escape_string($connection,$_POST['id_editor']);
-        $creado = date('Y/m/d H:i:s');
-
-        //asignar files a una variable
-        $imagen = $_FILES['imagen'];
-        
-        //var_dump($imagen);
+// Manejar el formulario enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $titulo = mysqli_real_escape_string($connection, $_POST['titulo']);
+    $descripcion = mysqli_real_escape_string($connection, $_POST['descripcion']);
+    $idEditor = mysqli_real_escape_string($connection, $_POST['id_editor']);
+    $id_categoria = mysqli_real_escape_string($connection, $_POST['id_categoria']);
+    $creado = date('Y/m/d H:i:s');
+    $imagen = $_FILES['imagen'];
 
         if(!$titulo){
             $errores[] ="Debes añadir un titulo al evento"; 
@@ -65,10 +61,11 @@ if ($_SESSION['id_rol'] !== '1') {
             move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
             
         //Insertar Variables
-        $query = "INSERT INTO noticias (titulo ,descripcion, imagen,creado, id_editor) VALUES ('$titulo','$descripcion','$nombreImagen','$creado', '$idEditor')";
-        
-        //resultados
-        $resultado = mysqli_query($connection,$query);
+        $query = "INSERT INTO noticias (titulo, descripcion, imagen, creado, id_editor, id_categoria) 
+        VALUES ('$titulo', '$descripcion', '$nombreImagen', '$creado', '$idEditor', '$id_categoria')";
+
+        // Ejecutar la consulta
+        $resultado = mysqli_query($connection, $query);
 
         if($resultado){
             if (headers_sent()) {
@@ -118,6 +115,10 @@ if ($_SESSION['id_rol'] !== '1') {
                             <?php endwhile; ?>
                         </select>
                     </div>
+
+
+
+
                     <div class="mb-3">
                         <label for="imagen" class="form-label">Imagen</label>
                         <input class="form-control" type="file" id="image" accept="image/png, image/jpeg" name="imagen">
@@ -133,7 +134,19 @@ if ($_SESSION['id_rol'] !== '1') {
                         </div>
                     </div>
                 </div>
+                <div class="mb-3">
+                <label for="id_categoria" class="form-label">Categoría</label>
+                <select class="form-control" id="id_categoria" name="id_categoria">
+                    <?php while ($categoria = mysqli_fetch_assoc($resultadoCategorias)) : ?>
+                    <option value="<?php echo $categoria['id_categoria']; ?>">
+                        <?php echo $categoria['nombre']; ?>
+                    </option>
+                    <?php endwhile; ?>
+                </select>
             </div>
+            </div>
+ 
+
 
             <div class="card-footer text-body-secondary text-end">
                 <a class="btn btn-primary" href="index.php?p=admin/noticias_adm/index" role="button">Volver</a>

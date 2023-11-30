@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-11-2023 a las 23:30:02
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Tiempo de generación: 01-12-2023 a las 00:29:54
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,15 +32,6 @@ CREATE TABLE `acciones_usuarios` (
   `id_noticia` int(11) NOT NULL,
   `accion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `acciones_usuarios`
---
-
-INSERT INTO `acciones_usuarios` (`email_usuario`, `id_noticia`, `accion`) VALUES
-('pmonjes@ing.ucsc.cl', 6, 'like'),
-('pmonjes@ing.ucsc.cl', 7, 'like'),
-('pmonjes@ing.ucsc.cl', 9, 'like');
 
 -- --------------------------------------------------------
 
@@ -79,6 +70,28 @@ CREATE TABLE `backgrounds` (
   `misionyvision_background` varchar(255) NOT NULL,
   `participacion_background` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categoria`
+--
+
+CREATE TABLE `categoria` (
+  `id_categoria` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categoria`
+--
+
+INSERT INTO `categoria` (`id_categoria`, `nombre`) VALUES
+(1, 'Política'),
+(2, 'Deportes'),
+(3, 'Tecnología'),
+(4, 'Entretenimiento'),
+(5, 'a');
 
 -- --------------------------------------------------------
 
@@ -168,7 +181,9 @@ CREATE TABLE `dirmunicipales` (
 --
 
 INSERT INTO `dirmunicipales` (`id`, `nombre`, `descripcion`, `director`, `telefono`, `email`, `direccion`, `funciones`) VALUES
-(2, 'DIRECCIÓN DE DESARROLLO COMUNITARIO', 'La Dirección de Desarrollo Comunitario tiene como objetivo la promoción del desarrollo comunitario, el fortalecimiento de las organizaciones comunitarias, la proposición de medidas relacionadas con asistencia social y contingencia, la salud pública, la protección del medio ambiente, educación y cultura, capacitación laboral, deporte y recreación, promoción del empleo, fomento productivo local y turismo.', 'Paula Concha Constanzo', 2147483647, 'pconcha@concepcion.com', 'O’Higgins 525, 2° piso, Concepción', 'Asesorar al Alcalde y también al Concejo Municipal en la promoción del desarrollo comunitario.\r\nPrestar asesoría técnica a las organizaciones comunitarias, fomentar su desarrollo y legalización, y promover su efectiva participación en el municipio.\r\nProponer y ejecutar, dentro de su ámbito y cuando corresponda, medidas tendientes a materializar acciones relacionadas con la salud pública- protección del medio ambiente, educación y cultura, capacitación laboral, deportes y recreación, promoción del empleo, fomento productivo local y turismo.\r\nPrestar el servicio diseñado por el Sistema de información Social según la normativa que lo regula y proporcionar datos estadísticos y/o diagnósticos sociales para necesidades generales de la Dideco o de la Municipalidad.\r\nRealizar los procesos pertinentes en la gestión de abastecimiento, según las normas de la Plataforma Mercado Público y Reglamentos de Adquisiciones vigentes en el municipio.');
+(2, 'DIRECCIÓN DE DESARROLLO COMUNITARIO', 'La Dirección de Desarrollo Comunitario tiene como objetivo la promoción del desarrollo comunitario, el fortalecimiento de las organizaciones comunitarias, la proposición de medidas relacionadas con asistencia social y contingencia, la salud pública, la protección del medio ambiente, educación y cultura, capacitación laboral, deporte y recreación, promoción del empleo, fomento productivo local y turismo.', 'Paula Concha Constanzo', 2147483647, 'pconcha@concepcion.com', 'O’Higgins 525, 2° piso, Concepción', 'Asesorar al Alcalde y también al Concejo Municipal en la promoción del desarrollo comunitario.\r\nPrestar asesoría técnica a las organizaciones comunitarias, fomentar su desarrollo y legalización, y promover su efectiva participación en el municipio.\r\nProponer y ejecutar, dentro de su ámbito y cuando corresponda, medidas tendientes a materializar acciones relacionadas con la salud pública- protección del medio ambiente, educación y cultura, capacitación laboral, deportes y recreación, promoción del empleo, fomento productivo local y turismo.\r\nPrestar el servicio diseñado por el Sistema de información Social según la normativa que lo regula y proporcionar datos estadísticos y/o diagnósticos sociales para necesidades generales de la Dideco o de la Municipalidad.\r\nRealizar los procesos pertinentes en la gestión de abastecimiento, según las normas de la Plataforma Mercado Público y Reglamentos de Adquisiciones vigentes en el municipio.'),
+(4, 'a', '', '', 0, 'admin@correo.com', '', ''),
+(5, 'a', '', '', 0, 'admin@correo.com', '', '');
 
 -- --------------------------------------------------------
 
@@ -230,8 +245,7 @@ CREATE TABLE `mapa` (
   `email` varchar(255) NOT NULL,
   `nombre_punto` varchar(255) NOT NULL,
   `descripcion` varchar(255) NOT NULL,
-  `lat` varchar(255) NOT NULL,
-  `lng` varchar(255) NOT NULL,
+  `direccion` varchar(255) NOT NULL,
   `aprobado` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -239,11 +253,12 @@ CREATE TABLE `mapa` (
 -- Volcado de datos para la tabla `mapa`
 --
 
-INSERT INTO `mapa` (`id_mapa`, `email`, `nombre_punto`, `descripcion`, `lat`, `lng`, `aprobado`) VALUES
-(1, 'pmonjes@ing.ucsc.cl', 'Barberia', 'a', '-36.81960852562662', '-73.0465050314474', 1),
-(2, 'pmonjes@ing.ucsc.cl', 'asd', 'asd', '-40', '-20', 0),
-(4, 'pmonjes@ing.ucsc.cl', 'cs', 'sd', '-3', '-1', 0),
-(5, 'pmonjes@ing.ucsc.cl', 'dd', 'dd', '2', '2', 0);
+INSERT INTO `mapa` (`id_mapa`, `email`, `nombre_punto`, `descripcion`, `direccion`, `aprobado`) VALUES
+(1, 'pmonjes@ing.ucsc.cl', 'Barberia', 'a', 'aaa #1', 1),
+(2, 'pmonjes@ing.ucsc.cl', 'asd', 'asd', 'aaa #2', 1),
+(4, 'pmonjes@ing.ucsc.cl', 'cs', 'sd', 'aaa #3', 0),
+(5, 'pmonjes@ing.ucsc.cl', 'dd', 'dd', 'aaa #4', 0),
+(6, 'pmonjes@ing.ucsc.cl', 'c', 'cc', 'aaa #5', 1);
 
 -- --------------------------------------------------------
 
@@ -283,16 +298,17 @@ CREATE TABLE `noticias` (
   `likes` int(11) DEFAULT 0,
   `dislikes` int(11) DEFAULT 0,
   `valorizacion` int(11) DEFAULT NULL,
-  `num_valorizaciones` int(11) DEFAULT 0
+  `num_valorizaciones` int(11) DEFAULT 0,
+  `id_categoria` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `noticias`
 --
 
-INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`) VALUES
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 39, 2, 0, 4, 1),
-(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 18, 1, 0, NULL, 0);
+INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`, `id_categoria`) VALUES
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 54, 0, 0, 4, 1, 4),
+(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 19, 0, 0, NULL, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -445,6 +461,12 @@ ALTER TABLE `backgrounds`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  ADD PRIMARY KEY (`id_categoria`);
+
+--
 -- Indices de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
@@ -505,7 +527,8 @@ ALTER TABLE `misionvision`
 --
 ALTER TABLE `noticias`
   ADD PRIMARY KEY (`idNoticia`),
-  ADD KEY `FK_id_editor` (`id_editor`);
+  ADD KEY `FK_id_editor` (`id_editor`),
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- Indices de la tabla `palabrasalcalde`
@@ -560,6 +583,12 @@ ALTER TABLE `backgrounds`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `categoria`
+--
+ALTER TABLE `categoria`
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
@@ -581,7 +610,7 @@ ALTER TABLE `denuncias`
 -- AUTO_INCREMENT de la tabla `dirmunicipales`
 --
 ALTER TABLE `dirmunicipales`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `emprendedores`
@@ -599,7 +628,7 @@ ALTER TABLE `eventos`
 -- AUTO_INCREMENT de la tabla `mapa`
 --
 ALTER TABLE `mapa`
-  MODIFY `id_mapa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_mapa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `misionvision`
@@ -697,7 +726,8 @@ ALTER TABLE `mapa`
 -- Filtros para la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`id_editor`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `noticias_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`);
 
 --
 -- Filtros para la tabla `participacion`

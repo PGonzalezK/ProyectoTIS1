@@ -20,8 +20,9 @@
                 <div class="carousel-item <?php echo $active ? 'active' : ''; ?>">
                     <img src="pages/admin/emprendedores/imagenes/<?php echo $row['foto']; ?>" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5><?php echo $row['nombre']; ?></h5>
-                        <p><?php echo $row['descripcion']; ?></p>
+                        <h5 style="color: white"><?php echo $row['nombre']; ?></h5>
+                        <p style="color: white"><?php echo $row['descripcion']; ?></p>
+                        <p style="color: white"> <?php echo $row['direccion']; ?></p>
                         <!-- Puedes agregar más detalles según tus necesidades -->
                     </div>
                 </div>

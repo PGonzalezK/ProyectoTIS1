@@ -31,8 +31,7 @@ $result = mysqli_query($connection, $query);
                     <th>Email</th>
                     <th>Nombre del punto</th>
                     <th>Descripción</th>
-                    <th>Latitud</th>
-                    <th>Longitud</th>
+                    <th>direccion</th>
                     <th scope="col">Aprobado</th>
                     <th scope="col">Acciones</th>
 
@@ -45,8 +44,7 @@ $result = mysqli_query($connection, $query);
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['nombre_punto']; ?></td>
                     <td><?php echo $row['descripcion']; ?></td>
-                    <td><?php echo $row['lat']; ?></td>
-                    <td><?php echo $row['lng']; ?></td>
+                    <td><?php echo $row['direccion']; ?></td>
                     <td><?php echo $row['aprobado']; ?></td>
                     
                     <td>
