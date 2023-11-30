@@ -8,11 +8,16 @@ $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
 $query = "SELECT id, asunto FROM asuntos";
 $result = mysqli_query($connection, $query);
 
-// Verificar si la consulta fue exitosa
 if ($result) {
     $departamentos = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+// Consulta para obtener los nombres de los departamentos desde la tabla dimunicipal
+$queryDepartamentos = "SELECT id, nombre FROM dirmunicipales";
+$resultDepartamentos = mysqli_query($connection, $queryDepartamentos);
 
+if ($resultDepartamentos) {
+    $nombresDepartamentos = mysqli_fetch_all($resultDepartamentos, MYSQLI_ASSOC);
+}
 
 if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
     echo '<div class="alert alert-success">Su participación se envió con éxito. Recibirá un feedback por correo electrónico.</div>';
@@ -58,13 +63,12 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
                                 <option value="" disabled selected>Elija departamento.</option>
                                 <?php
                                 // Verificar si hay departamentos disponibles
-                                if (isset($departamentos) && !empty($departamentos)) {
-                                    foreach ($departamentos as $departamento) {
-                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['id_departamento'] . '</option>';
+                                if (isset($nombresDepartamentos) && !empty($nombresDepartamentos)) {
+                                    foreach ($nombresDepartamentos as $departamento) {
+                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['nombre'] . '</option>';
                                     }
                                 }
                                 ?>
-                                <option value="otro">Otro Departamento</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -79,7 +83,7 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
                                     }
                                 }
                                 ?>
-                                <option value="otro">Otro Departamento</option>
+                                <option value="otro">Otro Asunto</option>
                             </select>
                         </div>
                         <div class="form-group">
