@@ -179,7 +179,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                         </p>
                                                         <div class="comment-actions">
                                                             <form method="POST" action="">
-                                                                <a href="#" onclick="mostrarDenunciarModal(<?php echo $row['id']; ?>); return false;">Denunciar</a>
+                                                            <a href="#" onclick="configurarDenuncia(<?php echo $row['id']; ?>); return false;">Denunciar</a>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                 </p>
                                                                 <div class="comment-actions">
                                                                     <form method="POST" action="">
-                                                                        <a href="#" onclick="mostrarDenunciarModal(<?php echo $rep['id']; ?>); return false;">Denunciar</a>
+                                                                    <button type="button" class="btn btn-primary" data-comment-id="<?php echo $row['id']; ?>" onclick="reportComment(this.getAttribute('data-comment-id'))">Denunciar</button>
                                                                     </form>
                                                                 </div>
                                                             </li>
@@ -213,7 +213,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 </li>
 
                                             <?php } ?>
-
+                                                            
                                             <?php
                                             if (isset($_POST['comment_id'])) {
                                                 $email_usuario_reporta = obtenerEmailUsuarioActual();
@@ -263,6 +263,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
     </div>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['comment_id'])) {
+    $email_usuario_reporta = obtenerEmailUsuarioActual();
+
+    if (!$email_usuario_reporta) {
+        echo "<script>alert('Tienes que iniciar sesión para denunciar este comentario.');</script>";
+    } else {
+        $comment_id_to_report = mysqli_real_escape_string($connection, $_POST['comment_id']);
+        $id_usuario_reporta = obtenerIdUsuarioPorEmail($connection, $email_usuario_reporta);
+
+        // Verificar si ya se ha denunciado este comentario por el usuario actual
+        $query_verificar_denuncia = mysqli_query($connection, "SELECT * FROM denuncias WHERE id_comentario = '$comment_id_to_report' AND id_usuario_reporta = '$id_usuario_reporta'");
+        $verificacion_denuncia = mysqli_fetch_assoc($query_verificar_denuncia);
+
+        if (!$verificacion_denuncia) {
+            // Insertar nueva denuncia en la base de datos
+            $query_denuncia = mysqli_query($connection, "INSERT INTO denuncias (id_comentario, id_usuario_reporta, fecha) VALUES ('$comment_id_to_report', '$id_usuario_reporta', NOW())");
+
+            if ($query_denuncia) {
+                echo "<script>alert('Comentario con ID $comment_id_to_report denunciado correctamente.');</script>";
+            } else {
+                echo "<script>alert('Error al denunciar el comentario: " . mysqli_error($connection) . "');</script>";
+            }
+        } else {
+            echo "<script>alert('Ya has denunciado este comentario anteriormente.');</script>";
+        }
+    }
+}
+?>
+
+
+
 
     <?php if (!$usuarioAutenticado): ?>
         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#iniciarSesionModal">like</button>
@@ -288,7 +320,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" data-comment-id="<?php echo $comment_id; ?>" onclick="reportComment(this.getAttribute('data-comment-id'))">Denunciar</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmarDenuncia()">Denunciar</button>
                 </div>
             </div>
         </div>
@@ -315,5 +347,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
 
-    <!-- Añadir un campo oculto para almacenar el ID del comentario que se va a denunciar -->
+    <form id="denunciaForm" method="POST" action="">
     <input type="hidden" id="commentIdToReport" name="comment_id">
+</form>
