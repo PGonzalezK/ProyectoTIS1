@@ -1,4 +1,5 @@
 <!-- Brand Start -->
+
 <div class="brand">
     <div class="container">
         <div class="row align-items-center">
@@ -38,6 +39,7 @@
 
 
 <!-- Nav Bar Start -->
+
 <div class="nav-bar">
     <div class="container">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -80,5 +82,6 @@
             </div>
         </nav>
     </div>
+  
 <!-- Nav Bar End -->
 

@@ -228,6 +228,17 @@ button.btn:hover {
     }
 }
 
+    .fixed-brand {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0; /* Ajusta según sea necesario */
+        background-color: #fff; /* Ajusta según sea necesario */
+        padding: 10px; /* Ajusta según sea necesario */
+        border-bottom: 1px solid #ddd; /* Ajusta según sea necesario */
+    }
+
 /**********************************/
 /*********** Nav Bar CSS **********/
 /**********************************/
@@ -235,6 +246,16 @@ button.btn:hover {
     position: relative;
 }
 
+.fixed-navbar {
+    position: fixed;
+    top: 60px; /* Ajusta según sea necesario para dejar espacio para la barra de marcas */
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ajusta según sea necesario */
+    background-color: #333; /* Ajusta según sea necesario */
+    padding: 10px; /* Ajusta según sea necesario */
+    border-bottom: 1px solid #555; /* Ajusta según sea necesario */
+}
 .nav-bar.nav-sticky {
     position: fixed;
     top: 0;
