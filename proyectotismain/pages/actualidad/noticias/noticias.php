@@ -11,6 +11,12 @@ $categorias = obtenerCategorias();
 </div>
 
 
+<!-- Título del catálogo -->
+<div class="container text-center pt-3">
+    <h1>CATÁLOGO DE NOTICIAS</h1>
+</div>
+
+
 <!-- Category News Start -->
 <div class="cat-news pt-4">
     <div class="container">
@@ -31,7 +37,7 @@ $categorias = obtenerCategorias();
                                         <img src="pages/admin/noticias_adm/imagenes/<?= $noticia['imagen'] ?>" alt="">
                                         <div class="cn-title">
                                             <a href="index.php?p=actualidad/noticias/verNoticia&id=<?= $noticia['idNoticia'] ?>">
-                                                <?= $noticia['titulo'] ?> (<?= $nombreCategoria ?>)
+                                                <?= $noticia['titulo'] ?>
                                             </a>
                                         </div>
                                     </div>
