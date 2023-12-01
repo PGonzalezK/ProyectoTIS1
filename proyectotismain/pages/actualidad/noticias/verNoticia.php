@@ -29,11 +29,8 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 ?>
 
 
-<div class="row">
-    <div class="col">
-    </div>
+
     <?php require('includes/users/navbar_users.php'); ?>
-</div>
 
 
 <!--AQUI SE VEN LAS NOTICIAS. -->

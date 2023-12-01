@@ -2,7 +2,6 @@
 </div>
 
 </div>
-
  <!-- Footer Start -->
  <div class="footer">
             <div class="container">
@@ -12,7 +11,6 @@
                         <img src="img/logo-footer.png" class="img-fluid rounded" alt=""style="width: 200px;">
                         </div>
                     </div>
-
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
                             <h3 class="title">Acceso rápido</h3>

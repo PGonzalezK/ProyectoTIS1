@@ -18,6 +18,8 @@
         require_once 'includes/users/header.php';
     }
 
+    // Incluir el archivo de funciones
+    require_once 'includes/funciones/funciones.php';
 
     require_once 'pages/' . $pagina . '.php';
 
