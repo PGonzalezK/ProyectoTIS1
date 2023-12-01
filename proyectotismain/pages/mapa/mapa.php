@@ -1,7 +1,7 @@
 <?php
 
 include("database/connection.php");
-
+include("includes/users/navbar_users.php");
 if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
     echo '<div class="alert alert-success">Su Punto de mapa se envió con éxito. se enviara un correo cuando su punto este en el mapa.</div>';
     }
