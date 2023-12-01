@@ -9,21 +9,27 @@
     <br>
     <br>
     <div class="container text-center">
-        <div class="row">
-            <div class="colu-sm-6 d-flex justify-content-center">
-                <div class="card">
-                    <h2 class="card-header"><b>EVENTOS</b></h2>
+    <div class="container text-center pt-3">
+    <h1>CATÁLOGO DE EVENTOS</h1>
+</div>
+        <br>
+
+    <!-- Main News Start-->
+    <div class="main-news">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                    <?php
+                        $limite = 100;
+                        include 'pages/actualidad/eventos/catalogoEventos.php';
+                        ?>
+                    </div>
+
                 </div>
             </div>
         </div>
+        <!-- Main News End-->
 
-        <br>
-                <!-- Sección eventos -->
-                <section class="contenedorEventos">
-            <?php
-            $limite = 100;
-            include 'pages/admin/eventos_adm/templates/mainEventos.php';
-            ?>
-        </section>
-        <!-- Fin sección eventos -->
+
+
 </div>

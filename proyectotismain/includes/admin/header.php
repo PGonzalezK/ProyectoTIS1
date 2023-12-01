@@ -2,7 +2,8 @@
 <html lang="es">
 
 <head>
-<title>User</title>
+
+<title>Admin</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -27,10 +28,6 @@
 
     <!-- Your Stylesheets -->
     <link rel="stylesheet" href="css/styleadmin.css">
-
-
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
