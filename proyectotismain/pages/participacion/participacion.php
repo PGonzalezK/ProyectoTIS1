@@ -99,7 +99,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <select id="contribucion" class="form-control" name="contribucion" required>
                                 <option value="" disabled selected>Elija opción.</option>
                                 <option value="denuncia">DENUNCIA</option>
-                                <option value="felicitacion">FELICITACION</option>
                                 <option value="sugerencia">SUGERENCIA</option>
                             </select>
                         </div>

@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="footer-widget">
-                        <img src="img/logo-blanco.png" class="img-fluid rounded" alt="">
+                        <img src="img/logo-footer.png" class="img-fluid rounded" alt=""style="width: 200px;">
                         </div>
                     </div>
 
