@@ -26,7 +26,11 @@
     <link href="lib/slick/slick-theme.css" rel="stylesheet">
 
     <!-- Your Stylesheets -->
-    <link rel="stylesheet" href="css/styleuser.css">
+    <link rel="stylesheet" href="css/styleadmin.css">
+
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body>

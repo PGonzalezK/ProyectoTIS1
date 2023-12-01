@@ -2,17 +2,10 @@
     include("middleware/auth.php");
     include("database/connection.php");
 
-    // Verificar si el usuario tiene permisos (id_rol igual a 1 o 6)
-    if ($_SESSION['id_rol'] !== '1' && $_SESSION['id_rol'] !== '6') {
-        // El usuario no tiene permisos para acceder a esta página
-        if ($_SESSION['id_rol'] === '3') {
-            // Si el id_rol es 3, mostrar un mensaje especial
-            echo "<h2>No tienes permiso para ver esta página.</h2>";
-        } else {
-            // Redirigir a otra página o mostrar un mensaje de error estándar
-            header("Location: index.php");
-            exit();
-        }
+    if ($_SESSION['id_rol'] !=='1'){
+        // El usuario no tiene permisos para acceder a esta página, redirigir o mostrar un mensaje de error
+        header("Location: index.php");
+        exit();
     }
     
     $query = "SELECT * FROM noticias";

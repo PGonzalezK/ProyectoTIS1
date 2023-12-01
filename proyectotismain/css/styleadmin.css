@@ -1,73 +1,92 @@
-/**********************************/
-/********** General CSS ***********/
-/**********************************/
-body {
-    color: #000000;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    background: #ffffff;
+/* Personalización del Navbar */
+.navbar {
+    background-color: #343a40; /* Fondo principal de la barra de navegación (gris oscuro) */
 }
 
-a {
-    color: #00a8a8;
-    transition: 0.5s;
+.navbar-brand img {
+    margin-right: 10px; /* Añade un margen derecho a la imagen del logo */
 }
 
-a:hover,
-a:active,
-a:focus {
-    color: #000000;
-    outline: none;
-    text-decoration: none;
+.navbar-toggler-icon {
+    border-color: #fff; /* Cambia el color del ícono del botón de hamburguesa */
 }
 
-p {
-    padding: 0;
-    margin: 0 0 15px 0;
-    color: #000000;
+.navbar-nav .nav-link {
+    color: #fff; /* Cambia el color del texto de los enlaces */
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    margin: 0 0 15px 0;
-    padding: 0;
-    color: #000000;
-    font-weight: 600;
+.navbar-nav .nav-link:hover {
+    color: #28a745; /* Cambia el color del texto de los enlaces al pasar el mouse */
 }
 
-h4,
-h5,
-h6 {
-    font-weight: 400;
+/* Botones en el extremo derecho del Navbar */
+.d-flex .btn {
+    margin-left: 5px; /* Añade un pequeño margen izquierdo entre los botones */
 }
 
-.back-to-top {
-    position: fixed;
-    display: none;
-    background: #00a8a8;
-    color: #ffffff;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 1;
-    font-size: 16px;
-    right: 15px;
-    bottom: 15px;
-    transition: background 0.5s;
-    border-radius: 4px;
-    z-index: 11;
+/* Cambia el color de los botones en el extremo derecho del Navbar */
+.d-flex .btn-outline-primary,
+.d-flex .btn-outline-danger,
+.d-flex .btn-outline-success {
+    border-color: #fff;
+    color: #fff;
 }
 
-.back-to-top:hover {
-    background: #000000;
+.d-flex .btn-outline-primary:hover,
+.d-flex .btn-outline-danger:hover,
+.d-flex .btn-outline-success:hover {
+    background-color: #28a745; /* Cambia el color de fondo al pasar el mouse */
+    border-color: #28a745;
+    color: #fff;
 }
 
-.back-to-top i {
-    padding-top: 9px;
-    color: #ffffff;
+/* Personalización para el estado 'active' de los enlaces */
+.navbar-nav .nav-link.active {
+    background-color: #28a745;
+    color: #fff;
+    border-radius: 5px;
 }
 
+/* Personalización para el contenido desplegable (opcional) */
+.navbar-nav .dropdown-menu {
+    background-color: #343a40;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #fff;
+}
+
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #28a745;
+}
+
+/* Personalización del color del texto en el Navbar */
+.navbar-nav .nav-link,
+.navbar-nav .btn {
+    color: #0b0909; /* Cambia el color del texto a un tono más oscuro */
+}
+
+/* Personalización del color del texto al pasar el mouse */
+.navbar-nav .nav-link:hover,
+.navbar-nav .btn:hover {
+    color: #0f0d0d; /* Cambia el color del texto al pasar el mouse a un tono más claro */
+}
+
+
+/* Personalización del color del texto activo */
+.navbar-nav .nav-link.active {
+    color: #fff; /* Cambia el color del texto activo a blanco */
+}
+
+/* Puedes ajustar estos colores según tus preferencias */
+/* Estilos generales para el botón de hamburguesa */
+.navbar-toggler-icon {
+    border-color: #fff; /* Color original del icono del botón de hamburguesa */
+}
+
+/* Estilos específicos para la vista responsive (celular) */
+@media (max-width: 767px) {
+    .navbar-toggler-icon {
+        border-color: #000; /* Cambia el color del icono del botón de hamburguesa a negro */
+    }
+}
