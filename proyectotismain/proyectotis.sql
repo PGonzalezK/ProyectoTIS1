@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2023 a las 03:25:40
+-- Tiempo de generación: 01-12-2023 a las 07:09:33
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -88,21 +88,25 @@ CREATE TABLE `comentarios` (
   `id_users` int(11) NOT NULL,
   `reply` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
-  `id_noticia` int(11) DEFAULT NULL
+  `id_noticia` int(11) DEFAULT NULL,
+  `id_evento` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `comentarios`
 --
 
-INSERT INTO `comentarios` (`id`, `comentario`, `id_users`, `reply`, `fecha`, `id_noticia`) VALUES
-(19, 'aaaa', 15, 0, '2023-11-26 16:17:49', 7),
-(20, 'a', 15, 0, '2023-11-26 16:18:12', 7),
-(21, 'a', 15, 0, '2023-11-26 16:18:14', 7),
-(22, 'asdasd', 15, 0, '2023-11-26 16:19:21', 7),
-(25, 'aaaa21', 15, 0, '2023-11-26 16:22:17', 7),
-(26, 'aaaa21', 15, 0, '2023-11-26 16:22:34', 7),
-(28, 'asd', 15, 0, '2023-11-30 14:44:59', 9);
+INSERT INTO `comentarios` (`id`, `comentario`, `id_users`, `reply`, `fecha`, `id_noticia`, `id_evento`) VALUES
+(19, 'aaaa', 15, 0, '2023-11-26 16:17:49', 7, NULL),
+(20, 'a', 15, 0, '2023-11-26 16:18:12', 7, NULL),
+(21, 'a', 15, 0, '2023-11-26 16:18:14', 7, NULL),
+(22, 'asdasd', 15, 0, '2023-11-26 16:19:21', 7, NULL),
+(25, 'aaaa21', 15, 0, '2023-11-26 16:22:17', 7, NULL),
+(26, 'aaaa21', 15, 0, '2023-11-26 16:22:34', 7, NULL),
+(28, 'asd', 15, 0, '2023-11-30 14:44:59', 9, NULL),
+(30, 'a', 15, 0, '2023-12-01 01:51:22', NULL, 7),
+(31, 'asd', 15, 0, '2023-12-01 03:07:07', NULL, 7),
+(32, 'asd', 15, 0, '2023-12-01 03:08:01', NULL, 8);
 
 -- --------------------------------------------------------
 
@@ -127,7 +131,10 @@ INSERT INTO `comentario_usuario_enlace` (`id`, `id_comentario`, `id_user`) VALUE
 (19, 22, 15),
 (22, 25, 15),
 (23, 26, 15),
-(24, 28, 15);
+(24, 28, 15),
+(25, 30, 15),
+(26, 31, 15),
+(27, 32, 15);
 
 -- --------------------------------------------------------
 
@@ -220,7 +227,8 @@ CREATE TABLE `eventos` (
 --
 
 INSERT INTO `eventos` (`idEvento`, `titulo`, `direccion`, `imagen`, `descripcion`, `creado`, `id_editor`) VALUES
-(7, 'Evento en la playa', 'Parque Isidora Cousiño, Lota', '458ce8b6dd8b1802abba58f2423e3b71.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 9);
+(7, 'Evento en la playa', 'Parque Isidora Cousiño, Lota', '458ce8b6dd8b1802abba58f2423e3b71.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 9),
+(8, 'Marcha', 'Libertador Gral. Bernardo O\'Higgins, 4070056 Concepción, Bío Bío', '162c28261edfcea8a0411033c2f5a6da.jpg', 'tribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunales', '2023-12-01 00:00:00', 9);
 
 -- --------------------------------------------------------
 
@@ -295,8 +303,13 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`, `id_categoria`) VALUES
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 56, 0, 0, 4, 1, 4),
-(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 20, 0, 0, NULL, 0, 3);
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 195, 0, 0, 4, 1, 4),
+(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 29, 0, 0, NULL, 0, 3),
+(10, 'El estrés académico lidera la depresión en jovenes', 'Amigo la universidad es complicada xd Amigo la universidad es complicada xd Amigo la universidad es complicada xd Amigo la universidad es complicada xd Amigo la universidad es complicada xd ', 'c651a31cb87a7118ca1f20e4e7923d16.jpg', '2023-12-01 06:26:34', 9, 1, 0, 0, NULL, 0, 4),
+(11, 'Una noticia deberia estar bien escrita', 'Una noticia debería estar bien escrita Una noticia debería estar bien escrita Una noticia debería estar bien escrita Una noticia debería estar bien escrita ', '7194118dba68fc3d37da1ebd647d1cc0.jpg', '2023-12-01 06:28:25', 9, 0, 0, 0, NULL, 0, 4),
+(12, 'Nueva sensación del verano está cerca', 'La buena actividad física y el gimnasio están de moda actualmente porque bla bla ', '54e1cbcc3d81d3703973ada1e573dbaf.jpg', '2023-12-01 06:30:18', 9, 0, 0, 0, NULL, 0, 2),
+(13, 'Cualquier titulo sirve de noticia ajaja', 'Cualquier titulo sirve de noticia ajaja Cualquier titulo sirve de noticia ajaja Cualquier titulo sirve de noticia ajaja', '056ece6b7e7eb86501a731f5d2f82628.jpg', '2023-12-01 06:32:43', 9, 0, 0, 0, NULL, 0, 1),
+(14, 'Dormir 8 horas es fundamental ', 'Dormir 8 horas es fundamental  pero imposible si estás estudiando jajaja', '6fd693ea2393a4e5342d07c650c1e7e4.jpg', '2023-12-01 06:39:07', 9, 0, 0, 0, NULL, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -344,8 +357,9 @@ CREATE TABLE `participacion` (
 --
 
 INSERT INTO `participacion` (`id`, `email`, `tipo_contribucion`, `asunto_id`, `id_departamento`, `descripcion`, `imagen`, `otro_dpto_text`, `fecha`, `estado_revision`) VALUES
-(1, 'usuario@usuario.com', 'denuncia', 1, 2, '124', '79b76fb91325b71da3e1c6db6ecb30fa.jpg', '', '2023-12-01 02:50:57', 'En revisión'),
-(2, 'pmonjes@ing.ucsc.cl', 'denuncia', 1, 2, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '220491025a1991bf2b298199cf1eb738.jpg', '', '2023-12-01 03:03:32', 'Sin leer');
+(1, 'usuario@usuario.com', 'denuncia', 1, 2, '124', '79b76fb91325b71da3e1c6db6ecb30fa.jpg', '', '2023-12-01 02:50:57', 'En proceso'),
+(2, 'pmonjes@ing.ucsc.cl', 'denuncia', 1, 2, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '220491025a1991bf2b298199cf1eb738.jpg', '', '2023-12-01 03:03:32', 'Sin leer'),
+(3, 'pmonjes@ing.ucsc.cl', 'denuncia', 2, 2, 'asdasdasd', '1726513215a83d266841ffc5fabacc98.jpg', '', '2023-12-01 06:01:16', 'En revisión');
 
 -- --------------------------------------------------------
 
@@ -382,6 +396,27 @@ INSERT INTO `roles` (`idRol`, `nombreRol`) VALUES
 (4, 'emprendedor'),
 (5, 'Director Aseo y ornato'),
 (6, 'Periodista');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `seguimientos_eventos`
+--
+
+CREATE TABLE `seguimientos_eventos` (
+  `id` int(11) NOT NULL,
+  `email` varchar(60) DEFAULT NULL,
+  `id_evento` int(11) DEFAULT NULL,
+  `fecha_seguimiento` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `seguimientos_eventos`
+--
+
+INSERT INTO `seguimientos_eventos` (`id`, `email`, `id_evento`, `fecha_seguimiento`) VALUES
+(1, 'pmonjes@ing.ucsc.cl', 7, '2023-12-01 05:30:21'),
+(4, 'pmonjes@ing.ucsc.cl', 8, '2023-12-01 06:07:59');
 
 -- --------------------------------------------------------
 
@@ -550,6 +585,14 @@ ALTER TABLE `roles`
   ADD PRIMARY KEY (`idRol`);
 
 --
+-- Indices de la tabla `seguimientos_eventos`
+--
+ALTER TABLE `seguimientos_eventos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `email` (`email`),
+  ADD KEY `id_evento` (`id_evento`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -579,13 +622,13 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `comentario_usuario_enlace`
 --
 ALTER TABLE `comentario_usuario_enlace`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `denuncias`
@@ -609,7 +652,7 @@ ALTER TABLE `emprendedores`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `mapa`
@@ -627,7 +670,7 @@ ALTER TABLE `misionvision`
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `palabrasalcalde`
@@ -639,7 +682,7 @@ ALTER TABLE `palabrasalcalde`
 -- AUTO_INCREMENT de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `restrablecer_password`
@@ -652,6 +695,12 @@ ALTER TABLE `restrablecer_password`
 --
 ALTER TABLE `roles`
   MODIFY `idRol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `seguimientos_eventos`
+--
+ALTER TABLE `seguimientos_eventos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -728,6 +777,13 @@ ALTER TABLE `participacion`
 --
 ALTER TABLE `restrablecer_password`
   ADD CONSTRAINT `restrablecer_password_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `seguimientos_eventos`
+--
+ALTER TABLE `seguimientos_eventos`
+  ADD CONSTRAINT `seguimientos_eventos_ibfk_1` FOREIGN KEY (`email`) REFERENCES `users` (`email`),
+  ADD CONSTRAINT `seguimientos_eventos_ibfk_2` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`idEvento`);
 
 --
 -- Filtros para la tabla `users`

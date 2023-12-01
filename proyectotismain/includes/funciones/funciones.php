@@ -25,6 +25,43 @@ function obtenerNoticiaPorId($connection, $id)
     return null;
 }
 
+function obtenerEventoPorId($connection, $id)
+{
+    $query = "SELECT * FROM eventos WHERE idEvento = ?";
+    
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, 'i', $id);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    if ($resultado->num_rows) {
+        return mysqli_fetch_assoc($resultado);
+    }
+
+    return null;
+}
+function verificarUsuarioSigueEvento($connection, $email_usuario, $id_evento) {
+    if ($email_usuario !== null) {
+        $query = "SELECT * FROM seguimientos_eventos WHERE email = '$email_usuario' AND id_evento = '$id_evento'";
+        $result = mysqli_query($connection, $query);
+
+        return ($result && mysqli_num_rows($result) > 0);
+    } else {
+        return false;
+    }
+}
+
+// Función para permitir que un usuario siga un evento
+function seguirEvento($connection, $email_usuario, $id_evento) {
+    if ($email_usuario !== null) {
+        $query = "INSERT INTO seguimientos_eventos (email, id_evento) VALUES ('$email_usuario', '$id_evento')";
+        $result = mysqli_query($connection, $query);
+
+        return $result;
+    } else {
+        return false;
+    }
+}
 
 function incrementarVisitas($connection, $id)
 {
