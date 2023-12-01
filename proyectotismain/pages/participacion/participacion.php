@@ -1,6 +1,5 @@
 <?php
-
-require("database\connection.php");
+require("database/connection.php");
 
 // Comprueba si el usuario está logueado
 $usuarioAutenticado = isset($_SESSION["email"]) && !empty($_SESSION["email"]);
@@ -11,7 +10,7 @@ $result = mysqli_query($connection, $query);
 if ($result) {
     $departamentos = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
-// Consulta para obtener los nombres de los departamentos desde la tabla dimunicipal
+
 $queryDepartamentos = "SELECT id, nombre FROM dirmunicipales";
 $resultDepartamentos = mysqli_query($connection, $queryDepartamentos);
 
@@ -19,38 +18,85 @@ if ($resultDepartamentos) {
     $nombresDepartamentos = mysqli_fetch_all($resultDepartamentos, MYSQLI_ASSOC);
 }
 
-if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
-    echo '<div class="alert alert-success">Su participación se envió con éxito. Recibirá un feedback por correo electrónico.</div>';
+$errores = [];
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_SESSION["email"];
+    $contribucion = mysqli_real_escape_string($connection, $_POST['contribucion']);
+    $asunto = mysqli_real_escape_string($connection, $_POST['asunto']);
+    $departamento = mysqli_real_escape_string($connection, $_POST['departamento']);
+    $descripcion = mysqli_real_escape_string($connection, $_POST['descripcion']);
+    $otro = isset($_POST['otro']) ? mysqli_real_escape_string($connection, $_POST['otro']) : '';
+    $fecha = date("Y-m-d H:i:s");
+
+    $imagen = $_FILES['imagen'];
+
+    $medida = 1000 * 1000;
+    if ($imagen['size'] > $medida) {
+        $errores[] = "La imagen es muy pesada";
+    }
+
+    if (empty($errores)) {
+        $carpetaImagenes = 'pages/participacion/imagenes/';
+        $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
+        move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen);
+
+        $query = "INSERT INTO participacion (email, tipo_contribucion, asunto_id, id_departamento, descripcion, otro_dpto_text, fecha, imagen) 
+                  VALUES ('$email', '$contribucion', '$asunto', '$departamento', '$descripcion', '$otro', '$fecha', '$nombreImagen')";
+
+        $resultado = mysqli_query($connection, $query);
+
+        if ($resultado) {
+            // Envía el correo electrónico
+            $to = $email;
+            $subject = "Confirmación de Participación";
+            $message = "Gracias por tu participación. Hemos recibido la siguiente información:\n\n";
+            $message .= "Tipo de contribución: $contribucion\n";
+            $message .= "Departamento: $departamento\n";
+            $message .= "Descripción: $descripcion\n";
+            $message .= "Otro Departamento: $otro\n";
+            $message .= "Fecha: $fecha\n";
+
+            // Ajusta los encabezados según sea necesario
+            $headers = "From: pruebaemailtis1@gmail.com"; // Reemplaza con tu dirección de correo
+
+            // Envía el correo
+            if (mail($to, $subject, $message, $headers)) {
+                header("Location: index.php?p=participacion/participacion&mensajeExito=1");
+            } else {
+                echo "Error al enviar el correo electrónico.";
+            }
+        }
+    }
 }
 ?>
 
 <style>
-.was-validated .form-control:valid,
-.was-validated .form-select:valid {
-    border-color: white;
-    /* Cambia este color al que desees para los bordes normales */
-}
+    .was-validated .form-control:valid,
+    .was-validated .form-select:valid {
+        border-color: white;
+        /* Cambia este color al que desees para los bordes normales */
+    }
 
-.was-validated .form-control:invalid,
-.was-validated .form-select:invalid {
-    border-color: white;
-    /* Color rojo actual para los bordes de error */
-}
+    .was-validated .form-control:invalid,
+    .was-validated .form-select:invalid {
+        border-color: white;
+        /* Color rojo actual para los bordes de error */
+    }
 </style>
 
 <div>
     <?php require('includes/users/navbar_users.php'); ?>
 </div>
-
 <div class="formulario">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-8">
                 <div class="contact-form">
-                    <form>
+                    <form onsubmit="return validarFormulario()" method="POST" id="participacionForm" action="" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="contribucionType"><h4>Tipo Contribución:</h4></label>
-                            <select id="contribucionType" class="form-control">
+                            <label for="contribucion"><h4>Tipo Contribución:</h4></label>
+                            <select id="contribucion" class="form-control" name="contribucion" required>
                                 <option value="" disabled selected>Elija opción.</option>
                                 <option value="denuncia">DENUNCIA</option>
                                 <option value="felicitacion">FELICITACION</option>
@@ -59,41 +105,46 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
                         </div>
                         <div class="form-group">
                             <label for="departamento"><h4>Departamento:</h4></label>
-                            <select id="departamento" class="form-control">
+                            <select id="departamento" class="form-control" name="departamento" required>
                                 <option value="" disabled selected>Elija departamento.</option>
                                 <?php
                                 // Verificar si hay departamentos disponibles
                                 if (isset($nombresDepartamentos) && !empty($nombresDepartamentos)) {
-                                    foreach ($nombresDepartamentos as $departamento) {
-                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['nombre'] . '</option>';
+                                    foreach ($nombresDepartamentos as $depto) {
+                                        echo '<option value="' . $depto['id'] . '">' . $depto['nombre'] . '</option>';
                                     }
                                 }
                                 ?>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="departamento"><h4>Asunto:</h4></label>
-                            <select id="departamento" class="form-control">
+                            <label for="asunto"><h4>Asunto:</h4></label>
+                            <select id="asunto" class="form-control" name="asunto" required>
                                 <option value="" disabled selected>Elija asunto.</option>
                                 <?php
-                                // Verificar si hay departamentos disponibles
+                                // Verificar si hay asuntos disponibles
                                 if (isset($departamentos) && !empty($departamentos)) {
-                                    foreach ($departamentos as $departamento) {
-                                        echo '<option value="' . $departamento['id'] . '">' . $departamento['asunto'] . '</option>';
+                                    foreach ($departamentos as $depto) {
+                                        echo '<option value="' . $depto['id'] . '">' . $depto['asunto'] . '</option>';
                                     }
                                 }
                                 ?>
                                 <option value="otro">Otro Asunto</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="imagen" class="form-label"><h4>Imagen:</h4></label>
+                            <input class="form-control" type="file" id="imagen" accept="image/png, image/jpeg"  name="imagen">
+                        </div>
                         <div class="form-group">
                             <label for="descripcion"><h4>Descripción:</h4></label>
-                            <textarea id="descripcion" class="form-control" rows="5" placeholder="Escriba breve descripción"></textarea>
+                            <textarea id="descripcion" class="form-control" rows="5" placeholder="Escriba breve descripción" name="descripcion" required></textarea>
                         </div>
+
                         <?php if (!$usuarioAutenticado): ?>
-                            <button type="button" onclick="mostrarIniciarSesionModal()" class="btn">Enviar Contribución</button>
+                            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#iniciarSesionModal">Enviar Contribución</button>
                         <?php else: ?>
-                            <button type="button" onclick="mostrarFeedbackModal()" class="btn">Enviar Contribución</button>
+                            <button type="submit" class="btn">Enviar Contribución</button>
                         <?php endif; ?>
                     </form>
                 </div>
@@ -103,9 +154,9 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
                 <div class="contact-info">
                     <h3>Envíanos tu contribución:</h3>
                     <p>
-                       Porque queremos saber tu opinión respecto a nuestros servicios así como también
-                       ayudarte en caso de alguna problemática cerca de ti.
-                       ¡Escribe a Nuestros diferentes departamentos dentro de la comuna y les haremos llegar tu contribución!
+                        Porque queremos saber tu opinión respecto a nuestros servicios así como también
+                        ayudarte en caso de alguna problemática cerca de ti.
+                        ¡Escribe a nuestros diferentes departamentos dentro de la comuna y les haremos llegar tu contribución!
                     </p>
                     <br>
                     <p>¡Hagamos entre todos una mejor comunidad!</p>
@@ -114,25 +165,6 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
         </div>
     </div>
 </div>
-
-<!-- Modal para feedback participacion -->
-<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="feedbackModalLabel">Participación Enviada</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Su participación ha sido enviada. Se le enviará un correo con el feedback correspondiente.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Modal para iniciar sesión -->
 <div class="modal fade" id="iniciarSesionModal" tabindex="-1" aria-labelledby="iniciarSesionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -152,13 +184,28 @@ if (isset($_GET['mensajeExito']) && $_GET['mensajeExito'] == 1) {
 </div>
 
 <script>
-// Función para mostrar el modal de feedback
-function mostrarFeedbackModal() {
-    $('#feedbackModal').modal('show');
-}
+    // Función para mostrar el popup
+    function mostrarPopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "block";
+    }
 
-// Función para mostrar el modal de iniciar sesión
-function mostrarIniciarSesionModal() {
-    $('#iniciarSesionModal').modal('show');
-}
+    // Función para cerrar el popup
+    function cerrarPopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+    }
+        // Función para mostrar el modal de iniciar sesión
+        function mostrarModalIniciarSesion() {
+        $('#iniciarSesionModal').modal('show');
+    }
+
+    // Función para cerrar el modal de iniciar sesión
+    function cerrarModalIniciarSesion() {
+        $('#iniciarSesionModal').modal('hide');
+    }
+    
 </script>
+
+
+
