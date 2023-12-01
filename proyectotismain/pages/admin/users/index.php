@@ -75,7 +75,7 @@ $result = mysqli_query($connection, $query);
 
     <script>
         function confirmarEliminar(rut) {
-            var confirmacion = confirm("¿Estás seguro que deseas eliminar este usuario?");
+            var confirmacion = confirm("¿Estás seguro de que deseas eliminar este usuario?");
             if (confirmacion) {
                 window.location.href = "index.php?p=admin/users/actions/delete&rut=" + rut;
             }

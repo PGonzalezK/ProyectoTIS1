@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2023 a las 07:09:33
--- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.2.4
+-- Tiempo de generación: 01-12-2023 a las 10:55:10
+-- Versión del servidor: 10.4.27-MariaDB
+-- Versión de PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -51,7 +51,13 @@ CREATE TABLE `asuntos` (
 INSERT INTO `asuntos` (`id`, `asunto`) VALUES
 (1, 'Acera en mal estado'),
 (2, 'Calle en mal estado'),
-(3, 'Auto abandonado');
+(3, 'Auto abandonado'),
+(4, 'respuesta oportuna'),
+(5, 'basura en el piso'),
+(6, 'falta de información'),
+(7, 'limpieza de grafiti'),
+(8, 'cañeria rota'),
+(9, 'animal peligroso');
 
 -- --------------------------------------------------------
 
@@ -228,7 +234,12 @@ CREATE TABLE `eventos` (
 
 INSERT INTO `eventos` (`idEvento`, `titulo`, `direccion`, `imagen`, `descripcion`, `creado`, `id_editor`) VALUES
 (7, 'Evento en la playa', 'Parque Isidora Cousiño, Lota', '458ce8b6dd8b1802abba58f2423e3b71.jpg', 'aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento aqui va una descripcion de un evento ', '2023-11-07 00:00:00', 9),
-(8, 'Marcha', 'Libertador Gral. Bernardo O\'Higgins, 4070056 Concepción, Bío Bío', '162c28261edfcea8a0411033c2f5a6da.jpg', 'tribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunalestribunales', '2023-12-01 00:00:00', 9);
+(8, 'Marcha', 'Libertador Gral. Bernardo O\'Higgins, 4070056 Concepción, Bío Bío', '162c28261edfcea8a0411033c2f5a6da.jpg', 'Marcha en plaza tribunales debido a el peligro que son expuestos los trabajadores', '2023-12-01 00:00:00', 9),
+(10, 'Histórico Cerro Caracol Senderismo en el', 'Caupolicán 450, Concepción', '04e96cf91333a699f4126441af7d2fd1.jpg', 'senderismo en el historico cerro caracol en el parque ecuador', '2023-12-01 00:00:00', 9),
+(11, 'Camila en chile', 'Estadio Municipal Alcaldesa Ester Roa Rebolledo Collao 481, Concepción La popular banda mexicana de ', '6f598aca83b08a2eb176fc20b7bc59b8.jpg', 'La popular banda mexicana de pop romántico, vuelve a Chile con su nuevo repertorio', '2023-12-01 00:00:00', 9),
+(12, 'Los Tres en el Ester Roa', 'Estadio Municipal Alcaldesa Ester Roa Rebolledo Collao 481, Concepción', '6a3536b36651e6430819f9ee8ff9516e.jpg', 'Los Tres se presentaran en el Ester Roa luego de meses sin presentarse en la ciudad', '2023-12-01 00:00:00', 9),
+(13, 'Bhavi en La Bodeguita de Nicanor', 'Anibal Pinto 1661, Concepción', '4d8dc54f743ee0d282ef3e8d63eff6a6.jpg', 'el cantante argentino se presenta en el famoso restobar la bodeguita de nicanor', '2023-12-01 00:00:00', 9),
+(14, 'Corrida de Llacolén', 'Av. Pedro Aguirre Cerda 781, Concepción, San Pedro de la Paz', '1114ae8868582e4f2a907cd5c9b8e35e.jpg', 'se realizara la Corrida de Llacolén en san pedro de la paz ', '2023-12-01 00:00:00', 9);
 
 -- --------------------------------------------------------
 
@@ -303,13 +314,16 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`, `id_categoria`) VALUES
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 195, 0, 0, 4, 1, 4),
+(7, 'la junta de inversionistas de la region', 'en concepcion se reunen inversionistas para ver proyectos a realizar', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 195, 0, 0, 4, 1, 4),
 (9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 29, 0, 0, NULL, 0, 3),
 (10, 'El estrés académico lidera la depresión en jovenes', 'Amigo la universidad es complicada xd Amigo la universidad es complicada xd Amigo la universidad es complicada xd Amigo la universidad es complicada xd Amigo la universidad es complicada xd ', 'c651a31cb87a7118ca1f20e4e7923d16.jpg', '2023-12-01 06:26:34', 9, 1, 0, 0, NULL, 0, 4),
-(11, 'Una noticia deberia estar bien escrita', 'Una noticia debería estar bien escrita Una noticia debería estar bien escrita Una noticia debería estar bien escrita Una noticia debería estar bien escrita ', '7194118dba68fc3d37da1ebd647d1cc0.jpg', '2023-12-01 06:28:25', 9, 0, 0, 0, NULL, 0, 4),
+(11, 'diplomatico se querella', 'El diplomatico no cede en los derechos que posee y busca una querella', '7194118dba68fc3d37da1ebd647d1cc0.jpg', '2023-12-01 06:28:25', 9, 0, 0, 0, NULL, 0, 4),
 (12, 'Nueva sensación del verano está cerca', 'La buena actividad física y el gimnasio están de moda actualmente porque bla bla ', '54e1cbcc3d81d3703973ada1e573dbaf.jpg', '2023-12-01 06:30:18', 9, 0, 0, 0, NULL, 0, 2),
-(13, 'Cualquier titulo sirve de noticia ajaja', 'Cualquier titulo sirve de noticia ajaja Cualquier titulo sirve de noticia ajaja Cualquier titulo sirve de noticia ajaja', '056ece6b7e7eb86501a731f5d2f82628.jpg', '2023-12-01 06:32:43', 9, 0, 0, 0, NULL, 0, 1),
-(14, 'Dormir 8 horas es fundamental ', 'Dormir 8 horas es fundamental  pero imposible si estás estudiando jajaja', '6fd693ea2393a4e5342d07c650c1e7e4.jpg', '2023-12-01 06:39:07', 9, 0, 0, 0, NULL, 0, 2);
+(13, 'counter strike 2.', 'counter strike 2 el juego revolucion de la industria gamer en concepcion', '056ece6b7e7eb86501a731f5d2f82628.jpg', '2023-12-01 06:32:43', 9, 0, 0, 0, NULL, 0, 1),
+(14, 'Dormir 8 horas es fundamental ', 'Dormir 8 horas es fundamental  pero imposible si estás estudiando jajaja', '6fd693ea2393a4e5342d07c650c1e7e4.jpg', '2023-12-01 06:39:07', 9, 0, 0, 0, NULL, 0, 2),
+(15, 'Con arresto domiciliario total y arraigo nacional quedaron los cinco imputados por el Caso Convenios', ' la Fiscalía apeló verbalmente a la determinación por Polizzi y los hermanos Polanco, sin embargo, el tribunal declaró inadmisible la apelación verbal. Para resolver esto, el magistrado consideró que con los antecedentes aportados no se configuraron los delitos imputados, como estafa y lavado de activos, y que los imputados han concurrido cada vez que han sido citados, Por eso estimo que debían estar privados de libertad, pero con arresto domiciliario.', '6e4fcb3ec102b86d5c9ce6401ade7e2d.jpg', '2023-12-01 10:36:06', 9, 0, 0, 0, NULL, 0, 1),
+(16, 'Retienen 100 sacos de papas iban a ser comercializados en la Provincia de Arauco', 'Cien sacos de papas que intentaban ingresar y comercializar en la provincia de Arauco fueron retenidos por funcionarios del Servicio Agrícola y Ganadero (SAG) de Biobío, en un control carretero en Laraquete, comuna de Arauco, ya que su ingreso se encuentra prohibido a la zona, ya que la provincia se encuentra en el área libre de enfermedades cuarentenarias de la papa.', '614007b6498baa72fda72cb5731e8a74.jpg', '2023-12-01 10:37:28', 9, 0, 0, 0, NULL, 0, 1),
+(17, 'Leandro Fernández y duelo ante Cobresal: “Yo salgo a ganar siempre”', 'El delantero se refirió a la posición que tienen los azules ante la definición del torneo. “Nosotros tenemos que pensar primero en la U, segundo la U y tercero la U”, dijo.', 'a8c4f7ddc4d07819b096ef0487ad3a9a.jpg', '2023-12-01 10:39:07', 9, 0, 0, 0, NULL, 0, 2);
 
 -- --------------------------------------------------------
 
@@ -652,7 +666,7 @@ ALTER TABLE `emprendedores`
 -- AUTO_INCREMENT de la tabla `eventos`
 --
 ALTER TABLE `eventos`
-  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idEvento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `mapa`
@@ -670,7 +684,7 @@ ALTER TABLE `misionvision`
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idNoticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `palabrasalcalde`

@@ -45,7 +45,7 @@
                         <td><?php echo $row['ano_creacion']; ?></td>
                         <td><?php echo $row['direccion']; ?></td>
                         <td><?php echo $row['descripcion']; ?></td>
-                        <td><img src="pages/admin/emprendedores/imagenes/<?php echo $row['foto']; ?>" class="imagen-tabla" alt="" width="90" height="50"></td>
+                        <td><img src="pages/admin/emprendedores/imagenes/<?php echo $row['foto']; ?>" class="imagen-tabla" alt="" width="360px" height="360px"></td>
                         <td><?php echo $row['fecha']; ?></td>
                         <td><?php echo $row['aprobado']; ?></td>
                         <td>
