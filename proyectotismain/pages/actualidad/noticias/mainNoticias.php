@@ -28,5 +28,4 @@ $resultado = mysqli_query($connection, $query);
 </div>
 
 
-
 <?php mysqli_close($connection); ?>

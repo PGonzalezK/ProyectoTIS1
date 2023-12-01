@@ -136,5 +136,41 @@ function obtenerCategorias()
 
     return $categorias;
 }
+
+
+
+function obtenerIdUsuarioPorEmail($connection, $email)
+{
+    $query = "SELECT id FROM users WHERE email = ?";
+    $stmt = mysqli_prepare($connection, $query);
+    mysqli_stmt_bind_param($stmt, 's', $email);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
+
+    if ($resultado->num_rows) {
+        $id_usuario = mysqli_fetch_assoc($resultado)['id'];
+        return $id_usuario;
+    }
+
+    return null;
+}
+
+function incrementarLikesNoticia($connection, $id_noticia)
+{
+    // Incrementar los likes de la noticia en la base de datos
+    $query_incrementar_likes = "UPDATE noticias SET likes = likes + 1 WHERE idNoticia = ?";
+    $stmt_incrementar_likes = mysqli_prepare($connection, $query_incrementar_likes);
+    mysqli_stmt_bind_param($stmt_incrementar_likes, 'i', $id_noticia);
+
+    if (mysqli_stmt_execute($stmt_incrementar_likes)) {
+        echo "Likes incrementados correctamente.";
+    } else {
+        echo "Error al incrementar los likes de la noticia: " . mysqli_error($connection);
+    }
+
+    mysqli_stmt_close($stmt_incrementar_likes);
+}
+
+
 ?>
 

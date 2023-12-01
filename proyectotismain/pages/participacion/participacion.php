@@ -88,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div>
     <?php require('includes/users/navbar_users.php'); ?>
 </div>
+
 <div class="formulario">
     <div class="container">
         <div class="row align-items-center">
@@ -182,29 +183,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </div>
 
-<script>
-    // Función para mostrar el popup
-    function mostrarPopup() {
-        var popup = document.getElementById("popup");
-        popup.style.display = "block";
-    }
-
-    // Función para cerrar el popup
-    function cerrarPopup() {
-        var popup = document.getElementById("popup");
-        popup.style.display = "none";
-    }
-        // Función para mostrar el modal de iniciar sesión
-        function mostrarModalIniciarSesion() {
-        $('#iniciarSesionModal').modal('show');
-    }
-
-    // Función para cerrar el modal de iniciar sesión
-    function cerrarModalIniciarSesion() {
-        $('#iniciarSesionModal').modal('hide');
-    }
-    
-</script>
 
 
 

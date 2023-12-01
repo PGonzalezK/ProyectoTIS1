@@ -1,7 +1,7 @@
 <?php
 
 include("database/connection.php");
-
+require_once("includes/funciones/funciones.php");
 // Verificar si el usuario está autenticado
 if (!isset($_SESSION['email'])) {
     echo "Debes iniciar sesión para valorizar la noticia.";
@@ -55,20 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-function obtenerIdUsuarioPorEmail($connection, $email) {
-    $query = "SELECT id FROM users WHERE email = ?";
-    $stmt = mysqli_prepare($connection, $query);
-    mysqli_stmt_bind_param($stmt, 's', $email);
-    mysqli_stmt_execute($stmt);
-    $resultado = mysqli_stmt_get_result($stmt);
-
-    if ($resultado->num_rows) {
-        $id_usuario = mysqli_fetch_assoc($resultado)['id'];
-        return $id_usuario;
-    }
-
-    return null;
-}
 
 
 mysqli_close($connection);
