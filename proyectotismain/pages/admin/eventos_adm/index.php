@@ -36,7 +36,6 @@
                         <th scope="col">Título</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Imagen</th>
-                        <th scope="col">Descripción</th>
                         <th scope="col">Fecha de Creación</th>
                         <th scope="col">Colaborador</th>
                         <th scope="col">Acciones</th>
@@ -50,7 +49,6 @@
                             <td><?php echo limitarPalabras($evento['titulo'], 4); ?></td>   
                     <td><?php echo $evento['direccion'];?></td>
                     <td><img src="pages/admin/eventos_adm/imagenes/<?php echo $evento['imagen'];?>" class="imagen-tabla" alt="" width="90" height="50"></td>
-                    <td><?php echo limitarPalabras($evento['descripcion'], 4); ?></td>
                     <td><?php echo $evento['creado'];?></td>
                     <td>
                         <?php 

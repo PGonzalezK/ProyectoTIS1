@@ -1,5 +1,4 @@
 <!-- Brand Start -->
-
 <div class="brand">
     <div class="container">
         <div class="row align-items-center">
@@ -37,7 +36,7 @@
 </div>
 <!-- Brand End -->
 
-
+<div class="quieto">
 <!-- Nav Bar Start -->
 
 <div class="nav-bar">
@@ -84,4 +83,8 @@
     </div>
   
 <!-- Nav Bar End -->
+
+</div>
+
+
 

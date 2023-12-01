@@ -32,4 +32,4 @@
 
 <body>
 	<div class="min-vh-100 color1" >
-		<?php require_once('includes/admin/navbar.php'); ?>
+    <?php require_once('includes/admin/navbar.php'); ?>
