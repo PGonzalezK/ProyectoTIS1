@@ -1,6 +1,6 @@
 <?php
 include("database/connection.php");
-include("funciones.php");
+include_once 'includes/funciones/funciones.php';
 
 $email_usuario = obtenerEmailUsuarioActual();
 
