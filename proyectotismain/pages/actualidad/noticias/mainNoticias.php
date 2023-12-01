@@ -2,22 +2,9 @@
 //conectar a la base de datos
 include("database/connection.php");
 
-$filtroCategoria = isset($_GET['categoria']) ? $_GET['categoria'] : null;
-$query = "SELECT noticias.*, categoria.nombre AS categoria_nombre 
-          FROM noticias 
-          JOIN categoria ON noticias.id_categoria = categoria.id_categoria";
-          
-$redireccionURL = "index.php?p=actualidad/noticias/noticias";
-// Agregar filtro por categoría si está seleccionada
-if (!empty($filtroCategoria)) {
-    $categoriaEncoded = urlencode($filtroCategoria);
-    $redireccionURL .= "&categoria=$categoriaEncoded";
-}
-
-$query .= " ORDER BY noticias.creado DESC LIMIT $limite";
-
+$query = "SELECT idNoticia, titulo, descripcion, imagen, creado, visitas, likes, dislikes, num_valorizaciones, COUNT(valorizacion) AS num_valorizaciones, AVG(valorizacion) AS promedio_valorizacion FROM noticias GROUP BY idNoticia LIMIT ${limite}";
+// Resultado de la base de datos
 $resultado = mysqli_query($connection, $query);
-
 ?>
 
 <div class="row tn-slider">
