@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-12-2023 a las 00:58:28
--- Versión del servidor: 10.4.27-MariaDB
--- Versión de PHP: 8.1.12
+-- Tiempo de generación: 01-12-2023 a las 03:25:40
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -295,8 +295,8 @@ CREATE TABLE `noticias` (
 --
 
 INSERT INTO `noticias` (`idNoticia`, `titulo`, `descripcion`, `imagen`, `creado`, `id_editor`, `visitas`, `likes`, `dislikes`, `valorizacion`, `num_valorizaciones`, `id_categoria`) VALUES
-(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 54, 0, 0, 4, 1, 4),
-(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 19, 0, 0, NULL, 0, 3);
+(7, 'acsssss', '123456789101112131415161718192021222324252627282930', '07504b00c23aeabc9329d52f5a8a8596.jpg', '2023-11-24 02:31:29', 9, 56, 0, 0, 4, 1, 4),
+(9, 'Nueva biblioteca municipal', 'Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia Una noticia ', 'f3b42cfeeec9dbef20dd6e2bcb0d7254.jpg', '2023-11-30 01:48:00', 9, 20, 0, 0, NULL, 0, 3);
 
 -- --------------------------------------------------------
 
@@ -330,12 +330,22 @@ CREATE TABLE `participacion` (
   `id` int(11) NOT NULL,
   `email` varchar(60) NOT NULL,
   `tipo_contribucion` enum('denuncia','felicitacion','sugerencia') NOT NULL,
+  `asunto_id` int(11) NOT NULL,
   `id_departamento` int(11) NOT NULL,
   `descripcion` text NOT NULL,
+  `imagen` varchar(60) NOT NULL,
   `otro_dpto_text` text NOT NULL,
   `fecha` datetime NOT NULL,
   `estado_revision` varchar(255) DEFAULT 'Sin leer'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `participacion`
+--
+
+INSERT INTO `participacion` (`id`, `email`, `tipo_contribucion`, `asunto_id`, `id_departamento`, `descripcion`, `imagen`, `otro_dpto_text`, `fecha`, `estado_revision`) VALUES
+(1, 'usuario@usuario.com', 'denuncia', 1, 2, '124', '79b76fb91325b71da3e1c6db6ecb30fa.jpg', '', '2023-12-01 02:50:57', 'En revisión'),
+(2, 'pmonjes@ing.ucsc.cl', 'denuncia', 1, 2, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '220491025a1991bf2b298199cf1eb738.jpg', '', '2023-12-01 03:03:32', 'Sin leer');
 
 -- --------------------------------------------------------
 
@@ -523,7 +533,8 @@ ALTER TABLE `palabrasalcalde`
 --
 ALTER TABLE `participacion`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_departamento` (`id_departamento`);
+  ADD KEY `id_departamento` (`id_departamento`),
+  ADD KEY `asunto_id` (`asunto_id`);
 
 --
 -- Indices de la tabla `restrablecer_password`
@@ -628,7 +639,7 @@ ALTER TABLE `palabrasalcalde`
 -- AUTO_INCREMENT de la tabla `participacion`
 --
 ALTER TABLE `participacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `restrablecer_password`
@@ -709,6 +720,7 @@ ALTER TABLE `noticias`
 -- Filtros para la tabla `participacion`
 --
 ALTER TABLE `participacion`
+  ADD CONSTRAINT `fk_asunto` FOREIGN KEY (`asunto_id`) REFERENCES `asuntos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_depto` FOREIGN KEY (`id_departamento`) REFERENCES `dirmunicipales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
