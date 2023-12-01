@@ -1,46 +1,51 @@
 <?php
-
 include("database/connection.php");
+include_once 'includes/funciones/funciones.php';
 
+// Obtener todas las categorías
+$categorias = obtenerCategorias();
 ?>
+
 <div>
     <?php require('includes/users/navbar_users.php'); ?>
 </div>
 
-<div class="top-news">
+
+<!-- Category News Start -->
+<div class="cat-news pt-4">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 tn-left">
-                
-                <!-- Agrega un selector de categorías -->
-                <label for="categoria">Filtrar por categoría:</label>
-                <select id="categoria" name="categoria">
-                    <option value="">Todas las categorías</option>
-                    <?php
-                        // Obtener categorías desde la base de datos
-                        $query_categorias = "SELECT id_categoria, nombre FROM categoria";
-                        $resultado_categorias = mysqli_query($connection, $query_categorias);
+            <?php foreach ($categorias as $categoria) :
+                $idCategoria = $categoria['id_categoria'];
+                $nombreCategoria = $categoria['nombre'];
+                $noticias = obtenerNoticiasPorCategoria($idCategoria, 3);
 
-                        while ($categoria = mysqli_fetch_assoc($resultado_categorias)) :
-                    ?>
-                        <option value="<?php echo $categoria['id_categoria']; ?>"><?php echo $categoria['nombre']; ?></option>
-                    <?php endwhile ?>
-                </select>
-
-                <!-- Contenedor para mostrar noticias sin filtrar -->
-                
-                <div id="noticias-todas">
-                    <?php
-                        $limite = 5;
-                        include 'pages/actualidad/noticias/mainNoticias.php';
-                    ?>
-                </div>
-
-                <!-- Contenedor para mostrar noticias filtradas -->
-                <div id="noticias-filtradas"></div>
-               
-            </div>
+                if (!empty($noticias)) :
+            ?>
+                    <div class="col-md-6">
+                        <h2><?= $nombreCategoria ?></h2>
+                        <div class="row cn-slider">
+                            <?php foreach ($noticias as $noticia) : ?>
+                                <div class="col-md-6">
+                                    <div class="cn-img">
+                                        <img src="pages/admin/noticias_adm/imagenes/<?= $noticia['imagen'] ?>" alt="">
+                                        <div class="cn-title">
+                                            <a href="index.php?p=actualidad/noticias/verNoticia&id=<?= $noticia['idNoticia'] ?>">
+                                                <?= $noticia['titulo'] ?> (<?= $nombreCategoria ?>)
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach ?>
+                        </div>
+                    </div>
+            <?php
+                endif;
+            endforeach;
+            ?>
         </div>
     </div>
 </div>
+<!-- Category News End -->
+
 

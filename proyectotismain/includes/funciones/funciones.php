@@ -54,4 +54,50 @@ function registrarAccionUsuario($connection, $email_usuario, $id_noticia, $accio
     mysqli_stmt_execute($stmt);
 }
 
+
+function obtenerNoticiasPorCategoria($idCategoria, $limite = 99)
+{
+    global $connection;
+
+    $idCategoria = mysqli_real_escape_string($connection, $idCategoria);
+
+    // Inicializar la condición WHERE
+    $condicionCategoria = '';
+
+    // Verificar si se proporciona una categoría
+    if (!empty($idCategoria)) {
+        $condicionCategoria = "WHERE categoria.id_categoria = $idCategoria";
+    }
+
+    // Construir la consulta
+    $query = "SELECT * FROM noticias
+              LEFT JOIN categoria ON noticias.id_categoria = categoria.id_categoria
+              $condicionCategoria
+              LIMIT $limite";
+
+    $resultado = mysqli_query($connection, $query);
+
+    $noticias = [];
+    while ($noticia = mysqli_fetch_assoc($resultado)) {
+        $noticias[] = $noticia;
+    }
+
+    return $noticias;
+}
+
+function obtenerCategorias()
+{
+    global $connection;
+
+    $query = "SELECT id_categoria, nombre FROM categoria";
+    $resultado = mysqli_query($connection, $query);
+
+    $categorias = [];
+    while ($categoria = mysqli_fetch_assoc($resultado)) {
+        $categorias[] = $categoria;
+    }
+
+    return $categorias;
+}
 ?>
+

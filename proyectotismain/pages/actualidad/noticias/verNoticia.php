@@ -29,7 +29,6 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
 ?>
 
 
-
     <?php require('includes/users/navbar_users.php'); ?>
 
 
