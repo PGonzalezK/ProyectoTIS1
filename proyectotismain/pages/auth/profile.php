@@ -53,17 +53,6 @@ if ($user = mysqli_fetch_assoc($result)) {
                         <li class="list-group-item"><strong>Email:</strong> <?= $email ?></li>
                     </ul>
 
-                    <!-- Mostrar eventos seguidos -->
-                    <div class="mt-3">
-                        <h5>Eventos Seguidos:</h5>
-                        <ul>
-                            <?php
-                            while ($evento_seguido = mysqli_fetch_assoc($result_eventos_seguidos)) {
-                                echo "<li>{$evento_seguido['titulo']}</li>";
-                            }
-                            ?>
-                        </ul>
-                    </div>
 
                     <a href="index.php?p=auth/actions/editeprofile&email=<?= $email ?>" class="btn btn-primary mt-3">Editar Perfil</a>
                 </div>

@@ -75,11 +75,26 @@ if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                             
                             // Verificar si el usuario ya sigue el evento
                             $usuario_sigue_evento = verificarUsuarioSigueEvento($connection, $email_usuario_actual, $id);
-
+                        
                             if (!$usuario_sigue_evento) {
                                 // Si no sigue el evento, realiza la acción de seguir
                                 seguirEvento($connection, $email_usuario_actual, $id);
-                                echo "<script>alert('Ahora estás siguiendo el evento.');</script>";
+                        
+                                // Envío de correo electrónico
+                                $to = $email_usuario_actual;
+                                $subject = "Confirmación de seguir el evento";
+                                $message = "Gracias por seguir el evento.\n";
+                                $message .= "Evento: $titulo\n"; // Asegúrate de tener el título del evento disponible
+                                $message .= "descripcion: $descripcion\n"; // Asegúrate de tener la fecha del evento disponible
+                                $message .= "Recibirás actualizaciones sobre este evento.\n";
+                        
+                                // Ajusta los encabezados según sea necesario
+                                $headers = "From: nexomunicipal@gmail.com"; // Reemplaza con tu dirección de correo
+                        
+                                // Envía el correo
+                                mail($to, $subject, $message, $headers);
+                        
+                                echo "<script>alert('Ahora estás siguiendo el evento. Se ha enviado un correo de confirmación.');</script>";
                             } else {
                                 // Puedes agregar un mensaje indicando que el usuario ya sigue el evento
                                 echo "<script>alert('Ya estás siguiendo este evento.');</script>";
